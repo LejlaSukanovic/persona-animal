@@ -1,10 +1,11 @@
 const express = require('express');
-const { getTheData, getUporabnik, getOcena } = require('../Database/firebase');
+const { getTheData, getUporabnik, getOcena, getAllCategories } = require('../Database/firebase');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    let categories = ['zivali', 'barve'];
+router.get('/', async (req, res) => {
+    let categories = await getAllCategories();
+    console.log(categories);
     res.render('samoocenitev', { categories });
 });
 

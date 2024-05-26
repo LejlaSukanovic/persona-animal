@@ -102,11 +102,32 @@ const getOcena = async (entitetaID) => {
     }
 }
 
+const getAllCategories = async() => {
+    try {
+        const collectionRef = collection(firestoreDB, "entiteta");
+        const docSnap = await getDocs(collectionRef);
+        
+        const categories = new Set();
+        docSnap.forEach((doc) => {
+            const data = doc.data();
+            if (data.kategorija) {
+                categories.add(data.kategorija);
+            }
+        });
+
+        return Array.from(categories);  // Convert Set to Array
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+}
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
     uploadProcessedData,
     getTheData,
     getUporabnik,
-    getOcena
+    getOcena,
+    getAllCategories
 };
