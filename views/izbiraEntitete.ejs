@@ -17,15 +17,11 @@
         <div class="entities-container">
             <div id="entity1" class="entity" data-index="0">
                 <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
-                <p>
-                    <%= entities[0].naziv %>
-                </p>
+                <p><%= entities[0].naziv %></p>
             </div>
             <div id="entity2" class="entity" data-index="1">
                 <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
-                <p>
-                    <%= entities[1].naziv %>
-                </p>
+                <p><%= entities[1].naziv %></p>
             </div>
         </div>
 
@@ -35,7 +31,8 @@
     </div>
 
     <script>
-        const entities = <% - JSON.stringify(entities) %>;
+        // Declare the entities variable directly in the template
+        const entities = <%- JSON.stringify(entities) %>;
     </script>
     <script src="/izbiraEntitete.js"></script>
 </body>
