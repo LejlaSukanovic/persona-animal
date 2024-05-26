@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #f0f0f0;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.logo-container img {
+    height: 50px; /* Adjust as needed */
+}
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.category-container button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: #ccc;
+    padding: 10px 0;
+}
+
+footer .tab {
+    cursor: pointer;
+}
+
+footer .col {
+    cursor: pointer;
+}
