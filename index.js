@@ -32,6 +32,16 @@ app.get('/samoocenitev', (req, res) => {
     res.render('samoocenitev', { categories });
 });
 
+app.get('/pregledOcenitve', async (req, res) => {
+    try {
+        const data = await getTheData();
+        res.render('home', { entities: data });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Error fetching data');
+    }
+});
+
 app.get('/izvedbaSamoocenitve/:category', async (req, res) => {
     const category = req.params.category;
     const uporabnik = await getUporabnik(1/**proslijediti id od prijavljenog uporabnika*/);
