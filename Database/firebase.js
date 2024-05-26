@@ -45,11 +45,11 @@ const uploadProcessedData = async() => {
 
 };
 
-const getTheData = async(from, to) => {
+const getTheData = async(category) => {
     try{
         const collectionRef = collection(firestoreDB, "entiteta");
         const finalData = [];
-        const q = query(collectionRef);
+        const q = query(collectionRef, where('kategorija', '==', `${category}`));
 
         const docSnap = await getDocs(q);
 
