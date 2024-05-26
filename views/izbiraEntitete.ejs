@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izbira Entitete</title>
+    <link rel="stylesheet" href="/izbiraEntitete.css">
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Samoocenitev</h1>
+        <p>Izberite fotografijo</p>
+
+        <div class="entities-container">
+            <div id="entity1" class="entity" data-index="0">
+                <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
+                <p>
+                    <%= entities[0].naziv %>
+                </p>
+            </div>
+            <div id="entity2" class="entity" data-index="1">
+                <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
+                <p>
+                    <%= entities[1].naziv %>
+                </p>
+            </div>
+        </div>
+
+        <div class="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        const entities = <% - JSON.stringify(entities) %>;
+    </script>
+    <script src="/izbiraEntitete.js"></script>
+</body>
+
+</html>
