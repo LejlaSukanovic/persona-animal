@@ -70,7 +70,25 @@ const getUporabnik = async(id) => {
     try{
         const collectionRef = collection(firestoreDB, "uporabnik");
         let finalData = [];
-        const q = query(collectionRef, where('idUporabnik', '==', 1));
+        const q = query(collectionRef, where('idUporabnik', '==', id));
+
+        const docSnap = await getDocs(q);
+
+        docSnap.forEach((doc) => {
+            finalData.push(doc.data())
+        });
+        
+        return finalData[0];
+    }catch(error) {
+        console.log(error);
+    }
+}
+
+const getOcena = async (entitetaID) => {
+    try{
+        const collectionRef = collection(firestoreDB, "entiteta");
+        let finalData = [];
+        const q = query(collectionRef, where('idEntiteta', '==', entitetaID));
 
         const docSnap = await getDocs(q);
 
@@ -89,5 +107,6 @@ module.exports = {
     getFirebaseApp,
     uploadProcessedData,
     getTheData,
-    getUporabnik
+    getUporabnik,
+    getOcena
 };
