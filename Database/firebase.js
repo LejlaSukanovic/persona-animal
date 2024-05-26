@@ -2,7 +2,7 @@
 const { Collapse } = require("@mui/material");
 const { firestore } = require("firebase-admin");
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDoc, query, getDocs } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDoc, query, getDocs, where } = require("firebase/firestore");
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtmYkG21BWAVvBWvcQK_37WASiOblZfu0",
@@ -66,9 +66,28 @@ const getTheData = async(from, to) => {
     }
 }
 
+const getUporabnik = async(id) => {
+    try{
+        const collectionRef = collection(firestoreDB, "uporabnik");
+        let finalData = [];
+        const q = query(collectionRef, where('idUporabnik', '==', 1));
+
+        const docSnap = await getDocs(q);
+
+        docSnap.forEach((doc) => {
+            finalData.push(doc.data())
+        });
+        
+        return finalData[0];
+    }catch(error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
     uploadProcessedData,
-    getTheData
+    getTheData,
+    getUporabnik
 };
