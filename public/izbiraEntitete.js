@@ -105,8 +105,8 @@ function updateProgress() {
     sessionStorage.setItem('currentChoice', currentChoice);
     const progressPercentage = currentChoice / totalChoices;
     progressBar.animate(progressPercentage);
-    const result = JSON.parse(sessionStorage.getItem('lastChosenEntity'));
-    let lastChosenEntityId = result.idEntiteta;
+    //const result = JSON.parse(sessionStorage.getItem('lastChosenEntity'));
+    //let lastChosenEntityId = result.idEntiteta;
     if (currentChoice >= totalChoices || seenEntities.size >= entities.length) {
         alert('Selection process completed!');
         //window.location.href = '/samoocenitev/rezultat/' + lastChosenEntityId;
