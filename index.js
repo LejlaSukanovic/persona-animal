@@ -32,10 +32,11 @@ app.get('/samoocenitev', (req, res) => {
     res.render('samoocenitev', { categories });
 });
 
-app.get('/pregledOcenitve', async (req, res) => {
+app.get('/pregledOcenitve/:ocena', async (req, res) => {
     try {
-        const data = await getTheData();
-        res.render('home', { entities: data });
+        const ocena = parseInt(req.params.ocena, 10);
+        const data = await getOcena(ocena);
+        res.render('PregledOcenitve', { entity: data });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
