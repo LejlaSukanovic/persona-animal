@@ -35,6 +35,8 @@ router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
 });
 
 
+
+
 router.get('/izbiraEntitete/:kategorija', async (req, res) => {
     try {
         const category = req.params.kategorija;

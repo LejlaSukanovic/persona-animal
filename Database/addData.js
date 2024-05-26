@@ -19,7 +19,7 @@ const entities = [
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
     slika: './images/konj.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 2,
@@ -28,7 +28,7 @@ const entities = [
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
     negLastnosti: 'Ljubosumnost, Vodljivost',
     slika: './images/pes.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 3,
@@ -37,7 +37,7 @@ const entities = [
     pozLastnosti: 'Dar za opazovanj, Resnost, Modrost, Previdnost, Čuječnost',
     negLastnosti: 'Zaspanost, Lenobnost',
     slika: './images/sova.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 4,
@@ -46,7 +46,7 @@ const entities = [
     pozLastnosti: 'Moč, Zaščitništvo, Razigranost, Dobrodušnost',
     negLastnosti: 'Grobost, Godrnjavost, Okrutnost',
     slika: './images/medved.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 5,
@@ -55,7 +55,7 @@ const entities = [
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
     slika: './images/lev.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 6,
@@ -64,7 +64,7 @@ const entities = [
     pozLastnosti: 'Zvitost, Bistrost, Prilagodljivost',
     negLastnosti: 'Preračunljivost, Kradljivost, Zahrbtnost',
     slika: './images/lisica.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 7,
@@ -73,7 +73,7 @@ const entities = [
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
     negLastnosti: 'Kradljivost, Prepirljivost, Požrešnost',
     slika: './images/opica.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 8,
@@ -82,7 +82,7 @@ const entities = [
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
     negLastnosti: 'Plašnost, Strahopetnost, Prestrašenost',
     slika: './images/zajec.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 9,
@@ -91,7 +91,7 @@ const entities = [
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
     negLastnosti: 'Zahrbtnost, Popadljivost, Kradljivost',
     slika: './images/macka.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 10,
@@ -100,7 +100,7 @@ const entities = [
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
     negLastnosti: 'Kradljivost, Požrešnost, Prepirljivost',
     slika: './images/galeb.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 11,
@@ -109,7 +109,7 @@ const entities = [
     pozLastnosti: 'Pridnost, Organiziranost, Altruizem',
     negLastnosti: 'Bojevitost, Trmoglavost, Napadalnost',
     slika: './images/mravlja.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 12,
@@ -118,7 +118,7 @@ const entities = [
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
     negLastnosti: 'Neusmiljenost, Krvoločnost, Plenjenje, Krutost',
     slika: './images/orel.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 13,
@@ -127,7 +127,7 @@ const entities = [
     pozLastnosti: 'Moč, Delavnost, Bistrost',
     negLastnosti: 'Nerodnost, Svojeglavost, Požrešnost, Razdiralnost',
     slika: './images/slon.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 14,
@@ -136,7 +136,7 @@ const entities = [
     pozLastnosti: 'Nedolžnost, Prisrčnost, Spretnost, Ljubkost',
     negLastnosti: 'Plahost, Nezaupljivost, Občutljivost',
     slika: './images/srna.jpg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 15,
@@ -145,7 +145,7 @@ const entities = [
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
     negLastnosti: 'Napadalnost, Nadležnost',
     slika: './images/cebela.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   },
   {
     idEntiteta: 16,
@@ -154,7 +154,7 @@ const entities = [
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/bik.jpeg',
-    kategorija: 'zivali'
+    kategorija: 'Zivali'
   }
 ];
 

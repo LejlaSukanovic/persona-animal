@@ -15,15 +15,10 @@ body {
     padding: 20px;
 }
 
-.container1 {
-    flex: 1 0 auto;
-}
-
 .progress-bar-container {
     padding-top: 3%;
     width: 30%;
 }
-
 
 h1 {
     font-size: 28px;
@@ -85,7 +80,6 @@ p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-
 @media (max-width: 600px) {
     h1 {
         font-size: 24px;
@@ -103,7 +97,6 @@ p {
     .entity p {
         font-size: 14px;
     }
-
 }
 
 @media (max-width: 400px) {
@@ -166,7 +159,7 @@ footer .col:last-child {
 }
 
 footer .col:hover {
-    background: #444;
+    background: #5d5d5d;
 }
 
 @media (max-width: 767.98px) {
@@ -178,4 +171,10 @@ footer .col:hover {
     footer .col:last-child {
         border-bottom: none;
     }
+}
+
+#container-semi-circle {
+    margin: 20px;
+    width: 200px;
+    height: 100px;
 }

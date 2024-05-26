@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/Database', express.static(path.join(__dirname, 'Database')));
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
@@ -30,5 +30,6 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/samoocenitev', samoocenitevRoutes);
+
 
 

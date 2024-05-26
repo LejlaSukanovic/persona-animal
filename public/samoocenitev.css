@@ -9,7 +9,6 @@ body, html {
 }
 
 header {
-    background: #f0f0f0;
     padding: 10px 20px;
     text-align: center;
 }
@@ -34,19 +33,37 @@ header {
     flex: 1 0 auto;
 }
 
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+    color: #666;
+}
+
+/* Footer Styles */
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #333;
-    color: white;
+    background: #333; /* Dark background color */
+    color: white; /* White text color */
     padding: 10px 0;
+    text-align: center;
 }
 
 footer .col {
     cursor: pointer;
     padding: 10px 0;
     border-right: 1px solid #555;
+    text-align: center;
 }
 
 footer .col:last-child {
@@ -54,7 +71,7 @@ footer .col:last-child {
 }
 
 footer .col:hover {
-    background: #444;
+    background: #5d5d5d;
 }
 
 @media (max-width: 767.98px) {
@@ -65,5 +82,17 @@ footer .col:hover {
 
     footer .col:last-child {
         border-bottom: none;
+    }
+}
+
+header .logo {
+    height: 100%; /* Adjust the height as needed */
+    width: 20%;  /* Keeps the aspect ratio */
+}
+
+@media (max-width: 767.98px) {
+    header .logo {
+        height: 100%; /* Adjust the height as needed */
+        width: 100%; /* Smaller size for mobile */
     }
 }
