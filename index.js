@@ -48,16 +48,16 @@ app.get('/izvedbaSamoocenitve/:category', async (req, res) => {
 
     //ako uporabnik nema ocjenu se posalje na test (izbiraEntitete)
     if(uporabnik.entiteta==0){
-        const data = await getTheData(); //dodati u get the data da se dobiju entitete na osnovu neke kategorije
-        res.render('IzbiraEntitete', { entities: data });
+        /*const data = await getTheData(); //dodati u get the data da se dobiju entitete na osnovu neke kategorije
+        res.render('IzbiraEntitete', { entities: data });*/
+        res.redirect('/izbiraEntitete');
     } else {
-
-        const ocena = await getOcena(uporabnik.entiteta);
-        res.render('PregledOcenitve', {entiteta:ocena});
+        /*const ocena = await getOcena(uporabnik.entiteta);
+        res.render('PregledOcenitve', {entiteta:ocena});*/
     }
     console.log(uporabnik);
 
-})
+});
 
 app.get('/izbiraEntitete', async (req, res) => {
     try {
