@@ -1,5 +1,5 @@
 const express = require('express');
-const { getTheData, getUporabnik, getOcena, getAllCategories } = require('../Database/firebase');
+const { getTheData, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve } = require('../Database/firebase');
 
 const router = express.Router();
 
@@ -43,6 +43,18 @@ router.get('/izbiraEntitete/:kategorija', async (req, res) => {
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
+    }
+});
+
+router.get('/rezultat/:entitetaId', async(req, res) => {
+    try{
+        const entitetaID = parseInt(req.params.entitetaId, 10);
+        console.log(entitetaID);
+        const uporabnikID = 1;
+        await saveResultSamoocenitve(uporabnikID, entitetaID);
+        res.render('PregledOcenitve', { entity: data });
+    }catch(error){
+        console.log(error);
     }
 });
 

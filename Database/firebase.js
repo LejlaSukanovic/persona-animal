@@ -2,7 +2,7 @@
 const { Collapse } = require("@mui/material");
 const { firestore } = require("firebase-admin");
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDoc, query, getDocs, where } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDoc, query, getDocs, where, updateDoc } = require("firebase/firestore");
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtmYkG21BWAVvBWvcQK_37WASiOblZfu0",
@@ -122,6 +122,19 @@ const getAllCategories = async() => {
     }
 }
 
+const saveResultSamoocenitve = async (idUporabnik, idEntiteta) => {
+    try{
+        const document = doc(firestoreDB, "uporabnik", idUporabnik);
+        updateDoc(document, {
+            entiteta: idEntiteta
+        }).then(() => console.log('updated document in collection uporabnik'));
+
+        return;
+    } catch(error){
+        console.log(error);
+    };
+}
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
@@ -129,5 +142,6 @@ module.exports = {
     getTheData,
     getUporabnik,
     getOcena,
-    getAllCategories
+    getAllCategories,
+    saveResultSamoocenitve
 };
