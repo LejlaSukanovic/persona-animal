@@ -59,20 +59,20 @@
     <br>
     <div class="card mx-auto" style="max-width: 500px;">
       <span class="close-btn">&times;</span>
-      <img src="<%= entities[6].slika %>" class="card-img-top" alt="<%= entities[6].naziv %>">
+      <img src="<%= entity.slika %>" class="card-img-top" alt="<%= entity.naziv %>">
       <div class="card-body">
-        <p class="card-text"><h4>Vasa zival</h4> <%= entities[6].naziv %></p>
+        <p class="card-text"><h4>Vasa zival</h4> <%= entity.naziv %></p>
         <div class="attributes">
           <h4>Opis</h4>
-          <p><%= entities[6].opis %></p>
+          <p><%= entity.opis %></p>
         </div>
         <p class="card-text">
           <h4>Pozitivne lastnosti</h4>
-          <%= entities[6].pozLastnosti %>
+          <%= entity.pozLastnosti %>
         </p>
         <p class="card-text">
             <h4>Negativne lastnosti</h4>
-            <%= entities[6].negLastnosti %>
+            <%= entity.negLastnosti %>
           </p>
       </div>
     </div>
