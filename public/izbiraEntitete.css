@@ -15,6 +15,16 @@ body {
     padding: 20px;
 }
 
+.container1 {
+    flex: 1 0 auto;
+}
+
+.progress-bar-container {
+    padding-top: 3%;
+    width: 30%;
+}
+
+
 h1 {
     font-size: 28px;
     font-weight: 700;
@@ -75,11 +85,6 @@ p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.progress-bar-container {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 300px;
-}
 
 @media (max-width: 600px) {
     h1 {
@@ -99,9 +104,6 @@ p {
         font-size: 14px;
     }
 
-    .progress-bar-container {
-        width: 80%;
-    }
 }
 
 @media (max-width: 400px) {
@@ -138,5 +140,42 @@ p {
     }
     to {
         opacity: 1;
+    }
+}
+
+/* Footer Styles */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #333; /* Dark background color */
+    color: white; /* White text color */
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer .col {
+    cursor: pointer;
+    padding: 10px 0;
+    border-right: 1px solid #555;
+    text-align: center;
+}
+
+footer .col:last-child {
+    border-right: none;
+}
+
+footer .col:hover {
+    background: #444;
+}
+
+@media (max-width: 767.98px) {
+    footer .col {
+        border-right: none;
+        border-bottom: 1px solid #555;
+    }
+
+    footer .col:last-child {
+        border-bottom: none;
     }
 }

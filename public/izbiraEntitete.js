@@ -1,6 +1,8 @@
 let currentChoice = parseInt(sessionStorage.getItem('currentChoice')) || 0;
-const totalChoices = 10;
+const totalChoices = entities.length;
 let seenEntities = new Set(JSON.parse(sessionStorage.getItem('seenEntities')) || []);
+let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [];
+
 const progressBar = new ProgressBar.Circle('#progress-bar', {
     strokeWidth: 6,
     easing: 'easeInOut',
@@ -32,17 +34,26 @@ const progressBar = new ProgressBar.Circle('#progress-bar', {
 
 progressBar.set(currentChoice / totalChoices);
 
-let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [0, 1];
 if (seenEntities.size === 0) {
+    // Initialize with the first two entities
+    currentEntities = [0, 1];
     seenEntities.add(0);
     seenEntities.add(1);
+    sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
+    sessionStorage.setItem('seenEntities', JSON.stringify(Array.from(seenEntities)));
 }
 
 function getNextEntityIndex(excludeIndex) {
-    let nextIndex;
-    do {
-        nextIndex = Math.floor(Math.random() * entities.length);
-    } while (seenEntities.has(nextIndex) || nextIndex === excludeIndex);
+    const remainingEntities = entities.map((_, index) => index).filter(index => !seenEntities.has(index) && index !== excludeIndex);
+
+    if (remainingEntities.length === 0) {
+        // If all entities have been seen, clear the set and restart
+        seenEntities.clear();
+        sessionStorage.setItem('seenEntities', JSON.stringify(Array.from(seenEntities)));
+        return getNextEntityIndex(excludeIndex);
+    }
+
+    const nextIndex = remainingEntities[Math.floor(Math.random() * remainingEntities.length)];
     seenEntities.add(nextIndex);
     sessionStorage.setItem('seenEntities', JSON.stringify(Array.from(seenEntities)));
     return nextIndex;
@@ -106,7 +117,7 @@ function updateProgress() {
     const progressPercentage = currentChoice / totalChoices;
     progressBar.animate(progressPercentage);
 
-    if (currentChoice >= totalChoices || seenEntities.size >= entities.length) {
+    if (currentChoice >= totalChoices) {
         alert('Selection process completed!');
     }
 }

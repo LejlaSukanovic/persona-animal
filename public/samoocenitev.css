@@ -1,17 +1,17 @@
+/* samoocenitev.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
 }
 
 header {
     background: #f0f0f0;
     padding: 10px 20px;
     text-align: center;
-}
-
-.logo-container img {
-    height: 50px; /* Adjust as needed */
 }
 
 .category-container {
@@ -30,20 +30,40 @@ header {
     cursor: pointer;
 }
 
+.container {
+    flex: 1 0 auto;
+}
+
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
-    background: #ccc;
+    background: #333;
+    color: white;
     padding: 10px 0;
-}
-
-footer .tab {
-    cursor: pointer;
 }
 
 footer .col {
     cursor: pointer;
+    padding: 10px 0;
+    border-right: 1px solid #555;
+}
+
+footer .col:last-child {
+    border-right: none;
+}
+
+footer .col:hover {
+    background: #444;
+}
+
+@media (max-width: 767.98px) {
+    footer .col {
+        border-right: none;
+        border-bottom: 1px solid #555;
+    }
+
+    footer .col:last-child {
+        border-bottom: none;
+    }
 }
