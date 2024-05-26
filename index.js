@@ -54,6 +54,7 @@ app.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
     } else {
         /*const ocena = await getOcena(uporabnik.entiteta);
         res.render('PregledOcenitve', {entiteta:ocena});*/
+        res.redirect('/pregledOcenitve/'+uporabnik.entiteta);
     }
     console.log(uporabnik);
 
