@@ -13,6 +13,7 @@ const bucket = admin.storage().bucket();
 
 const entities = [
   {
+    idEntiteta: 1,
     naziv: 'Konj',
     opis: 'dodati opis',
     pozLastnosti: 'Lepota, Koristnost',
@@ -21,6 +22,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 2,
     naziv: 'Pes',
     opis: 'dodati opis',
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
@@ -29,6 +31,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 3,
     naziv: 'Sova',
     opis: 'dodati opis',
     pozLastnosti: 'Dar za opazovanj, Resnost, Modrost, Previdnost, Čuječnost',
@@ -37,6 +40,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 4,
     naziv: 'Medved',
     opis: 'dodati opis',
     pozLastnosti: 'Moč, Zaščitništvo, Razigranost, Dobrodušnost',
@@ -45,6 +49,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 5,
     naziv: 'Lev',
     opis: 'dodati opis',
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
@@ -53,6 +58,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 6,
     naziv: 'Lisica',
     opis: 'dodati opis',
     pozLastnosti: 'Zvitost, Bistrost, Prilagodljivost',
@@ -61,6 +67,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 7,
     naziv: 'Opica',
     opis: 'dodati opis',
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
@@ -69,6 +76,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 8,
     naziv: 'Zajec',
     opis: 'dodati opis',
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
@@ -77,6 +85,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 9,
     naziv: 'Mačka',
     opis: 'dodati opis',
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
@@ -85,6 +94,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 10,
     naziv: 'Galeb',
     opis: 'dodati opis',
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
@@ -93,6 +103,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 11,
     naziv: 'Mravlja',
     opis: 'dodati opis',
     pozLastnosti: 'Pridnost, Organiziranost, Altruizem',
@@ -101,6 +112,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 12,
     naziv: 'Orel',
     opis: 'dodati opis',
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
@@ -109,6 +121,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 13,
     naziv: 'Slon',
     opis: 'dodati opis',
     pozLastnosti: 'Moč, Delavnost, Bistrost',
@@ -117,6 +130,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 14,
     naziv: 'Srna',
     opis: 'dodati opis',
     pozLastnosti: 'Nedolžnost, Prisrčnost, Spretnost, Ljubkost',
@@ -125,6 +139,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 15,
     naziv: 'Čebela',
     opis: 'dodati opis',
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
@@ -133,6 +148,7 @@ const entities = [
     kategorija: 'zivali'
   },
   {
+    idEntiteta: 16,
     naziv: 'Bik',
     opis: 'dodati opis',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',

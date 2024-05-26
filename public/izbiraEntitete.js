@@ -55,9 +55,32 @@ function handleChoice(index) {
         currentEntities = [currentEntities[1], nextEntityIndex];
     }
 
-    updateEntitiesDisplay();
-    updateProgress();
-    saveChosenEntity(chosenEntity);
+    animateEntities();
+    setTimeout(() => {
+        updateEntitiesDisplay();
+        updateProgress();
+        saveChosenEntity(chosenEntity);
+    }, 500); // Delay to match the animation duration
+}
+
+function animateEntities() {
+    const entity1 = document.getElementById('entity1');
+    const entity2 = document.getElementById('entity2');
+
+    entity1.classList.add('fade-out');
+    entity2.classList.add('fade-out');
+
+    setTimeout(() => {
+        entity1.classList.remove('fade-out');
+        entity2.classList.remove('fade-out');
+        entity1.classList.add('fade-in');
+        entity2.classList.add('fade-in');
+
+        setTimeout(() => {
+            entity1.classList.remove('fade-in');
+            entity2.classList.remove('fade-in');
+        }, 500);
+    }, 500);
 }
 
 function updateEntitiesDisplay() {
