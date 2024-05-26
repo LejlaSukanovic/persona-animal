@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your App Name</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #f0f0f0;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.logo-container img {
+    height: 50px; /* Adjust as needed */
+}
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.category-container button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #eee;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: #ccc;
+    padding: 10px 0;
+}
+
+footer .tab {
+    cursor: pointer;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+}
+
+footer .col {
+    cursor: pointer;
+}
+
+
+    </style>
+</head>
+<body>
+    <header class="bg-light py-3">
+        <div class="container text-center">
+            <img src="../Database/images/macka.jpg" alt="PersonaAnimal Logo" class="mb-2" style="height: 60px;">
+            <h1>Pesona Animal</h1>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <% categories.forEach(function(category) { %>
+                <div class="col-12 mb-3"> <!-- Changed to col-12 for full width -->
+                    <button class="btn btn-primary w-100" onclick="navigateToCategory('<%= category %>')">
+                        <%= category %>
+                    </button>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    
+
+    <footer class="fixed-bottom bg-dark text-white text-center py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col" onclick="alert('Navigate to Samoocenitev');">Samoocenitev</div>
+                <div class="col" onclick="alert('Navigate to Ujemanje');">Ujemanje</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function navigateToCategory(category) {
+            window.location.href = '/izvedbaSamoocenitve/' + category;
+        }
+    </script>
+</body>
+</html>

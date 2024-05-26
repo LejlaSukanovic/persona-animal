@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { initializeFBApp, uploadProcessedData, getTheData } = require('./Database/firebase');
+const { initializeFBApp, uploadProcessedData, getTheData, getUporabnik } = require('./Database/firebase');
 
 const app = express();
 
@@ -25,6 +25,24 @@ app.get('/', async (req, res) => {
         res.status(500).send('Error fetching data');
     }
 });
+
+app.get('/samoocenitev', (req, res) => {
+    let categories = ['zivali', 'barve'];
+    res.render('samoocenitev', { categories });
+});
+
+app.get('/izvedbaSamoocenitve/:category', async (req, res) => {
+    const category = req.params.category;
+    const uporabnik = await getUporabnik(1/**proslijediti id od prijavljenog uporabnika*/);
+
+    if(uporabnik.entiteta===0){
+        //renderuj izvedba samoocenitve od koste sa proslijedjenom kategorijom
+    } else {
+        //renderuj pregled samoocenitve od kace sa proslijedjenom kategorijom
+    }
+    console.log(uporabnik);
+
+})
 
 app.get('/izbiraEntitete', async (req, res) => {
     try {
