@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Entities</title>
+</head>
+<body>
+    <h1>Entities</h1>
+    <ul>
+        <% entities.forEach(entity => { %>
+            <li>
+                <h2><%= entity.naziv %></h2>
+                <p><%= entity.opis %></p>
+                <p>Positive Traits: <%= entity.pozLastnosti %></p>
+                <p>Negative Traits: <%= entity.negLastnosti %></p>
+                <img src="<%= entity.slika %>" alt="<%= entity.naziv %>" />
+                <p>Category: <%= entity.kategorija %></p>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
