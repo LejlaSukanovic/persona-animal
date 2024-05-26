@@ -1,6 +1,6 @@
-let currentChoice = 0;
+let currentChoice = parseInt(sessionStorage.getItem('currentChoice')) || 0;
 const totalChoices = 10;
-let seenEntities = new Set();
+let seenEntities = new Set(JSON.parse(sessionStorage.getItem('seenEntities')) || []);
 const progressBar = new ProgressBar.Circle('#progress-bar', {
     strokeWidth: 6,
     easing: 'easeInOut',
@@ -30,11 +30,13 @@ const progressBar = new ProgressBar.Circle('#progress-bar', {
     }
 });
 
-progressBar.set(0);
+progressBar.set(currentChoice / totalChoices);
 
-let currentEntities = [0, 1];
-seenEntities.add(0);
-seenEntities.add(1);
+let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [0, 1];
+if (seenEntities.size === 0) {
+    seenEntities.add(0);
+    seenEntities.add(1);
+}
 
 function getNextEntityIndex(excludeIndex) {
     let nextIndex;
@@ -42,6 +44,7 @@ function getNextEntityIndex(excludeIndex) {
         nextIndex = Math.floor(Math.random() * entities.length);
     } while (seenEntities.has(nextIndex) || nextIndex === excludeIndex);
     seenEntities.add(nextIndex);
+    sessionStorage.setItem('seenEntities', JSON.stringify(Array.from(seenEntities)));
     return nextIndex;
 }
 
@@ -55,6 +58,7 @@ function handleChoice(index) {
         currentEntities = [currentEntities[1], nextEntityIndex];
     }
 
+    sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
     animateEntities();
     setTimeout(() => {
         updateEntitiesDisplay();
@@ -98,10 +102,11 @@ function updateEntitiesDisplay() {
 
 function updateProgress() {
     currentChoice++;
+    sessionStorage.setItem('currentChoice', currentChoice);
     const progressPercentage = currentChoice / totalChoices;
     progressBar.animate(progressPercentage);
 
-    if (currentChoice >= totalChoices) {
+    if (currentChoice >= totalChoices || seenEntities.size >= entities.length) {
         alert('Selection process completed!');
     }
 }
@@ -115,4 +120,8 @@ document.querySelectorAll('.entity').forEach(entity => {
         const index = parseInt(this.getAttribute('data-index'), 10) === currentEntities[0] ? 0 : 1;
         handleChoice(index);
     });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateEntitiesDisplay();
 });
