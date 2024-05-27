@@ -1,5 +1,5 @@
 const express = require('express');
-const { getTheData, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve } = require('../Database/firebase');
+const { getTheData, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve, deleteOcena} = require('../Database/firebase');
 
 const router = express.Router();
 
@@ -17,6 +17,16 @@ router.get('/pregledOcenitve/:ocena', async (req, res) => {
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
+    }
+});
+
+router.get('/brisanje', async(req, res) => {
+    try{
+        const idUporabnik = 1;
+        await deleteOcena(idUporabnik);
+        res.redirect('samoocenitev');
+    }catch(error){
+        console.log(error);
     }
 });
 
