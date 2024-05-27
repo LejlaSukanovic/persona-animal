@@ -1,3 +1,7 @@
+function navigateTo(path) {
+  window.location.href = path;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const closeBtn = document.querySelector('.close-btn');
   const confirmDeleteBtn = document.getElementById('confirmDelete');
