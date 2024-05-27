@@ -61,3 +61,30 @@ document.addEventListener('DOMContentLoaded', function () {
     infoContainer.addEventListener('mousedown', startInteraction);
     infoContainer.addEventListener('touchstart', startInteraction, {passive: false});
 });
+
+//sliding from the left animation
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.add('body-slide-in');
+  });
+
+//samoocenitev slides in from right to left
+document.addEventListener('DOMContentLoaded', function() {
+  var startX;
+  var threshold = 100; // required min distance traveled to be considered swipe
+
+  document.body.addEventListener('touchstart', function(e) {
+    var touchobj = e.changedTouches[0];
+    startX = touchobj.pageX;
+    e.preventDefault();
+  }, false);
+
+  document.body.addEventListener('touchend', function(e) {
+    var touchobj = e.changedTouches[0];
+    var dist = touchobj.pageX - startX;
+    if (dist >= threshold) {
+      window.location.href = '/samoocenitev'; // navigate to samoocenitev.ejs
+    }
+    e.preventDefault();
+  }, false);
+});
+

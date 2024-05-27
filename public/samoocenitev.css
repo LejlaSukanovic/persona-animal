@@ -11,6 +11,22 @@ body, html {
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Do not repeat the image */
 }
+.body-slide-in {
+    position: relative;
+    animation: slideInFromLeft 0.8s forwards;  /* Duration adjusted for a slower transition */
+  }
+  
+  @keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    to {
+      transform: translateX(0); /* End at the natural position */
+    }
+  }
+  
+  
+  
 
 header {
     padding: 10px 20px;
