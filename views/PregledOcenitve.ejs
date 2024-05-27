@@ -5,37 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Persona Animal</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/pregledOcenitve.css"></style>
 </head>
 <body>
   <div class="container text-center">
     <br>
-    <h2>Rezultat samoocenitve</h2>
+    <!-- <h2>Rezultat samoocenitve</h2> -->
     <br>
-    <div class="card mx-auto" style="max-width: 500px;">
-      <span class="close-btn">&times;</span>
-      <img src="<%= entity.slika %>" class="card-img-top" alt="<%= entity.naziv %>">
-      <div class="card-body">
-        <p class="card-text"><h4>Vaša žival</h4> <%= entity.naziv %></p>
-        <div class="attributes">
-          <h4>Opis</h4>
-          <p><%= entity.opis %></p>
+    <div class="wrapper">
+      <div class="image-container">
+        <img src="<%= entity.slika %>" class="card-img-top" alt="<%= entity.naziv %>">
+      </div>
+      <div class="info-container">
+        <div class="entity-name"><%= entity.naziv %></div>
+        <!-- <span class="close-btn">&times;</span> -->
+        <span class="close-btn material-icons" aria-label="Delete result">delete</span>
+        <div class="card-body">
+          <div class="attributes">
+            <!-- <h4>Opis</h4> -->
+            <p><%= entity.opis %></p>
+          </div>
+          <div class="traits-container">
+            <div class="positive-traits">
+              <h5>Pozitivne lastnosti</h5>
+              <ul>
+                <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
+                  <li><%= trait.trim() %></li>
+                <% }); %>
+              </ul>
+            </div>
+            <div class="negative-traits">
+              <h5>Negativne lastnosti</h5>
+              <ul>
+                <% entity.negLastnosti.split(',').forEach(function(trait) { %>
+                  <li><%= trait.trim() %></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
         </div>
-        <p class="card-text">
-          <h4>Pozitivne lastnosti</h4>
-          <%= entity.pozLastnosti %>
-        </p>
-        <p class="card-text">
-            <h4>Negativne lastnosti</h4>
-            <%= entity.negLastnosti %>
-          </p>
       </div>
     </div>
+    
+
+    
   </div>
+  
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/pregledOcenitve.js"></script>
   <script>
     document.querySelector('.close-btn').addEventListener('click', function() {
       this.closest('.card').style.display = 'none';

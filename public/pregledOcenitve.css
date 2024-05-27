@@ -45,3 +45,150 @@ body {
   img {
     border-bottom: 5px solid lightblue;
   }
+
+  .wrapper {
+    position: relative;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .image-container {
+    position: relative;
+    height: 300px; /* Adjust based on your needs */
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .info-container {
+    position: absolute;
+    top: 150px; /* Adjust this value to cover half of the image initially */
+    left: 0;
+    right: 0;
+    background: white;
+    transition: top 0.4s ease;
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  
+  .wrapper {
+    position: relative;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .image-container {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: filter 0.4s ease; /* Smooth transition for the filter */
+    filter: brightness(50%); /* Initial darker state */
+  }
+  
+  .image-container .entity-name {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 1.5em; /* Bigger text */
+    font-weight: bold; /* Bold text */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+  }
+  
+  .info-container {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    right: 0;
+    background: white;
+    transition: top 0.4s ease, box-shadow 0.4s ease;
+    border-top-left-radius: 20px; /* Rounded top-left corner */
+    border-top-right-radius: 20px; /* Rounded top-right corner */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding-top: 40px; /* Provide space for the entity name */
+  }
+  
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  .entity-name {
+    position: absolute;
+    top: -30px; /* Adjust this value as needed to position it above the white container */
+    left: 10px;
+    color: white;
+    font-size: 1.5em; /* Bigger text */
+    font-weight: bold; /* Bold text */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
+  }
+
+  .traits-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .positive-traits, .negative-traits {
+    flex: 1;  /* Each takes half of the container */
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .positive-traits {
+    background-color: #e8f5e9; /* Very light green */
+  }
+  
+  .negative-traits {
+    background-color: #ffebee; /* Very light red */
+  }
+  
+  .traits-container ul {
+    padding-left: 20px; /* Adjusts spacing to the list */
+    list-style-type: none; /* Removes bullet points */
+  }
+  
+  .traits-container li {
+    font-weight: bold; /* Makes font bold */
+    margin-bottom: 8px; /* Adds space between list items */
+  }
+  
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #dc3545; /* Red color to signify deletion */
+    font-size: 24px; /* Adjust size as necessary */
+    cursor: pointer;
+  }
+  
+  
+  
+  
