@@ -388,5 +388,5 @@ footer .col:hover {
 }
 
 .body-slide-in {
-  animation: slideInFromRight 0.5s forwards; /* Animation timing can be adjusted */
+  animation: slideInFromRight 0.8s forwards; /* Animation timing can be adjusted */
 }
