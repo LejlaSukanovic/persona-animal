@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     let categories = await getAllCategories();
-    console.log(categories);
     res.render('samoocenitev', { categories });
 });
 
@@ -41,7 +40,6 @@ router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
         // Otherwise, redirect to the review page
         res.redirect('/samoocenitev/pregledOcenitve/' + uporabnik.entiteta);
     }
-    console.log(uporabnik);
 });
 
 
