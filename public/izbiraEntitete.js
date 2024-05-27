@@ -1,43 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('container-semi-circle');
-
-    // Initialize the semi-circle progress bar
-    var progressBar = new ProgressBar.SemiCircle(container, {
-        strokeWidth: 6,
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
-        easing: 'easeInOut',
-        duration: 1400,
-        svgStyle: null,
-        text: {
-            value: '',
-            alignToBottom: false
-        },
-        from: { color: '#FFEA82' },
-        to: { color: '#ED6A5A' },
-        step: (state, bar) => {
-            bar.path.setAttribute('stroke', state.color);
-            var value = Math.round(bar.value() * 100);
-            if (value === 0) {
-                bar.setText('');
-            } else {
-                bar.setText(value + '%'); // Added '%' for better visualization
-            }
-
-            bar.text.style.color = state.color;
-        }
-    });
-
-    progressBar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-    progressBar.text.style.fontSize = '2rem';
-
     let currentChoice = parseInt(sessionStorage.getItem('currentChoice')) || 0;
     const totalChoices = entities.length;
     let seenEntities = new Set(JSON.parse(sessionStorage.getItem('seenEntities')) || []);
     let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [];
 
-    progressBar.set(currentChoice / totalChoices);
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    function updateProgressBar() {
+        const progressPercentage = (currentChoice / totalChoices) * 100;
+        progressBar.style.width = progressPercentage + '%';
+        progressBar.setAttribute('aria-valuenow', progressPercentage);
+        progressText.innerText = `${currentChoice}/${totalChoices}`;
+    }
 
     if (seenEntities.size === 0) {
         // Initialize with the first two entities
@@ -123,8 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function updateProgress(chosenEntity) {
         currentChoice++;
         sessionStorage.setItem('currentChoice', currentChoice);
-        const progressPercentage = currentChoice / totalChoices;
-        progressBar.animate(progressPercentage);
+        updateProgressBar();
         if (currentChoice >= totalChoices) { 
             try {
                 const entityId = chosenEntity.idEntiteta;
@@ -149,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
-        updateEntitiesDisplay();
-    });
+    updateEntitiesDisplay();
+    updateProgressBar();
 });
