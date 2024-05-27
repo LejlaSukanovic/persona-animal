@@ -7,7 +7,6 @@
     <title>Izbira Entitete</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/izbiraEntitete.css">
-    <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
 </head>
 
@@ -27,8 +26,17 @@
             </div>
         </div>
 
-        <div id="container-semi-circle"></div> 
         <br><br>
+
+        <div class="progress-bar-container">
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar" role="progressbar"></div>
+            </div>
+            <p id="progress-text">0/<%= entities.length %></p>
+        </div>
+        
+        <br>
+        
         <div class="text-center mt-4">
             <button class="btn btn-primary" onclick="navigateTo('/samoocenitev');">Prekini samoocenitev</button>
         </div>

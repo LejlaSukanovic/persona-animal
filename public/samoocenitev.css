@@ -1,36 +1,40 @@
 /* samoocenitev.css */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
     height: 100%;
-    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
-    background-size: cover;  /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+    background-image: url('/Database/images/background_main.png'); 
+    background-size: cover;  
+    background-position: center; 
+    background-repeat: no-repeat; 
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 .body-slide-in {
     position: relative;
-    animation: slideInFromLeft 0.8s forwards;  /* Duration adjusted for a slower transition */
-  }
-  
-  @keyframes slideInFromLeft {
+    animation: slideInFromLeft 0.8s forwards;  
+}
+
+@keyframes slideInFromLeft {
     from {
-      transform: translateX(-100%); /* Start off-screen to the left */
+        transform: translateX(-100%); 
     }
     to {
-      transform: translateX(0); /* End at the natural position */
+        transform: translateX(0); 
     }
-  }
-  
-  
-  
+}
 
 header {
     padding: 10px 20px;
     text-align: center;
+    background: transparent; 
 }
 
 .category-container {
@@ -40,13 +44,24 @@ header {
     padding: 20px;
 }
 
-.category-container button {
+button.btn {
     margin: 10px;
-    padding: 10px 20px;
-    background: #eee;
+    padding: 15px 25px;
+    background: linear-gradient(to right, #4CAF50, #81C784);
     border: none;
-    border-radius: 5px;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+button.btn:hover {
+    background: linear-gradient(to right, #388E3C, #66BB6A) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    transform: translateY(-2px) !important;
 }
 
 .container {
@@ -68,22 +83,36 @@ p {
     color: #666;
 }
 
-/* Footer Styles */
+header .logo {
+    height: auto; 
+    max-width: 20%;  
+}
+
+@media (max-width: 767.98px) {
+    header .logo {
+        width: 100%;
+    }
+}
+
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    background: #333; /* Dark background color */
-    color: white; /* White text color */
-    padding: 10px 0;
+    box-sizing: border-box;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
+    color: white;
+    padding: 20px 0; /* Increased padding */
     text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
 }
 
 footer .col {
     cursor: pointer;
-    padding: 10px 0;
-    border-right: 1px solid #555;
-    text-align: center;
+    padding: 15px 0; /* Increased padding */
+    border-right: 1px solid #66BB6A;
+    transition: all 0.3s ease; /* Added transition for hover effect */
 }
 
 footer .col:last-child {
@@ -91,28 +120,19 @@ footer .col:last-child {
 }
 
 footer .col:hover {
-    background: #5d5d5d;
+    background: #388E3C; /* Darker green on hover */
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 @media (max-width: 767.98px) {
     footer .col {
         border-right: none;
-        border-bottom: 1px solid #555;
+        border-bottom: 1px solid #66BB6A;
     }
 
     footer .col:last-child {
         border-bottom: none;
-    }
-}
-
-header .logo {
-    height: 100%; /* Adjust the height as needed */
-    width: 20%;  /* Keeps the aspect ratio */
-}
-
-@media (max-width: 767.98px) {
-    header .logo {
-        height: 100%; /* Adjust the height as needed */
-        width: 100%; /* Smaller size for mobile */
     }
 }
