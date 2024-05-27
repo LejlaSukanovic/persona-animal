@@ -6,52 +6,52 @@
   <title>Persona Animal</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
-  <link rel="stylesheet" href="/pregledOcenitve.css"></style>
+  <link rel="stylesheet" href="/pregledOcenitve.css">
 </head>
 <body>
   <div class="container text-center">
-    <br>
-    <!-- <h2>Rezultat samoocenitve</h2> -->
-    <br>
-    <div class="wrapper">
-      <div class="image-container">
-        <img src="<%= entity.slika %>" class="card-img-top" alt="<%= entity.naziv %>">
-      </div>
-      <div class="info-container">
-        <div class="entity-name"><%= entity.naziv %></div>
-        <!-- <span class="close-btn">&times;</span> -->
-        <span class="close-btn material-icons" aria-label="Delete result">delete</span>
-        <div class="card-body">
-          <div class="attributes">
-            <!-- <h4>Opis</h4> -->
-            <p><%= entity.opis %></p>
+    <!-- Responsive Wrapper for all content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="wrapper">
+          <div class="image-container">
+            <img src="<%= entity.slika %>" class="card-img-top img-fluid" alt="<%= entity.naziv %>">
           </div>
-          <div class="traits-container">
-            <div class="positive-traits">
-              <h5>Pozitivne lastnosti</h5>
-              <ul>
-                <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
-                  <li><%= trait.trim() %></li>
-                <% }); %>
-              </ul>
-            </div>
-            <div class="negative-traits">
-              <h5>Negativne lastnosti</h5>
-              <ul>
-                <% entity.negLastnosti.split(',').forEach(function(trait) { %>
-                  <li><%= trait.trim() %></li>
-                <% }); %>
-              </ul>
+          <div class="info-container">
+            <div class="entity-name"><%= entity.naziv %></div>
+            <span class="close-btn material-icons" aria-label="Delete result">delete</span>
+            <div class="card-body">
+              <div class="attributes">
+                <p><%= entity.opis %></p>
+              </div>
+              <div class="traits-container">
+                <div class="trait positive">
+                  <span class="material-icons">sentiment_very_satisfied</span>
+                  <div class="positive-traits">
+                    <ul>
+                      <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
+                        <li><%= trait.trim() %></li>
+                      <% }); %>
+                    </ul>
+                  </div>
+                </div>
+                <div class="trait negative">
+                  <span class="material-icons">sentiment_very_dissatisfied</span>
+                  <div class="negative-traits">
+                    <ul>
+                      <% entity.negLastnosti.split(',').forEach(function(trait) { %>
+                        <li><%= trait.trim() %></li>
+                      <% }); %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-
-    
   </div>
-  
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

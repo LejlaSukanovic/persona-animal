@@ -152,7 +152,15 @@ body {
   .traits-container {
     display: flex;
     justify-content: space-between;
+    align-items: stretch; /* Aligns children’s heights */
     margin-top: 20px;
+  }
+  
+  .trait {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
   }
   
   .positive-traits, .negative-traits {
@@ -169,15 +177,49 @@ body {
   .negative-traits {
     background-color: #ffebee; /* Very light red */
   }
+
+  .positive-traits, .negative-traits {
+    flex: 1;  /* Each takes half of the container */
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    justify-content: center; /* Center children vertically */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .positive-traits:hover, .negative-traits:hover,
+.positive-traits.active, .negative-traits.active {
+  transform: scale(1.1); /* Enlarges the div */
+}
+  
+.material-icons {
+  font-size: 48px;  /* Makes icons larger */
+  display: block;  /* Ensures icons are on their own line */
+  text-align: center;  /* Centers icons horizontally */
+  margin-bottom: 8px;  /* Space below the icon before the text */
+}
+
+.trait.positive .material-icons {
+  color: #4CAF50;  /* Green color for positive icon */
+}
+
+.trait.negative .material-icons {
+  color: #F44336;  /* Red color for negative icon */
+}
   
   .traits-container ul {
-    padding-left: 20px; /* Adjusts spacing to the list */
-    list-style-type: none; /* Removes bullet points */
+    list-style-type: none; /* Remove bullet points */
+  padding: 0;
   }
   
   .traits-container li {
-    font-weight: bold; /* Makes font bold */
-    margin-bottom: 8px; /* Adds space between list items */
+    text-align: center; /* Center text items */
+    color: #000000; /* Off-white color for the list items */
   }
   
   .close-btn {
@@ -189,6 +231,41 @@ body {
     cursor: pointer;
   }
   
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #333; /* Dark background color */
+    color: white; /* White text color */
+    padding: 10px 0;
+    text-align: center;
+}
+
+footer .col {
+    cursor: pointer;
+    padding: 10px 0;
+    border-right: 1px solid #555;
+    text-align: center;
+}
+
+footer .col:last-child {
+    border-right: none;
+}
+
+footer .col:hover {
+    background: #5d5d5d;
+}
+
+@media (max-width: 767.98px) {
+    footer .col {
+        border-right: none;
+        border-bottom: 1px solid #555;
+    }
+
+    footer .col:last-child {
+        border-bottom: none;
+    }
+}
   
   
   
