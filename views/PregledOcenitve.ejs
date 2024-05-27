@@ -36,14 +36,6 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script>
-    document.querySelector('.close-btn').addEventListener('click', function() {
-      this.closest('.card').style.display = 'none';
-      fetch(`/samoocenitev/brisanje`, {
-                    method: 'GET',
-                });
-                window.location.href = `/samoocenitev/brisanje`;
-    });
-  </script>
+  <script src="/pregledOcenitve.js"></script>
 </body>
 </html>
