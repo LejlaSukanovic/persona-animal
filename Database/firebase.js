@@ -102,6 +102,17 @@ const getOcena = async (entitetaID) => {
     }
 }
 
+const deleteOcena = async (idUporabnik) => {
+    try {
+        const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
+        await updateDoc(documentRef, {
+            entiteta: 0
+        });
+    } catch (error) {
+        console.log('Error updating document:', error);
+    }
+};
+
 const getAllCategories = async() => {
     try {
         const collectionRef = collection(firestoreDB, "entiteta");
@@ -141,5 +152,6 @@ module.exports = {
     getUporabnik,
     getOcena,
     getAllCategories,
-    saveResultSamoocenitve
+    saveResultSamoocenitve,
+    deleteOcena
 };

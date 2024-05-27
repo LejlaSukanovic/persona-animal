@@ -1,3 +1,10 @@
+document.querySelector('.close-btn').addEventListener('click', function() {
+    fetch(`/samoocenitev/brisanje`, {
+                  method: 'GET',
+              });
+    window.location.href = `/`;
+  });
+  
 document.addEventListener('DOMContentLoaded', function() {
     const infoContainer = document.querySelector('.info-container');
     
