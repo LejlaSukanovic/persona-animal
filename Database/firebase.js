@@ -133,11 +133,11 @@ const getAllCategories = async() => {
     }
 }
 
-const saveResultSamoocenitve = async (idUporabnik, idEntiteta) => {
+const saveResultSamoocenitve = async (idUporabnik, idEntiteta, kategorija) => {
     try {
         const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
         await updateDoc(documentRef, {
-            entiteta: idEntiteta
+            [kategorija]: idEntiteta
         });
     } catch (error) {
         console.log('Error updating document:', error);

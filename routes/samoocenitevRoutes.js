@@ -56,11 +56,12 @@ router.get('/izbiraEntitete/:kategorija', async (req, res) => {
     }
 });
 
-router.get('/rezultat/:entitetaId', async(req, res) => {
+router.get('/rezultat/:entitetaId/:kategorija', async(req, res) => {
     try{
         const entitetaID = parseInt(req.params.entitetaId, 10);
+        const kategorija = req.params.kategorija
         const uporabnikID = 1;
-        await saveResultSamoocenitve(uporabnikID, entitetaID);
+        await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         const data = await getOcena(entitetaID);
         res.render('PregledOcenitve', { entity: data });
     }catch(error){
