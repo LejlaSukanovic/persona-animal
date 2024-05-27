@@ -155,6 +155,24 @@ const entities = [
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/bik.jpeg',
     kategorija: 'Zivali'
+  },
+  {
+    idEntiteta: 20,
+    naziv: 'Rdeca',
+    opis: 'dodati opis',
+    pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
+    negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
+    slika: './images/rdeca.jpg',
+    kategorija: 'Barve'
+  },
+  {
+    idEntiteta: 21,
+    naziv: 'Modra',
+    opis: 'dodati opis',
+    pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
+    negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
+    slika: './images/modra.jpg',
+    kategorija: 'Barve'
   }
 ];
 
