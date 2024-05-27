@@ -84,6 +84,7 @@ const getUporabnik = async(id) => {
     }
 }
 
+
 const getOcena = async (entitetaID) => {
     try{
         const collectionRef = collection(firestoreDB, "entiteta");
@@ -102,16 +103,18 @@ const getOcena = async (entitetaID) => {
     }
 }
 
-const deleteOcena = async (idUporabnik) => {
+const deleteOcena = async (idUporabnik, kategorija) => {
     try {
+        console.log(kategorija);
         const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
         await updateDoc(documentRef, {
-            entiteta: 0
+            [kategorija]: 0
         });
     } catch (error) {
         console.log('Error updating document:', error);
     }
 };
+
 
 const getAllCategories = async() => {
     try {
