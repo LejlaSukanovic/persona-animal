@@ -12,6 +12,8 @@ html, body {
   background-size: cover;  /* Cover the entire page */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Do not repeat the image */
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
 }
 
 .container {
@@ -373,4 +375,18 @@ footer .col:hover {
 .btn-danger {
   background-color: #dc3545;
   border-color: #dc3545;
+}
+
+/* slide from the left animation*/
+@keyframes slideInFromRight {
+  from {
+      transform: translateX(100%); /* Start off-screen from the right */
+  }
+  to {
+      transform: translateX(0); /* Slide to the natural position */
+  }
+}
+
+.body-slide-in {
+  animation: slideInFromRight 0.5s forwards; /* Animation timing can be adjusted */
 }

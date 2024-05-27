@@ -61,3 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
     infoContainer.addEventListener('mousedown', startInteraction);
     infoContainer.addEventListener('touchstart', startInteraction, {passive: false});
 });
+
+//sliding from the left animation
+document.addEventListener("DOMContentLoaded", function() {
+    document.body.classList.add('body-slide-in');
+  });
