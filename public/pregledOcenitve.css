@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* This will ensure it at least covers the full viewport height */
+  min-height: 100vh; /* Ensures that the body is at least the height of the viewport */
   background-color: #f8f9fa;
   color: #212529;
   font-family: 'Roboto', sans-serif;
+  background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
+  background-size: cover;  /* Cover the entire page */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
 .container {
@@ -52,9 +60,6 @@ body {
   cursor: pointer;
 }
 
-img {
-  border-bottom: 5px solid lightblue;
-}
 
 .wrapper {
   position: relative;
@@ -65,9 +70,11 @@ img {
 .image-container {
   position: relative;
   height: 300px;
-  /* Adjust based on your needs */
   overflow: hidden;
+  border-top-left-radius: 20px;  /* Rounds the top left corner */
+  border-top-right-radius: 20px; /* Rounds the top right corner */
 }
+
 
 .image-container img {
   width: 100%;

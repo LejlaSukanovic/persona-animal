@@ -14,11 +14,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }).catch((error) => {
       console.error('Error:', error);
     });
-  });
-  
+  });  
+
+});
   document.addEventListener('DOMContentLoaded', function() {
+
+  
     const infoContainer = document.querySelector('.info-container');
     let startY, startTop;
+    console.log('ggggggggg')
 
     // Function to start interaction
     function startInteraction(event) {
