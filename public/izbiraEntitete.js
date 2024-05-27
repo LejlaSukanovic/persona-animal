@@ -64,23 +64,27 @@ document.addEventListener('DOMContentLoaded', function() {
         return nextIndex;
     }
 
-    function handleChoice(index) {
-        const chosenEntity = entities[currentEntities[index]];
-        const nextEntityIndex = getNextEntityIndex(currentEntities[index]);
+    async function handleChoice(index) {
+        try {
+            const chosenEntity = entities[currentEntities[index]];
+            const nextEntityIndex = getNextEntityIndex(currentEntities[index]);
 
-        if (index === 0) {
-            currentEntities = [currentEntities[0], nextEntityIndex];
-        } else {
-            currentEntities = [currentEntities[1], nextEntityIndex];
+            if (index === 0) {
+                currentEntities = [currentEntities[0], nextEntityIndex];
+            } else {
+                currentEntities = [currentEntities[1], nextEntityIndex];
+            }
+
+            sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
+            animateEntities();
+            setTimeout(async () => {
+                updateEntitiesDisplay();
+                await updateProgress(chosenEntity);
+                saveChosenEntity(chosenEntity);
+            }, 500); // Delay to match the animation duration
+        } catch (error) {
+            console.error('Error handling choice:', error);
         }
-
-        sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
-        animateEntities();
-        setTimeout(() => {
-            updateEntitiesDisplay();
-            updateProgress();
-            saveChosenEntity(chosenEntity);
-        }, 500); // Delay to match the animation duration
     }
 
     function animateEntities() {
@@ -116,13 +120,21 @@ document.addEventListener('DOMContentLoaded', function() {
         entity2.setAttribute('data-index', currentEntities[1]);
     }
 
-    function updateProgress() {
+    async function updateProgress(chosenEntity) {
         currentChoice++;
         sessionStorage.setItem('currentChoice', currentChoice);
         const progressPercentage = currentChoice / totalChoices;
         progressBar.animate(progressPercentage);
-        if (currentChoice >= totalChoices) {
-            alert('Selection process completed!');
+        if (currentChoice >= totalChoices) { 
+            try {
+                const entityId = chosenEntity.idEntiteta;
+                await fetch(`/samoocenitev/rezultat/${entityId}`, {
+                    method: 'GET',
+                });
+                window.location.href = `/samoocenitev/rezultat/${entityId}`;
+            } catch (error) {
+                console.error('Error updating Firestore: ', error);
+            }
         }
     }
 

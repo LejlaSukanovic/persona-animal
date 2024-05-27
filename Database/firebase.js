@@ -123,17 +123,15 @@ const getAllCategories = async() => {
 }
 
 const saveResultSamoocenitve = async (idUporabnik, idEntiteta) => {
-    try{
-        const document = doc(firestoreDB, "uporabnik", idUporabnik);
-        updateDoc(document, {
+    try {
+        const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
+        await updateDoc(documentRef, {
             entiteta: idEntiteta
-        }).then(() => console.log('updated document in collection uporabnik'));
-
-        return;
-    } catch(error){
-        console.log(error);
-    };
-}
+        });
+    } catch (error) {
+        console.log('Error updating document:', error);
+    }
+};
 
 module.exports = {
     initializeFBApp,
