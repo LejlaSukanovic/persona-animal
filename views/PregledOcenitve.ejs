@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/pregledOcenitve.css">
 </head>
+
 <body>
   <div class="container text-center">
     <!-- Responsive Wrapper for all content -->
@@ -18,11 +20,15 @@
             <img src="<%= entity.slika %>" class="card-img-top img-fluid" alt="<%= entity.naziv %>">
           </div>
           <div class="info-container">
-            <div class="entity-name"><%= entity.naziv %></div>
+            <div class="entity-name">
+              <%= entity.naziv %>
+            </div>
             <span class="close-btn material-icons" aria-label="Delete result">delete</span>
             <div class="card-body">
               <div class="attributes">
-                <p><%= entity.opis %></p>
+                <p>
+                  <%= entity.opis %>
+                </p>
               </div>
               <div class="traits-container">
                 <div class="trait positive">
@@ -30,8 +36,10 @@
                   <div class="positive-traits">
                     <ul>
                       <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
-                        <li><%= trait.trim() %></li>
-                      <% }); %>
+                        <li>
+                          <%= trait.trim() %>
+                        </li>
+                        <% }); %>
                     </ul>
                   </div>
                 </div>
@@ -40,8 +48,10 @@
                   <div class="negative-traits">
                     <ul>
                       <% entity.negLastnosti.split(',').forEach(function(trait) { %>
-                        <li><%= trait.trim() %></li>
-                      <% }); %>
+                        <li>
+                          <%= trait.trim() %>
+                        </li>
+                        <% }); %>
                     </ul>
                   </div>
                 </div>
@@ -54,7 +64,8 @@
   </div>
 
   <!-- Alert -->
-  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -79,4 +90,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/pregledOcenitve.js"></script>
 </body>
+
 </html>

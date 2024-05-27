@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const closeBtn = document.querySelector('.close-btn');
   const confirmDeleteBtn = document.getElementById('confirmDelete');
 
-  closeBtn.addEventListener('click', function() {
+  closeBtn.addEventListener('click', function () {
     $('#confirmationModal').modal('show');
   });
 
-  confirmDeleteBtn.addEventListener('click', function() {
+  confirmDeleteBtn.addEventListener('click', function () {
     fetch(`/samoocenitev/brisanje`, {
       method: 'GET',
     }).then(() => {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const infoContainer = document.querySelector('.info-container');
   let startY, startTop;
 
-  infoContainer.addEventListener('mousedown', function(e) {
+  infoContainer.addEventListener('mousedown', function (e) {
     startY = e.clientY;
     startTop = parseInt(window.getComputedStyle(this).top, 10);
     document.addEventListener('mousemove', onMouseMove);
