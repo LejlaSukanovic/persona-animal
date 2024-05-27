@@ -99,18 +99,25 @@ document.addEventListener('DOMContentLoaded', function() {
         currentChoice++;
         sessionStorage.setItem('currentChoice', currentChoice);
         updateProgressBar();
-        if (currentChoice >= totalChoices) { 
+    
+        // Parse the current URL to get the `kategorija` parameter
+        const url = new URL(window.location.href);
+        const kategorija = url.pathname.split('/').pop(); // Assuming kategorija is the last segment in the URL
+    
+        console.log(kategorija);
+        if (currentChoice >= totalChoices) {
             try {
                 const entityId = chosenEntity.idEntiteta;
-                await fetch(`/samoocenitev/rezultat/${entityId}`, {
+                await fetch(`/samoocenitev/rezultat/${entityId}/${kategorija}`, {
                     method: 'GET',
                 });
-                window.location.href = `/samoocenitev/rezultat/${entityId}`;
+                window.location.href = `/samoocenitev/rezultat/${entityId}/${kategorija}`;
             } catch (error) {
                 console.error('Error updating Firestore: ', error);
             }
         }
     }
+    
 
     function saveChosenEntity(entity) {
         sessionStorage.setItem('lastChosenEntity', JSON.stringify(entity));

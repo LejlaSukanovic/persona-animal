@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const closeBtn = document.querySelector('.close-btn');
   const confirmDeleteBtn = document.getElementById('confirmDelete');
 
-  closeBtn.addEventListener('click', function () {
+  closeBtn.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default behavior
     $('#confirmationModal').modal('show');
   });
 
@@ -14,77 +15,69 @@ document.addEventListener('DOMContentLoaded', function () {
     }).catch((error) => {
       console.error('Error:', error);
     });
-  });  
-
-});
-  document.addEventListener('DOMContentLoaded', function() {
-
-  
-    const infoContainer = document.querySelector('.info-container');
-    let startY, startTop;
-    console.log('ggggggggg')
-
-    // Function to start interaction
-    function startInteraction(event) {
-        event.preventDefault();  // Prevent default behavior like scrolling
-        startY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
-        startTop = parseInt(window.getComputedStyle(infoContainer).top, 10);
-        document.addEventListener('mousemove', moveInteraction);
-        document.addEventListener('touchmove', moveInteraction, {passive: false});
-        document.addEventListener('mouseup', endInteraction);
-        document.addEventListener('touchend', endInteraction);
-    }
-
-    // Function to handle moving
-    function moveInteraction(event) {
-        event.preventDefault(); // Prevent default behavior like scrolling
-        const clientY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
-        const dy = clientY - startY;
-        const newTop = Math.min(Math.max(150, startTop + dy), 300);
-        infoContainer.style.top = `${newTop}px`;
-        
-        // Adjust the brightness based on how much of the image is revealed
-        const percentRevealed = (newTop - 150) / 150;
-        const filterValue = 100 - ((1 - percentRevealed) * 50); // Reversed the effect
-        document.querySelector('.image-container img').style.filter = `brightness(${filterValue}%)`;
-    }
-
-    // Function to end interaction
-    function endInteraction() {
-        document.removeEventListener('mousemove', moveInteraction);
-        document.removeEventListener('touchmove', moveInteraction);
-        document.removeEventListener('mouseup', endInteraction);
-        document.removeEventListener('touchend', endInteraction);
-    }
-
-    // Attach event listeners for both mouse and touch events
-    infoContainer.addEventListener('mousedown', startInteraction);
-    infoContainer.addEventListener('touchstart', startInteraction, {passive: false});
-});
-
-//sliding from the left animation
-document.addEventListener("DOMContentLoaded", function() {
-    document.body.classList.add('body-slide-in');
   });
+});
 
-//samoocenitev slides in from right to left
+// Ensure correct event handling for draggable interaction
 document.addEventListener('DOMContentLoaded', function() {
-  var startX;
-  var threshold = 100; // required min distance traveled to be considered swipe
+  const infoContainer = document.querySelector('.info-container');
+  let startY, startTop;
+
+  function startInteraction(event) {
+    event.preventDefault();  // Prevent default behavior like scrolling
+    startY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
+    startTop = parseInt(window.getComputedStyle(infoContainer).top, 10);
+    document.addEventListener('mousemove', moveInteraction, { passive: false });
+    document.addEventListener('touchmove', moveInteraction, { passive: false });
+    document.addEventListener('mouseup', endInteraction);
+    document.addEventListener('touchend', endInteraction);
+  }
+
+  function moveInteraction(event) {
+    event.preventDefault(); // Prevent default behavior like scrolling
+    const clientY = event.type.includes('mouse') ? event.clientY : event.touches[0].clientY;
+    const dy = clientY - startY;
+    const newTop = Math.min(Math.max(150, startTop + dy), 300);
+    infoContainer.style.top = `${newTop}px`;
+    
+    const percentRevealed = (newTop - 150) / 150;
+    const filterValue = 100 - ((1 - percentRevealed) * 50);
+    document.querySelector('.image-container img').style.filter = `brightness(${filterValue}%)`;
+  }
+
+  function endInteraction() {
+    document.removeEventListener('mousemove', moveInteraction);
+    document.removeEventListener('touchmove', moveInteraction);
+    document.removeEventListener('mouseup', endInteraction);
+    document.removeEventListener('touchend', endInteraction);
+  }
+
+  infoContainer.addEventListener('mousedown', startInteraction);
+  infoContainer.addEventListener('touchstart', startInteraction, { passive: false });
+});
+
+// Add sliding from the left animation
+document.addEventListener("DOMContentLoaded", function() {
+  document.body.classList.add('body-slide-in');
+});
+
+// Ensure swipe navigation to samoocenitev page
+document.addEventListener('DOMContentLoaded', function() {
+  let startX;
+  const threshold = 100;
 
   document.body.addEventListener('touchstart', function(e) {
-    var touchobj = e.changedTouches[0];
+    const touchobj = e.changedTouches[0];
     startX = touchobj.pageX;
     e.preventDefault();
-  }, false);
+  }, { passive: false });
 
   document.body.addEventListener('touchend', function(e) {
-    var touchobj = e.changedTouches[0];
-    var dist = touchobj.pageX - startX;
+    const touchobj = e.changedTouches[0];
+    const dist = touchobj.pageX - startX;
     if (dist >= threshold) {
-      window.location.href = '/samoocenitev'; // navigate to samoocenitev.ejs
+      window.location.href = '/samoocenitev';
     }
     e.preventDefault();
-  }, false);
+  }, { passive: false });
 });
-
