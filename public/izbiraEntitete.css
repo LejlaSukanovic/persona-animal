@@ -80,13 +80,9 @@ p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 24px;
-    }
-
-    p {
-        font-size: 16px;
+@media (max-width: 768px) {
+    .progress-bar-container {
+        width: 50%;
     }
 
     .entity img {
@@ -99,7 +95,19 @@ p {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 576px) {
+    .progress-bar-container {
+        width: 70%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
     .entity img {
         width: 100px;
         height: 100px;
@@ -107,6 +115,21 @@ p {
 
     .entity p {
         font-size: 12px;
+    }
+
+    .entity {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .entity img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .entity p {
+        font-size: 10px;
     }
 }
 
@@ -170,6 +193,10 @@ footer .col:hover {
 
     footer .col:last-child {
         border-bottom: none;
+    }
+
+    footer {
+        font-size: 14px;
     }
 }
 
