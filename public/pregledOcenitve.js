@@ -1,8 +1,19 @@
-document.querySelector('.close-btn').addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', function () {
+  const closeBtn = document.querySelector('.close-btn');
+  const confirmDeleteBtn = document.getElementById('confirmDelete');
+
+  closeBtn.addEventListener('click', function () {
+    $('#confirmationModal').modal('show');
+  });
+
+  confirmDeleteBtn.addEventListener('click', function () {
     fetch(`/samoocenitev/brisanje`, {
-                  method: 'GET',
-              });
-    window.location.href = `/`;
+      method: 'GET',
+    }).then(() => {
+      window.location.href = `/`;
+    }).catch((error) => {
+      console.error('Error:', error);
+    });
   });
   
   document.addEventListener('DOMContentLoaded', function() {

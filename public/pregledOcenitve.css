@@ -1,271 +1,369 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 body {
-    background-color: #f8f9fa;
-    color: #212529;
-    font-family: 'Roboto', sans-serif;
-  }
-  .container {
-    margin-top: 20px;
-  }
-  .card {
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
-  }
-  .card-title, .card-text, .attributes {
-    text-align: center;
-  }
-  .card-title {
-    margin-top: 20px;
-    font-size: 1.5em;
-    color: #17a2b8;
-  }
-  .attributes ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  .attributes li {
-    background-color: #e9ecef;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #dc3545;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  img {
-    border-bottom: 5px solid lightblue;
-  }
-
-  .wrapper {
-    position: relative;
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  .image-container {
-    position: relative;
-    height: 300px; /* Adjust based on your needs */
-    overflow: hidden;
-  }
-  
-  .image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .info-container {
-    position: absolute;
-    top: 150px; /* Adjust this value to cover half of the image initially */
-    left: 0;
-    right: 0;
-    background: white;
-    transition: top 0.4s ease;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  .close-btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-  }
-  
-  .wrapper {
-    position: relative;
-    max-width: 500px;
-    margin: auto;
-  }
-  
-  .image-container {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  .image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: filter 0.4s ease; /* Smooth transition for the filter */
-    filter: brightness(50%); /* Initial darker state */
-  }
-  
-  .image-container .entity-name {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: white;
-    font-size: 1.5em; /* Bigger text */
-    font-weight: bold; /* Bold text */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
-  }
-  
-  .info-container {
-    position: absolute;
-    top: 150px;
-    left: 0;
-    right: 0;
-    background: white;
-    transition: top 0.4s ease, box-shadow 0.4s ease;
-    border-top-left-radius: 20px; /* Rounded top-left corner */
-    border-top-right-radius: 20px; /* Rounded top-right corner */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding-top: 40px; /* Provide space for the entity name */
-  }
-  
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  .close-btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-  }
-
-  .entity-name {
-    position: absolute;
-    top: -30px; /* Adjust this value as needed to position it above the white container */
-    left: 10px;
-    color: white;
-    font-size: 1.5em; /* Bigger text */
-    font-weight: bold; /* Bold text */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Text shadow for better readability */
-  }
-
-  .traits-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* Aligns children’s heights */
-    margin-top: 20px;
-  }
-  
-  .trait {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-  }
-  
-  .positive-traits, .negative-traits {
-    flex: 1;  /* Each takes half of the container */
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px; /* Rounded corners */
-  }
-  
-  .positive-traits {
-    background-color: #e8f5e9; /* Very light green */
-  }
-  
-  .negative-traits {
-    background-color: #ffebee; /* Very light red */
-  }
-
-  .positive-traits, .negative-traits {
-    flex: 1;  /* Each takes half of the container */
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px; /* Rounded corners */
-    display: flex; /* Flexbox for centering */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    justify-content: center; /* Center children vertically */
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .positive-traits:hover, .negative-traits:hover,
-.positive-traits.active, .negative-traits.active {
-  transform: scale(1.1); /* Enlarges the div */
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: 'Roboto', sans-serif;
 }
-  
+
+.container {
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.card-title,
+.card-text,
+.attributes {
+  text-align: center;
+}
+
+.card-title {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: #17a2b8;
+}
+
+.attributes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.attributes li {
+  background-color: #e9ecef;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #dc3545;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+img {
+  border-bottom: 5px solid lightblue;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+}
+
+.image-container {
+  position: relative;
+  height: 300px;
+  /* Adjust based on your needs */
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info-container {
+  position: absolute;
+  top: 150px;
+  /* Adjust this value to cover half of the image initially */
+  left: 0;
+  right: 0;
+  background: white;
+  transition: top 0.4s ease;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+}
+
+.image-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: filter 0.4s ease;
+  /* Smooth transition for the filter */
+  filter: brightness(50%);
+  /* Initial darker state */
+}
+
+.image-container .entity-name {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 1.5em;
+  /* Bigger text */
+  font-weight: bold;
+  /* Bold text */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  /* Text shadow for better readability */
+}
+
+.info-container {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  right: 0;
+  background: white;
+  transition: top 0.4s ease, box-shadow 0.4s ease;
+  border-top-left-radius: 20px;
+  /* Rounded top-left corner */
+  border-top-right-radius: 20px;
+  /* Rounded top-right corner */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  padding-top: 40px;
+  /* Provide space for the entity name */
+}
+
+
+.card-body {
+  padding: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.entity-name {
+  position: absolute;
+  top: -30px;
+  /* Adjust this value as needed to position it above the white container */
+  left: 10px;
+  color: white;
+  font-size: 1.5em;
+  /* Bigger text */
+  font-weight: bold;
+  /* Bold text */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  /* Text shadow for better readability */
+}
+
+.traits-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  /* Aligns children’s heights */
+  margin-top: 20px;
+}
+
+.trait {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.positive-traits,
+.negative-traits {
+  flex: 1;
+  /* Each takes half of the container */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  /* Rounded corners */
+}
+
+.positive-traits {
+  background-color: #e8f5e9;
+  /* Very light green */
+}
+
+.negative-traits {
+  background-color: #ffebee;
+  /* Very light red */
+}
+
+.positive-traits,
+.negative-traits {
+  flex: 1;
+  /* Each takes half of the container */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  /* Rounded corners */
+  display: flex;
+  /* Flexbox for centering */
+  flex-direction: column;
+  /* Stack children vertically */
+  align-items: center;
+  /* Center children horizontally */
+  justify-content: center;
+  /* Center children vertically */
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.positive-traits:hover,
+.negative-traits:hover,
+.positive-traits.active,
+.negative-traits.active {
+  transform: scale(1.1);
+  /* Enlarges the div */
+}
+
 .material-icons {
-  font-size: 48px;  /* Makes icons larger */
-  display: block;  /* Ensures icons are on their own line */
-  text-align: center;  /* Centers icons horizontally */
-  margin-bottom: 8px;  /* Space below the icon before the text */
+  font-size: 48px;
+  /* Makes icons larger */
+  display: block;
+  /* Ensures icons are on their own line */
+  text-align: center;
+  /* Centers icons horizontally */
+  margin-bottom: 8px;
+  /* Space below the icon before the text */
 }
 
 .trait.positive .material-icons {
-  color: #4CAF50;  /* Green color for positive icon */
+  color: #4CAF50;
+  /* Green color for positive icon */
 }
 
 .trait.negative .material-icons {
-  color: #F44336;  /* Red color for negative icon */
+  color: #F44336;
+  /* Red color for negative icon */
 }
-  
-  .traits-container ul {
-    list-style-type: none; /* Remove bullet points */
+
+.traits-container ul {
+  list-style-type: none;
+  /* Remove bullet points */
   padding: 0;
-  }
-  
-  .traits-container li {
-    text-align: center; /* Center text items */
-    color: #000000; /* Off-white color for the list items */
-  }
-  
-  .close-btn {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    color: #dc3545; /* Red color to signify deletion */
-    font-size: 24px; /* Adjust size as necessary */
-    cursor: pointer;
-  }
-  
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: #333; /* Dark background color */
-    color: white; /* White text color */
-    padding: 10px 0;
-    text-align: center;
+}
+
+.traits-container li {
+  text-align: center;
+  /* Center text items */
+  color: #000000;
+  /* Off-white color for the list items */
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #dc3545;
+  /* Red color to signify deletion */
+  font-size: 24px;
+  /* Adjust size as necessary */
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #333;
+  /* Dark background color */
+  color: white;
+  /* White text color */
+  padding: 10px 0;
+  text-align: center;
 }
 
 footer .col {
-    cursor: pointer;
-    padding: 10px 0;
-    border-right: 1px solid #555;
-    text-align: center;
+  cursor: pointer;
+  padding: 10px 0;
+  border-right: 1px solid #555;
+  text-align: center;
 }
 
 footer .col:last-child {
-    border-right: none;
+  border-right: none;
 }
 
 footer .col:hover {
-    background: #5d5d5d;
+  background: #5d5d5d;
 }
 
 @media (max-width: 767.98px) {
-    footer .col {
-        border-right: none;
-        border-bottom: 1px solid #555;
-    }
+  footer .col {
+    border-right: none;
+    border-bottom: 1px solid #555;
+  }
 
-    footer .col:last-child {
-        border-bottom: none;
-    }
+  footer .col:last-child {
+    border-bottom: none;
+  }
 }
-  
-  
-  
+
+.modal-content {
+  margin-top: 150px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: none;
+  background-color: #f8f9fa;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+  font-size: 1rem;
+  color: #343a40;
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.modal-footer .btn {
+  min-width: 80px;
+  font-size: 0.875rem;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
