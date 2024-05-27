@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     res.render('samoocenitev', { categories });
 });
 
-router.get('/pregledOcenitve/:ocena', async (req, res) => {
+router.get('/pregledOcenitve/:ocena/:kategorija', async (req, res) => {
     try {
         const ocena = parseInt(req.params.ocena, 10);
         const data = await getOcena(ocena);
@@ -19,9 +19,10 @@ router.get('/pregledOcenitve/:ocena', async (req, res) => {
     }
 });
 
-router.get('/brisanje/:kategorija', async(req, res) => {
+router.get('/brisanje/:ocena/:kategorija', async(req, res) => {
     try{
         const kategorija = req.params.kategorija;
+        console.log(kategorija);
         const idUporabnik = 1;
         await deleteOcena(idUporabnik, kategorija);
         res.redirect('samoocenitev');
@@ -39,7 +40,7 @@ router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
         res.redirect('/samoocenitev/izbiraEntitete/' + category);
     } else {
         // Otherwise, redirect to the review page
-        res.redirect('/samoocenitev/pregledOcenitve/' + uporabnik[category]);
+        res.redirect(`/samoocenitev/pregledOcenitve/${uporabnik[category]}/${category}`);
     }
 });
 
@@ -66,7 +67,7 @@ router.get('/rezultat/:entitetaId/:kategorija', async(req, res) => {
         const data = await getOcena(entitetaID);
         /*const uporabnik = getUporabnik(uporabnikID);
         console.log(uporabnik[kategorija]);*/
-        res.redirect('/samoocenitev/pregledOcenitve/' + data.idEntiteta);
+        res.redirect(`/samoocenitev/pregledOcenitve/${data.idEntiteta}/${kategorija}`);
     }catch(error){
         console.log(error);
     }

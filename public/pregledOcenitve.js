@@ -11,14 +11,19 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#confirmationModal').modal('show');
   });
 
+  const url = new URL(window.location.href);
+  const kategorija = url.pathname.split('/').pop();
+
   confirmDeleteBtn.addEventListener('click', function () {
-    fetch(`/samoocenitev/brisanje`, {
-      method: 'GET',
-    }).then(() => {
+    try {
+      
+      fetch(`/samoocenitev/brisanje/:ocena/${kategorija}`, {
+          method: 'GET',
+      });
       window.location.href = `/`;
-    }).catch((error) => {
-      console.error('Error:', error);
-    });
+  } catch (error) {
+      console.error('Error updating Firestore: ', error);
+  }
   });
 });
 
