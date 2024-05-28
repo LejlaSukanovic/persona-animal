@@ -3,7 +3,7 @@ const {getUporabniki} = require('../Database/firebase');
 
 const router = express.Router();
 
-router.get('/zgodovinaUjemanja', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const { uporabnikData, kategorije, entitetaMap } = await getUporabniki(); // Fetch all users and categories
         res.render('zgodovinaUjemanja', { uporabniki: uporabnikData, kategorije, entitetaMap });

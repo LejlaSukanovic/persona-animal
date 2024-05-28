@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/samoocenitev', samoocenitevRoutes);
-app.use('/samoocenitev/ujemanje', ujemanjeRoutes);
+app.use('/ujemanje', ujemanjeRoutes);
 
 
 
