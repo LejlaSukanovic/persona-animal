@@ -1,8 +1,8 @@
-// Import the functions you need from the SDKs you need
-const { Collapse } = require("@mui/material");
-const { firestore } = require("firebase-admin");
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDoc, query, getDocs, where, updateDoc } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit } = require("firebase/firestore");
+const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} = require('firebase/auth');
+const admin = require('firebase-admin');
+const serviceAccount = require('./persona-animal-firebase-adminsdk-ge6gm-2a1d387556.json'); 
 
 const firebaseConfig = {
   apiKey: "AIzaSyCtmYkG21BWAVvBWvcQK_37WASiOblZfu0",
@@ -16,19 +16,27 @@ const firebaseConfig = {
 
 let app;
 let firestoreDB;
+let auth;
 
 const initializeFBApp = () => {
-    try{
-        app = initializeApp(firebaseConfig);
-        firestoreDB = getFirestore();
+    try {
+        if (!admin.apps.length) { // Check if the admin app is already initialized
+            app = initializeApp(firebaseConfig);
+            firestoreDB = getFirestore(app);
+            auth = getAuth(app);
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount)
+            });
+        }
         return app;
-    }catch (error){
-        console.log(error)
-
+    } catch (error) {
+        console.log(error);
     }
 };
 
 const getFirebaseApp = () => app;
+const getFirestoreDB = () => firestoreDB;
+const getFirebaseAuth = () => auth;
 
 const uploadProcessedData = async() => {
     const dataToUpload = {
@@ -147,6 +155,51 @@ const saveResultSamoocenitve = async (idUporabnik, idEntiteta, kategorija) => {
     }
 };
 
+const getNextUserId = async () => {
+    const collectionRef = collection(firestoreDB, "uporabnik");
+    const q = query(collectionRef, orderBy("idUporabnik", "desc"), limit(1));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+        return 1; // Start with ID 1 if no users exist
+    } else {
+        const highestId = querySnapshot.docs[0].data().idUporabnik;
+        return highestId + 1;
+    }
+};
+
+const saveUserData = async (user, username) => {
+    const newUserId = await getNextUserId();
+    const documentRef = doc(firestoreDB, "uporabnik", newUserId.toString());
+    await setDoc(documentRef, {
+        idUporabnik: newUserId,
+        email: user.email,
+        username: username
+    });
+    return newUserId;
+};
+
+const checkIfEmailExistsInDatabase = async (email) => {
+    const collectionRef = collection(firestoreDB, "uporabnik");
+    const q = query(collectionRef, where('email', '==', email));
+    const querySnapshot = await getDocs(q);
+    return !querySnapshot.empty;
+};
+
+const deleteUserByEmail = async (email) => {
+    try {
+        const userRecord = await admin.auth().getUserByEmail(email);
+        await admin.auth().deleteUser(userRecord.uid);
+        console.log(`Successfully deleted user: ${userRecord.uid}`);
+    } catch (error) {
+        if (error.code === 'auth/user-not-found') {
+            console.log('User not found, nothing to delete.');
+        } else {
+            throw error;
+        }
+    }
+};
+
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
@@ -156,5 +209,12 @@ module.exports = {
     getOcena,
     getAllCategories,
     saveResultSamoocenitve,
-    deleteOcena
+    deleteOcena,
+    getFirebaseAuth,
+    getFirestoreDB,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    saveUserData,
+    checkIfEmailExistsInDatabase,
+    deleteUserByEmail
 };
