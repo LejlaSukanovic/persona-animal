@@ -15,7 +15,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: #f5f7fa; /* Light background color */
+    
 }
 
 .container {
@@ -23,8 +23,14 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    width: 100%; /* or max-width: 100%; depending on your design */
+    margin-top: 10%;
+    width: 90%; /* or max-width: 100%; depending on your design */
     overflow-x: hidden; /* Hide any accidental horizontal overflow */
+    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
+    background-size: cover;  /* Cover the entire page */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  border-radius: 5% 5% 0 0;
 }
 
 .progress-bar-container {
@@ -46,7 +52,7 @@ p {
     font-size: 18px;
     text-align: center;
     margin: 10px 0;
-    color: #666;
+    color: #f3f3f3;
 }
 
 .entities-container {
@@ -245,4 +251,33 @@ footer .col:hover {
 body.slide-in {
     animation: slideInFromRight 0.8s forwards; /* Animation duration and behavior */
     overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
+}
+
+
+body {
+    position: relative;
+    min-height: 100vh; /* Ensures the body takes at least the height of the viewport */
+    padding-bottom: 150px; /* Provides space for the animation above the footer */
+}
+
+.cow-animation {
+    position: absolute;
+    right: 10px; /* Positions the animation on the right */
+    bottom: 100px; /* Adjust this value based on the height of your footer */
+    pointer-events: none; /* Allows clicks to pass through the iframe */
+}
+
+footer {
+    position: relative;
+    width: 100%;
+    height: 50px; /* Adjust according to your footer's height */
+}
+
+@media (max-width: 768px) {
+    .cow-animation {
+        right: 5px; /* Adjust right position on smaller screens */
+        bottom: 60px; /* Adjust bottom position on smaller screens */
+        width: 100px; /* Smaller size on smaller screens */
+        height: 100px; /* Smaller size on smaller screens */
+    }
 }
