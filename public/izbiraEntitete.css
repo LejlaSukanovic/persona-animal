@@ -2,12 +2,20 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Ensures no scrollbar appears */
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: #f5f7fa; /* Light background color */
+    
 }
 
 .container {
@@ -15,6 +23,14 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    margin-top: 10%;
+    width: 90%; /* or max-width: 100%; depending on your design */
+    overflow-x: hidden; /* Hide any accidental horizontal overflow */
+    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
+    background-size: cover;  /* Cover the entire page */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  border-radius: 5% 5% 0 0;
 }
 
 .progress-bar-container {
@@ -36,7 +52,7 @@ p {
     font-size: 18px;
     text-align: center;
     margin: 10px 0;
-    color: #666;
+    color: #f3f3f3;
 }
 
 .entities-container {
@@ -165,20 +181,24 @@ p {
 
 /* Footer Styles */
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    background: #333; /* Dark background color */
-    color: white; /* White text color */
-    padding: 10px 0;
+    box-sizing: border-box;
+    bottom: 0;
+    position: absolute;
+    background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
+    color: white;
+    padding: 20px 0; /* Increased padding */
     text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
 }
 
 footer .col {
     cursor: pointer;
-    padding: 10px 0;
-    border-right: 1px solid #555;
-    text-align: center;
+    padding: 15px 0; /* Increased padding */
+    border-right: 1px solid #66BB6A;
+    transition: all 0.3s ease; /* Added transition for hover effect */
 }
 
 footer .col:last-child {
@@ -186,21 +206,20 @@ footer .col:last-child {
 }
 
 footer .col:hover {
-    background: #5d5d5d;
+    background: #388E3C; /* Darker green on hover */
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 @media (max-width: 767.98px) {
     footer .col {
         border-right: none;
-        border-bottom: 1px solid #555;
+        border-bottom: 1px solid #66BB6A;
     }
 
     footer .col:last-child {
         border-bottom: none;
-    }
-
-    footer {
-        font-size: 14px;
     }
 }
 
@@ -218,4 +237,46 @@ footer .col:hover {
     background-color: #4caf50;
     width: 0;
     transition: width 0.5s ease;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%); /* Start off-screen from the right */
+    }
+    to {
+        transform: translateX(0); /* Slide to the natural position */
+    }
+}
+
+body.slide-in {
+    animation: slideInFromRight 0.8s forwards; /* Animation duration and behavior */
+    overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
+}
+
+
+body {
+    position: relative;
+    min-height: 100vh; /* Ensures the body takes at least the height of the viewport */
+    padding-bottom: 150px; /* Provides space for the animation above the footer */
+}
+
+.cow-animation {
+    position: absolute;
+    right: 5%; /* Positions the animation on the right */
+    bottom: 100px; /* Adjust this value based on the height of your footer */
+    pointer-events: none; /* Allows clicks to pass through the iframe */
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .cow-animation {
+        right: 5px; /* Adjust right position on smaller screens */
+        margin-bottom: 8%; /* Adjust bottom position on smaller screens */
+        width: 100px; /* Smaller size on smaller screens */
+        height: 100px; /* Smaller size on smaller screens */
+    }
 }

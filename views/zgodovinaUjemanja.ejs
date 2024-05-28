@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zgodovina ujemanja</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/zgodovinaUjemanja.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Zgodovina ujemanja</h1>
+
+    <% const categories = {}; %>
+    <% uporabniki.forEach(uporabnik => { %>
+      <% Object.keys(uporabnik).forEach(key => { %>
+        <% if (kategorije.includes(key)) { %>
+          <% if (!categories[key]) { categories[key] = []; } %>
+          <% categories[key].push(uporabnik); %>
+        <% } %>
+      <% }); %>
+    <% }); %>
+
+    <% Object.keys(categories).forEach(category => { %>
+      <div class="category-section">
+        <h2 class="text-center"><%= category %></h2>
+        <% const categoryUsers = categories[category]; %>
+        <% const hasValidUsers = categoryUsers.some(uporabnik => uporabnik[category] && uporabnik[category] !== '0'); %>
+        
+        <% if (hasValidUsers) { %>
+          <div class="row">
+            <% categoryUsers.forEach(uporabnik => { %>
+              <% if (uporabnik[category] && uporabnik[category] !== '0') { %>
+                <div class="col-md-4 mb-4">
+                  <div class="card h-100 position-relative">
+                    <button class="delete-btn" onclick="deleteUser('<%= uporabnik.idUporabnik %>')">&times;</button>
+                    <% 
+                      const entitetaId = uporabnik[category];
+                      const entiteta = entitetaMap.get(entitetaId);
+                    %>
+                    <div>
+                      <% if (entiteta) { %>
+                        <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>">
+                      <% } else { %>
+                        <p>Ni podatkov</p>
+                      <% } %>
+                    </div>
+                    <div class="card-body text-center">
+                      <h5 class="card-title">
+                        <%= uporabnik.ime %>
+                      </h5>
+                      <div class="rating-text">
+                        Ocena ujemanja: <span class="rating-circle"><%= uporabnik.ocena || '/' %></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="no-matches">
+            <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
+            <button class="action-btn" onclick="window.location.href='/samoocenitev'">Izvedi ujemanje</button>
+          </div>
+        <% } %>
+      </div>
+    <% }); %>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/zgodovinaUjemanja.js"></script>
+</body>
+</html>

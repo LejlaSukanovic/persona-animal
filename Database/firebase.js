@@ -199,6 +199,40 @@ const deleteUserByEmail = async (email) => {
     }
 };
 
+//ujemanje
+
+const getUporabniki = async () => {
+    try {
+      const uporabnikCollectionRef = collection(firestoreDB, "uporabnik");
+      const entitetaCollectionRef = collection(firestoreDB, "entiteta");
+  
+      const uporabnikData = [];
+      const kategorijeSet = new Set();
+      const entitetaMap = new Map();
+  
+      // Fetch all users
+      const uporabnikSnap = await getDocs(query(uporabnikCollectionRef));
+      uporabnikSnap.forEach(doc => {
+        uporabnikData.push(doc.data());
+      });
+  
+      // Fetch all entities from entiteta
+      const entitetaSnap = await getDocs(query(entitetaCollectionRef));
+      entitetaSnap.forEach(doc => {
+        const data = doc.data();
+        if (data.kategorija) {
+          kategorijeSet.add(data.kategorija);
+        }
+        entitetaMap.set(data.idEntiteta, data);
+      });
+  
+      const kategorije = Array.from(kategorijeSet);
+  
+      return { uporabnikData, kategorije, entitetaMap };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 module.exports = {
     initializeFBApp,
@@ -210,6 +244,7 @@ module.exports = {
     getAllCategories,
     saveResultSamoocenitve,
     deleteOcena,
+    getUporabniki,
     getFirebaseAuth,
     getFirestoreDB,
     createUserWithEmailAndPassword,
