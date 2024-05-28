@@ -5,29 +5,53 @@ function navigateTo(path) {
 document.addEventListener('DOMContentLoaded', function () {
   const closeBtn = document.querySelector('.close-btn');
   const confirmDeleteBtn = document.getElementById('confirmDelete');
+  const cancelDeleteBtn = document.querySelector('.btn-secondary'); // Select the "Ne" button
+  const footerCols = document.querySelectorAll('footer .col');
 
-  closeBtn.addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent default behavior
+  function showConfirmationModal(event) {
+    event.preventDefault();
     $('#confirmationModal').modal('show');
-  });
+  }
 
-  const url = new URL(window.location.href);
-  const kategorija = url.pathname.split('/').pop();
+  function handleConfirmDelete(event) {
+    const url = new URL(window.location.href);
+    const kategorija = url.pathname.split('/').pop();
 
-  confirmDeleteBtn.addEventListener('click', function () {
     try {
-      
       fetch(`/samoocenitev/brisanje/:ocena/${kategorija}`, {
-          method: 'GET',
+        method: 'GET',
       });
       window.location.href = `/`;
-  } catch (error) {
+    } catch (error) {
       console.error('Error updating Firestore: ', error);
+    }
   }
+
+  function handleCancelDelete(event) {
+    $('#confirmationModal').modal('hide');
+  }
+
+  function handleFooterClick(event) {
+    const path = this.getAttribute('onclick').match(/'(.*)'/)[1];
+    window.location.href = path;
+  }
+
+  closeBtn.addEventListener('click', showConfirmationModal);
+  closeBtn.addEventListener('touchstart', showConfirmationModal, { passive: false });
+
+  confirmDeleteBtn.addEventListener('click', handleConfirmDelete);
+  confirmDeleteBtn.addEventListener('touchstart', handleConfirmDelete, { passive: false });
+
+  cancelDeleteBtn.addEventListener('click', handleCancelDelete);
+  cancelDeleteBtn.addEventListener('touchstart', handleCancelDelete, { passive: false });
+
+  footerCols.forEach(col => {
+    col.addEventListener('click', handleFooterClick);
+    col.addEventListener('touchstart', handleFooterClick, { passive: false });
   });
 });
 
-// Ensure correct event handling for draggable interaction
+// Ensure proper event handling for mobile touch interactions
 document.addEventListener('DOMContentLoaded', function() {
   const infoContainer = document.querySelector('.info-container');
   let startY, startTop;
@@ -48,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dy = clientY - startY;
     const newTop = Math.min(Math.max(150, startTop + dy), 300);
     infoContainer.style.top = `${newTop}px`;
-    
+
     const percentRevealed = (newTop - 150) / 150;
     const filterValue = 100 - ((1 - percentRevealed) * 50);
     document.querySelector('.image-container img').style.filter = `brightness(${filterValue}%)`;

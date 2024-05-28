@@ -340,6 +340,7 @@ footer .col:hover {
   margin-top: 150px;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1050; /* Ensure this element is on top */
 }
 
 .modal-header {
@@ -366,11 +367,14 @@ footer .col:hover {
   background-color: #f8f9fa;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: space-between; /* Ensure buttons are spread out */
 }
 
 .modal-footer .btn {
   min-width: 80px;
   font-size: 0.875rem;
+  z-index: 1051; /* Ensure buttons are on top */
 }
 
 .btn-secondary {
