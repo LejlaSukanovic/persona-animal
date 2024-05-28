@@ -1,8 +1,9 @@
 const express = require('express');
 const path = require('path');
-const { initializeFBApp, uploadProcessedData, getTheData, getUporabnik, getOcena } = require('./Database/firebase');
+const { initializeFBApp } = require('./Database/firebase');
 const { render } = require('ejs');
 const samoocenitevRoutes = require('./routes/samoocenitevRoutes');
+const ujemanjeRoutes = require('./routes/ujemanjeRoutes');
 
 const app = express();
 
@@ -19,17 +20,11 @@ app.listen(3000, () => {
 initializeFBApp();
 
 app.get('/', async (req, res) => {
-    /*try {
-        const data = await getTheData();
-        res.render('home', { entities: data });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).send('Error fetching data');
-    }*/
     res.redirect('/samoocenitev');
 });
 
 app.use('/samoocenitev', samoocenitevRoutes);
+app.use('/samoocenitev/ujemanje', ujemanjeRoutes);
 
 
 
