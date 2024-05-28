@@ -1,7 +1,11 @@
 const express = require('express');
-const { getTheData, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve, deleteOcena} = require('../Database/firebase');
+const { getTheData,initializeFBApp, getFirebaseAuth,getFirestoreDB, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve,saveUserData,deleteUserByEmail,checkIfEmailExistsInDatabase, deleteOcena, signInWithEmailAndPassword, createUserWithEmailAndPassword} = require('../Database/firebase');
+
+initializeFBApp();
 
 const router = express.Router();
+const firestoreDB = getFirestoreDB();
+const auth = getFirebaseAuth();
 
 router.get('/', async (req, res) => {
     let categories = await getAllCategories();
@@ -70,6 +74,54 @@ router.get('/rezultat/:entitetaId/:kategorija', async(req, res) => {
         res.redirect(`/samoocenitev/pregledOcenitve/${data.idEntiteta}/${kategorija}`);
     }catch(error){
         console.log(error);
+    }
+});
+
+
+router.get('/ekran', async(req, res) => {
+    try{
+        res.render('prijava');
+    }catch(error){
+        console.log(error);
+    }
+});
+
+// Registration route
+router.post('/register', async (req, res) => {
+    const { email, password, username } = req.body;
+
+    try {
+        const emailExists = await checkIfEmailExistsInDatabase(email);
+        if (emailExists) {
+            return res.status(400).send({ error: 'Email is already in use in the database. Please try a different email.' });
+        }
+
+        await deleteUserByEmail(email);
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user data to Firestore using the new function
+        await saveUserData(user, username);
+
+        res.status(201).send({ message: 'User registered successfully!', user: user.uid });
+    } catch (error) {
+        console.error('Error registering user:', error);
+        res.status(500).send({ error: error.message });
+    }
+});
+
+// Login route
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        res.status(200).send({ message: 'User logged in successfully!', user: user.uid });
+    } catch (error) {
+        console.error('Error logging in user:', error);
+        res.status(500).send({ error: error.message });
     }
 });
 
