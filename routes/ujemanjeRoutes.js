@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabniki} = require('../Database/firebase');
+const {getUporabniki, deleteOcena} = require('../Database/firebase');
 
 const router = express.Router();
 
@@ -12,16 +12,16 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.delete('/deleteUser/:idUporabnik', async (req, res) => {
+router.get('/deleteUser/:idUporabnik/:kategorija', async (req, res) => {
     const idUporabnik = req.params.idUporabnik;
+    const kategorija = req.params.kategorija;
 
     try {
-        const userRef = doc(firestoreDB, 'uporabnik', idUporabnik);
-        await deleteDoc(userRef);
-        res.status(200).send('User deleted');
+        await deleteOcena(idUporabnik, kategorija);
+        res.status(200).send('updated');
     } catch (error) {
-        console.error('Error deleting user:', error);
-        res.status(500).send('Failed to delete user');
+        console.error('Error updating document:', error);
+        res.status(500).send('Failed to update');
     }
 });
 
