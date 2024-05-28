@@ -13,7 +13,8 @@
     <h1 class="text-center mb-5">Zgodovina ujemanja</h1>
 
     <% const categories = {}; %>
-    <% uporabniki.forEach(uporabnik => { %>
+    <% const filteredUporabniki = uporabniki.filter(uporabnik => uporabnik.tip === 2); %>
+    <% filteredUporabniki.forEach(uporabnik => { %>
       <% Object.keys(uporabnik).forEach(key => { %>
         <% if (kategorije.includes(key)) { %>
           <% if (!categories[key]) { categories[key] = []; } %>
