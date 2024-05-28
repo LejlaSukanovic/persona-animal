@@ -1,11 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* This will ensure it at least covers the full viewport height */
+    min-height: 100vh; /* Ensures that the body is at least the height of the viewport */
+    background-color: #f8f9fa;
+    color: #212529;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
+    background-size: cover;  /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
 .card img {
     width: 100%;
-    height: 100%;
     object-fit: cover;
-  }
-  .delete-btn {
+}
+.delete-btn {
     color: white;
     background-color: #dc3545;
     border: none;
@@ -20,15 +45,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .delete-btn:hover {
+}
+.delete-btn:hover {
     background-color: #c82333;
-  }
-  .no-matches {
+}
+.no-matches {
     text-align: center;
     margin: 20px 0;
-  }
-  .action-btn {
+}
+.action-btn {
     display: block;
     margin: 20px auto;
     background-color: #007bff;
@@ -37,11 +62,11 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  .action-btn:hover {
+}
+.action-btn:hover {
     background-color: #0056b3;
-  }
-  .rating-circle {
+}
+.rating-circle {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -51,37 +76,35 @@
     text-align: center;
     font-weight: bold;
     margin-left: 10px;
-  }
-  .card-body {
+}
+.card-body {
     padding: 10px;
-  }
-  .card-title {
+}
+.card-title {
     font-size: 1.2em;
     margin-bottom: 5px;
-  }
-  .card {
+}
+.card {
     border-radius: 15px;
-  }
-  .rating-text {
+}
+.rating-text {
     margin-top: 10px;
     font-weight: bold;
-  }
-  .category-section {
+}
+.category-section {
     margin-top: 30px;
     padding: 20px;
     background-color: #f2f2f2;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .category-section h2 {
+}
+.category-section h2 {
     margin-bottom: 20px;
-  }
+}
 
-  footer {
+footer {
     width: 100%;
     box-sizing: border-box;
-    bottom: 0;
-    position: absolute;
     background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
     color: white;
     padding: 20px 0; /* Increased padding */
@@ -89,54 +112,44 @@
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
-  }
-  
-  footer .col {
+    position: sticky;
+    bottom: 0;
+}
+
+footer .col {
     cursor: pointer;
     padding: 15px 0; /* Increased padding */
     border-right: 1px solid #66BB6A;
     transition: all 0.3s ease; /* Added transition for hover effect */
-  }
-  
-  footer .col:last-child {
+}
+
+footer .col:last-child {
     border-right: none;
-  }
-  
-  footer .col:hover {
+}
+
+footer .col:hover {
     background: #388E3C; /* Darker green on hover */
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-  }
-  
-  @media (max-width: 767.98px) {
+}
+
+@media (max-width: 767.98px) {
     footer .col {
         border-right: none;
         border-bottom: 1px solid #66BB6A;
     }
-  
+
     footer .col:last-child {
         border-bottom: none;
     }
-  }
+    .modal-dialog {
+    max-width: 400px; /* Adjust the maximum width */
+    margin: 1.75rem auto; /* Center the modal */
+}
+}
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* This will ensure it at least covers the full viewport height */
-    min-height: 100vh; /* Ensures that the body is at least the height of the viewport */
-    background-color: #f8f9fa;
-    color: #212529;
-    font-family: 'Roboto', sans-serif;
-    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
-    background-size: cover;  /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
-  }
-
-  .close-btn {
+.close-btn {
     position: absolute;
     right: 10px;
     top: 10px;
@@ -145,4 +158,63 @@
     font-size: 24px;
     /* Adjust size as necessary */
     cursor: pointer;
-  }
+}
+
+.modal-content {
+    margin-top: 100px; /* Adjust the top margin */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050; /* Ensure this element is on top */
+    padding: 20px; /* Add padding for spacing */
+}
+
+.modal-header {
+    border-bottom: none;
+    background-color: #f8f9fa;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+    font-size: 1rem;
+    color: #343a40;
+}
+
+.modal-footer {
+    border-top: none;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: space-between; /* Ensure buttons are spread out */
+    align-items: center;
+}
+
+button.btn {
+    padding: 10px 20px;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 80px;
+    font-size: 0.875rem;
+    z-index: 1051; /* Ensure buttons are on top */
+}
+
+button.btn:hover {
+    background: linear-gradient(to right, #388E3C, #66BB6A) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+    transform: translateY(-2px) !important;
+}

@@ -7,23 +7,6 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .content {
-      flex: 1;
-    }
-    footer {
-      background-color: #f8f9fa;
-      padding: 20px;
-      text-align: center;
-      width: 100%;
-    }
-  </style>
 </head>
 <body>
   <div class="container mt-5 content">
@@ -79,9 +62,9 @@
         <% } else { %>
           <div class="no-matches">
             <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
-            <button class="action-btn" onclick="window.location.href='/samoocenitev'">Izvedi ujemanje</button>
           </div>
         <% } %>
+        <button class="btn" onclick="window.location.href='/samoocenitev'">Izvedi ujemanje</button>
       </div>
     <% }); %>
   </div>
@@ -110,8 +93,8 @@ aria-hidden="true">
       <dotlottie-player src="https://lottie.host/f16e66e9-700b-48e9-8ce5-b44a4fef96b0/LTisdNDO59.json" background="transparent" speed="1" style="width: 200px; height: 200px; padding: 0px; margin-left: 25%;" loop autoplay></dotlottie-player>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Ne</button>
-      <button type="button" class="btn btn-danger" id="confirmDelete">Da</button>
+      <button type="button" class="btn" data-dismiss="modal">Ne</button>
+      <button type="button" class="btn" id="confirmDelete">Da</button>
     </div>
   </div>
 </div>
