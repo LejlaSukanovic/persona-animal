@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zgodovina ujemanja</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
 </head>
 <body>
@@ -33,7 +34,7 @@
               <% if (uporabnik[category] && uporabnik[category] !== '0') { %>
                 <div class="col-md-4 mb-4">
                   <div class="card h-100 position-relative">
-                    <button class="delete-btn" onclick="deleteUser('<%= uporabnik.idUporabnik %>')">&times;</button>
+                    <span class="close-btn material-icons" aria-label="Delete result">delete</span>
                     <% 
                       const entitetaId = uporabnik[category];
                       const entiteta = entitetaMap.get(entitetaId);

@@ -135,3 +135,14 @@
     width: 100%;
     overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
   }
+
+  .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #dc3545;
+    /* Red color to signify deletion */
+    font-size: 24px;
+    /* Adjust size as necessary */
+    cursor: pointer;
+  }
