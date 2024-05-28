@@ -13,3 +13,7 @@ function deleteUser(idUporabnik) {
       .catch(error => console.error('Error:', error));
     }
   }
+
+  function navigateTo(path) {
+    window.location.href = path;
+  }
