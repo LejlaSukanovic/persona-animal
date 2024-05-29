@@ -19,7 +19,15 @@ const entities = [
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
     slika: './images/konj.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Zivali',
+    ujemanja: [
+      {//id of the document is the name of the entity 
+        ocena_ujemanja: 5
+      },
+      {//id of the document is the name of the entity 
+        ocena_ujemanja: 4
+      } //...
+    ]
   },
   {
     idEntiteta: 2,
@@ -176,6 +184,41 @@ const entities = [
   }
 ];
 
+let ujemanjaTable = {
+  Konj: { Pes: 3, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Opica: 2, Zajec: 2, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 4, Slon: 4, Srna: 4, Čebela: 3, Bik: 4 },
+  Pes: { Konj: 3, Sova: 5, Medved: 5, Lev: 3, Lisica: 4, Opica: 2, Zajec: 2, Mačka: 4, Galeb: 3, Mravlja: 4, Orel: 5, Slon: 5, Srna: 5, Čebela: 4, Bik: 5 },
+  Sova: { Konj: 5, Pes: 5, Medved: 2, Lev: 1, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 2, Galeb: 5, Mravlja: 5, Orel: 5, Slon: 5, Srna: 5, Čebela: 5, Bik: 4 },
+  Medved: { Konj: 4, Pes: 5, Sova: 2, Lev: 2, Lisica: 2, Opica: 4, Zajec: 4, Mačka: 5, Galeb: 5, Mravlja: 4, Orel: 5, Slon: 5, Srna: 4, Čebela: 5, Bik: 5 },
+  Lev: { Konj: 4, Pes: 3, Sova: 1, Medved: 2, Lisica: 2, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 5, Slon: 5, Srna: 5, Čebela: 5, Bik: 5 },
+  Lisica: { Konj: 4, Pes: 4, Sova: 5, Medved: 2, Lev: 2, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
+  Opica: { Konj: 2, Pes: 2, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 2, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
+  Zajec: { Konj: 2, Pes: 2, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Opica: 2, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 4, Srna: 4, Čebela: 5, Bik: 5 },
+  Mačka: { Konj: 3, Pes: 4, Sova: 2, Medved: 5, Lev: 3, Lisica: 3, Opica: 3, Zajec: 4, Galeb: 2, Mravlja: 4, Orel: 4, Slon: 3, Srna: 4, Čebela: 5, Bik: 5 },
+  Galeb: { Konj: 4, Pes: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 4, Opica: 4, Zajec: 4, Mačka: 2, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
+  Mravlja: { Konj: 5, Pes: 4, Sova: 5, Medved: 4, Lev: 5, Lisica: 5, Opica: 3, Zajec: 3, Mačka: 4, Galeb: 5, Orel: 4, Slon: 4, Srna: 5, Čebela: 3, Bik: 5 },
+  Orel: { Konj: 4, Pes: 5, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 4, Galeb: 5, Mravlja: 4, Slon: 4, Srna: 2, Čebela: 2, Bik: 5 },
+  Slon: { Konj: 4, Pes: 5, Sova: 5, Medved: 5, Lev: 5, Lisica: 4, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 4, Orel: 4, Srna: 4, Čebela: 4, Bik: 4 },
+  Srna: { Konj: 4, Pes: 5, Sova: 5, Medved: 4, Lev: 5, Lisica: 5, Opica: 5, Zajec: 4, Mačka: 4, Galeb: 5, Mravlja: 5, Orel: 2, Slon: 4, Čebela: 5, Bik: 5 },
+  Čebela: { Konj: 3, Pes: 4, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 3, Orel: 2, Slon: 4, Srna: 5, Bik: 5 },
+  Bik: { Konj: 4, Pes: 5, Sova: 4, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5 }
+};
+
+// Ensure all mutual matches are correctly filled
+const fillMissingUjemanja = (table) => {
+  const entities = Object.keys(table);
+  entities.forEach(entity1 => {
+    entities.forEach(entity2 => {
+      if (entity1 !== entity2) {
+        if (table[entity1][entity2] === undefined) {
+          table[entity1][entity2] = table[entity2][entity1] || 1; // Default to 1 if both are undefined
+        }
+      }
+    });
+  });
+};
+
+fillMissingUjemanja(ujemanjaTable);
+
 const uploadImage = async (filePath, fileName) => {
   const uploadPath = path.join(__dirname, filePath);
   const file = bucket.file(fileName);
@@ -192,7 +235,14 @@ const addEntitiesToFirestore = async () => {
       const imageUrl = await uploadImage(entity.slika, `${entity.naziv}.jpg`);
       const entityData = { ...entity, slika: imageUrl };
       await db.collection('entiteta').doc(entity.naziv).set(entityData);
-      console.log(`Document for ${entity.naziv} added successfully with image URL.`);
+
+      // Add ujemanja sub-collection
+      const ujemanja = ujemanjaTable[entity.naziv] || {};
+      for (const [otherEntity, ocena] of Object.entries(ujemanja)) {
+        await db.collection('entiteta').doc(entity.naziv).collection('ujemanja').doc(otherEntity).set({ ocena_ujemanja: ocena });
+      }
+
+      console.log(`Document for ${entity.naziv} added successfully with image URL and ujemanja.`);
     }
     console.log('All entities added successfully.');
   } catch (error) {

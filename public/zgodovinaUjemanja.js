@@ -26,3 +26,19 @@ document.getElementById('confirmDelete').addEventListener('click', function() {
   function navigateTo(path) {
     window.location.href = path;
   }
+
+  function navigateToCategory(category) {
+    window.location.href = '/ujemanje/novUporabnik/' + category;
+}
+
+  function clearStorageAndNavigate(category) {
+    sessionStorage.clear();
+    navigateToCategory(category);
+}
+
+$(document).ready(function() {
+    $('.content').addClass('visible');
+  });
+  function navigateTo(url) {
+    window.location.href = url;
+  }

@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit, getDoc} = require("firebase/firestore");
 const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } = require('firebase/auth');
 const admin = require('firebase-admin');
 const serviceAccount = require('./persona-animal-firebase-adminsdk-ge6gm-2a1d387556.json'); 
@@ -130,6 +130,23 @@ const getOcena = async (entitetaID) => {
         console.log('Error getting rating:', error);
     }
 }
+const getOcenaByNaziv = async (naziv) => {
+    try {
+      const collectionRef = collection(firestoreDB, "entiteta");
+      let finalData = [];
+      const q = query(collectionRef, where('naziv', '==', naziv));
+  
+      const docSnap = await getDocs(q);
+  
+      docSnap.forEach((doc) => {
+        finalData.push(doc.data());
+      });
+  
+      return finalData[0];
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const deleteOcena = async (idUporabnik, kategorija) => {
     try {
@@ -232,6 +249,98 @@ const deleteUserByEmail = async (email) => {
     }
 };
 
+  
+const calculateUjemanje = async (entiteta1, entiteta2) => {
+    try {
+
+        if(entiteta1 === entiteta2){
+            return 1;
+        }
+      // Access the 'ujemanja' sub-collection of 'entiteta1'
+      const entiteta1DocRef = doc(firestoreDB, 'entiteta', entiteta1);
+      const ujemanjeDocRef = doc(firestoreDB, 'entiteta', entiteta1, 'ujemanja', entiteta2);
+      const ujemanjeDoc = await getDoc(ujemanjeDocRef);
+  
+      if (ujemanjeDoc.exists()) {
+        // Retrieve the 'ocena_ujemanja' field from the document
+        const ocenaUjemanja = ujemanjeDoc.data().ocena_ujemanja;
+        return ocenaUjemanja;
+      } else {
+        console.log(`No matching document found for entiteta2: ${entiteta2} in the ujemanja sub-collection of entiteta1: ${entiteta1}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving ocena_ujemanja:', error);
+      return null;
+    }
+  };
+
+  const getOpisUjemanja = async (idOdnos) => {
+    try {
+      // Reference the document in the 'odnosi' collection with the given idOdnos
+      const odnosDocRef = doc(firestoreDB, 'odnosi', idOdnos.toString());
+      const odnosDoc = await getDoc(odnosDocRef);
+  
+      if (odnosDoc.exists()) {
+        // Retrieve the 'opis' field from the document
+        const opisUjemanja = odnosDoc.data().opis;
+        return opisUjemanja;
+      } else {
+        console.log(`No matching document found for idOdnos: ${idOdnos}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving opis ujemanja:', error);
+      return null;
+    }
+  };
+
+  
+const calculateUjemanje = async (entiteta1, entiteta2) => {
+    try {
+
+        if(entiteta1 === entiteta2){
+            return 1;
+        }
+      // Access the 'ujemanja' sub-collection of 'entiteta1'
+      const entiteta1DocRef = doc(firestoreDB, 'entiteta', entiteta1);
+      const ujemanjeDocRef = doc(firestoreDB, 'entiteta', entiteta1, 'ujemanja', entiteta2);
+      const ujemanjeDoc = await getDoc(ujemanjeDocRef);
+  
+      if (ujemanjeDoc.exists()) {
+        // Retrieve the 'ocena_ujemanja' field from the document
+        const ocenaUjemanja = ujemanjeDoc.data().ocena_ujemanja;
+        return ocenaUjemanja;
+      } else {
+        console.log(`No matching document found for entiteta2: ${entiteta2} in the ujemanja sub-collection of entiteta1: ${entiteta1}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving ocena_ujemanja:', error);
+      return null;
+    }
+  };
+
+  const getOpisUjemanja = async (idOdnos) => {
+    try {
+      // Reference the document in the 'odnosi' collection with the given idOdnos
+      const odnosDocRef = doc(firestoreDB, 'odnosi', idOdnos.toString());
+      const odnosDoc = await getDoc(odnosDocRef);
+  
+      if (odnosDoc.exists()) {
+        // Retrieve the 'opis' field from the document
+        const opisUjemanja = odnosDoc.data().opis;
+        return opisUjemanja;
+      } else {
+        console.log(`No matching document found for idOdnos: ${idOdnos}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving opis ujemanja:', error);
+      return null;
+    }
+  };
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
@@ -250,5 +359,8 @@ module.exports = {
     checkIfEmailExistsInDatabase,
     deleteUserByEmail,
     getNextUserId,
+    calculateUjemanje,
+    getOcenaByNaziv,
+    getOpisUjemanja,
     getUporabnikByID
 };
