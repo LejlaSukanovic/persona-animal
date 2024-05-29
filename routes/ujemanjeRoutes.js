@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena} = require('../Database/firebase');
+const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -69,12 +69,22 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija;
         const uporabnikID = req.params.uporabnikID;
+        const ocenjeniUporabnik = await getUporabnik(parseInt(uporabnikID, 10));
+        const prijavljeniUporabnik = await getUporabnik(ocenjeniUporabnik.ujemanjeZ);
+        const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         const data = await getOcena(entitetaID);
-        res.redirect(`/ujemanje/pregledOcenitve/${data.idEntiteta}/${kategorija}`);
+        res.redirect(`/ujemanje/pregledUjemanja/${data.naziv}/${ocenaPrijavljenega.naziv}`);
     }catch(error){
         console.log(error);
     }
+});
+
+router.get('/pregledUjemanja/:entiteta1/:entiteta2', async(req, res) => {
+    const entiteta1 = req.params.entiteta1;
+    const entiteta2 = req.params.entiteta2;
+    const ujemanje = await calculateUjemanje(entiteta1, entiteta2)
+   res.render('pregledUjemanja', {ocenaUjemanja:ujemanje});
 });
 
 module.exports = router;

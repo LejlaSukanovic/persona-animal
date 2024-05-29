@@ -1,5 +1,5 @@
 const { initializeApp } = require("firebase/app");
-const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit } = require("firebase/firestore");
+const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit, getDoc} = require("firebase/firestore");
 const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} = require('firebase/auth');
 const admin = require('firebase-admin');
 const serviceAccount = require('./persona-animal-firebase-adminsdk-ge6gm-2a1d387556.json'); 
@@ -234,6 +234,32 @@ const getUporabniki = async () => {
     }
   };
 
+  
+const calculateUjemanje = async (entiteta1, entiteta2) => {
+    try {
+
+        if(entiteta1 === entiteta2){
+            return 1;
+        }
+      // Access the 'ujemanja' sub-collection of 'entiteta1'
+      const entiteta1DocRef = doc(firestoreDB, 'entiteta', entiteta1);
+      const ujemanjeDocRef = doc(firestoreDB, 'entiteta', entiteta1, 'ujemanja', entiteta2);
+      const ujemanjeDoc = await getDoc(ujemanjeDocRef);
+  
+      if (ujemanjeDoc.exists()) {
+        // Retrieve the 'ocena_ujemanja' field from the document
+        const ocenaUjemanja = ujemanjeDoc.data().ocena_ujemanja;
+        return ocenaUjemanja;
+      } else {
+        console.log(`No matching document found for entiteta2: ${entiteta2} in the ujemanja sub-collection of entiteta1: ${entiteta1}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving ocena_ujemanja:', error);
+      return null;
+    }
+  };
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
@@ -254,5 +280,6 @@ module.exports = {
     deleteUserByEmail,
     app,
     firestoreDB,
-    getNextUserId
+    getNextUserId,
+    calculateUjemanje
 };
