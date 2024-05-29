@@ -43,17 +43,17 @@ router.post('/dodajUporabnika', async (req, res) => {
 
     try {
         await setDoc(doc(firestoreDB, 'uporabnik', newUser.idUporabnik.toString()), newUser);
-        res.redirect(`/ujemanje/izbiraEntitete/${category}?idUporabnik=${newUser.idUporabnik}`);
+        res.redirect(`/ujemanje/izbiraEntitete/${category}/${newUser.idUporabnik}`);
     } catch (error) {
         console.error('Error adding user:', error);
         res.status(500).send('Error adding user');
     }
 });
 
-router.get('/izbiraEntitete/:kategorija', async (req, res) => {
+router.get('/izbiraEntitete/:kategorija/:idUporabnik', async (req, res) => {
     try {
         const category = req.params.kategorija;
-        const idUporabnik = req.query.idUporabnik || null; // Handle optional idUporabnik parameter
+        const idUporabnik = req.params.idUporabnik || null; // Handle optional idUporabnik parameter
         const data = await getTheData(category); // Fetch entities based on category
         res.render('IzbiraEntitete', { entities: data, category, idUporabnik });
     } catch (error) {
