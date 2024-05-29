@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja} = require('../Database/firebase');
+const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja, getUporabnikByID} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -43,6 +43,8 @@ router.post('/dodajUporabnika/:idPrijavljenog', async (req, res) => {
         tip: 2
     };
 
+    console.log(newUser.idUporabnik);   
+
     try {
         await setDoc(doc(firestoreDB, 'uporabnik', newUser.idUporabnik.toString()), newUser);
         res.redirect(`/ujemanje/izbiraEntitete/${newUser.idUporabnik}/${category}`);
@@ -69,8 +71,8 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija;
         const uporabnikID = req.params.uporabnikID;
-        const ocenjeniUporabnik = await getUporabnik(parseInt(uporabnikID, 10));
-        const prijavljeniUporabnik = await getUporabnik(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
+        const ocenjeniUporabnik = await getUporabnikByID(parseInt(uporabnikID, 10));
+        const prijavljeniUporabnik = await getUporabnikByID(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
         const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         const data = await getOcena(entitetaID);
