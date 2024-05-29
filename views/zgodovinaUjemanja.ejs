@@ -65,7 +65,7 @@
             <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
           </div>
         <% } %>
-        <button class="btn" onclick="window.location.href='/ujemanje/novUporabnik/<%= category %>'">Izvedi ujemanje</button>
+        <button class="btn" onclick="clearStorageAndNavigate('<%= category %>')">Izvedi ujemanje</button>
 </div>
     <% }); %>
   </div>
