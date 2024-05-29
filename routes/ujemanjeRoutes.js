@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabniki, deleteOcena, getTheData, getNextUserId} = require('../Database/firebase');
+const {getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -31,38 +31,40 @@ router.get('/novUporabnik/:category', (req, res) => {
     res.render('novUporabnik', { category });
 });
 
-router.post('/dodajUporabnika', async (req, res) => {
+router.post('/dodajUporabnika/:idPrijavljenog', async (req, res) => {
     const { name, category } = req.body;
+    const idPrijavljenog = req.params.idPrijavljenog;
     const newUserId = await getNextUserId();
     const newUser = {
         idUporabnik: newUserId,
         ime: name,
+        ujemanjeZ : idPrijavljenog,
         [category]: 0,
         tip: 2
     };
 
     try {
         await setDoc(doc(firestoreDB, 'uporabnik', newUser.idUporabnik.toString()), newUser);
-        res.redirect(`/ujemanje/izbiraEntitete/${category}/${newUser.idUporabnik}`);
+        res.redirect(`/ujemanje/izbiraEntitete/${newUser.idUporabnik}/${category}`);
     } catch (error) {
         console.error('Error adding user:', error);
         res.status(500).send('Error adding user');
     }
 });
 
-router.get('/izbiraEntitete/:kategorija/:idUporabnik', async (req, res) => {
+router.get('/izbiraEntitete/:idUporabnik/:kategorija', async (req, res) => {
     try {
         const category = req.params.kategorija;
         const idUporabnik = req.params.idUporabnik || null; // Handle optional idUporabnik parameter
         const data = await getTheData(category); // Fetch entities based on category
-        res.render('IzbiraEntitete', { entities: data, category, idUporabnik });
+        res.render('IzbiraEntiteteUjemanje', { entities: data, category, idUporabnik });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
     }
 });
 
-router.get('/rezultat/:entitetaId/:kategorija/:uporabnikID', async(req, res) => {
+router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => {
     try{
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija;
