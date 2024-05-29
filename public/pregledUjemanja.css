@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('/Database/images/background_main.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.entity-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.entity {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entity img {
+    width: 70%;
+    height: 100%;
+    max-width: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.ujemanje-score {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rating-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #cfcfd0;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.opis, .description {
+    background-color: #ffffff;
+    border-radius: 10px;
+    color: black;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 600px;
+    text-align: justify;
+}
+
+footer {
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #4CAF50, #81C784);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    bottom: 0;
+}
+
+footer .col {
+    cursor: pointer;
+    padding: 15px 0;
+    border-right: 1px solid #66BB6A;
+    transition: all 0.3s ease;
+}
+
+footer .col:last-child {
+    border-right: none;
+}
+
+footer .col:hover {
+    background: #388E3C;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+@media (max-width: 767.98px) {
+    footer .col {
+        border-right: none;
+        border-bottom: 1px solid #66BB6A;
+    }
+
+    footer .col:last-child {
+        border-bottom: none;
+    }
+    .modal-dialog {
+        max-width: 400px;
+        margin: 1.75rem auto;
+    }
+}
