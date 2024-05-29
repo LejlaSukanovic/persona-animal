@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje} = require('../Database/firebase');
+const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -70,7 +70,7 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
         const kategorija = req.params.kategorija;
         const uporabnikID = req.params.uporabnikID;
         const ocenjeniUporabnik = await getUporabnik(parseInt(uporabnikID, 10));
-        const prijavljeniUporabnik = await getUporabnik(ocenjeniUporabnik.ujemanjeZ);
+        const prijavljeniUporabnik = await getUporabnik(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
         const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         const data = await getOcena(entitetaID);
@@ -81,10 +81,13 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
 });
 
 router.get('/pregledUjemanja/:entiteta1/:entiteta2', async(req, res) => {
-    const entiteta1 = req.params.entiteta1;
-    const entiteta2 = req.params.entiteta2;
-    const ujemanje = await calculateUjemanje(entiteta1, entiteta2)
-   res.render('pregledUjemanja', {ocenaUjemanja:ujemanje});
+    const entiteta1Naziv = req.params.entiteta1;
+    const entiteta2Naziv = req.params.entiteta2;
+    const ujemanje = await calculateUjemanje(entiteta1Naziv, entiteta1Naziv);
+    const entiteta1 = await getOcenaByNaziv(entiteta1Naziv);
+    const entiteta2 = await getOcenaByNaziv(entiteta2Naziv);
+    const opis = await getOpisUjemanja(ujemanje);
+   res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
 });
 
 module.exports = router;

@@ -110,6 +110,23 @@ const getOcena = async (entitetaID) => {
         console.log(error);
     }
 }
+const getOcenaByNaziv = async (naziv) => {
+    try {
+      const collectionRef = collection(firestoreDB, "entiteta");
+      let finalData = [];
+      const q = query(collectionRef, where('naziv', '==', naziv));
+  
+      const docSnap = await getDocs(q);
+  
+      docSnap.forEach((doc) => {
+        finalData.push(doc.data());
+      });
+  
+      return finalData[0];
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 const deleteOcena = async (idUporabnik, kategorija) => {
     try {
@@ -260,6 +277,26 @@ const calculateUjemanje = async (entiteta1, entiteta2) => {
     }
   };
 
+  const getOpisUjemanja = async (idOdnos) => {
+    try {
+      // Reference the document in the 'odnosi' collection with the given idOdnos
+      const odnosDocRef = doc(firestoreDB, 'odnosi', idOdnos.toString());
+      const odnosDoc = await getDoc(odnosDocRef);
+  
+      if (odnosDoc.exists()) {
+        // Retrieve the 'opis' field from the document
+        const opisUjemanja = odnosDoc.data().opis;
+        return opisUjemanja;
+      } else {
+        console.log(`No matching document found for idOdnos: ${idOdnos}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving opis ujemanja:', error);
+      return null;
+    }
+  };
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
@@ -281,5 +318,7 @@ module.exports = {
     app,
     firestoreDB,
     getNextUserId,
-    calculateUjemanje
+    calculateUjemanje,
+    getOcenaByNaziv,
+    getOpisUjemanja
 };

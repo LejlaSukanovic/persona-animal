@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ujemanje Med Uporabniki</title>
+  <title>Pregled Ujemanja</title>
   <style>
     .container {
       text-align: center;
@@ -25,18 +25,31 @@
       font-weight: bold;
       margin-top: 20px;
     }
+    .opis {
+      margin-top: 30px;
+      font-size: 18px;
+      text-align: left;
+      width: 70%;
+      margin: 30px auto;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+    <h1>Pregled Ujemanja</h1>
     <div class="entity">
-      
+      <h2><%= entiteta1.naziv %></h2>
+      <img src="<%= entiteta1.slika %>" alt="<%= entiteta1.naziv %>">
     </div>
     <div class="entity">
-      
+      <h2><%= entiteta2.naziv %></h2>
+      <img src="<%= entiteta2.slika %>" alt="<%= entiteta2.naziv %>">
     </div>
     <div class="ujemanje-score">
       Ocena ujemanja: <%= ocenaUjemanja %>
+    </div>
+    <div class="opis">
+      <p><%= opis %></p>
     </div>
   </div>
 </body>
