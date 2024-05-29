@@ -14,8 +14,8 @@ const firebaseConfig = {
   measurementId: "G-35F5E6BXKV"
 };
 
-let app;
-let firestoreDB;
+let app = initializeApp(firebaseConfig);
+let firestoreDB = getFirestore(app);
 let auth;
 
 const initializeFBApp = () => {
@@ -251,5 +251,8 @@ module.exports = {
     signInWithEmailAndPassword,
     saveUserData,
     checkIfEmailExistsInDatabase,
-    deleteUserByEmail
+    deleteUserByEmail,
+    app,
+    firestoreDB,
+    getNextUserId
 };
