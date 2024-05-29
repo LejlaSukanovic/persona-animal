@@ -35,3 +35,10 @@ document.getElementById('confirmDelete').addEventListener('click', function() {
     sessionStorage.clear();
     navigateToCategory(category);
 }
+
+$(document).ready(function() {
+    $('.content').addClass('visible');
+  });
+  function navigateTo(url) {
+    window.location.href = url;
+  }
