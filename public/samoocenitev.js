@@ -9,6 +9,12 @@ function navigateTo(path) {
 }
 
 function clearStorageAndNavigate(category) {
-    sessionStorage.clear();
+    const keysToRemove = ['seenEntities', 'currentEntities', 'lastChosenEntity', 'currentChoice'];
+    keysToRemove.forEach(key => sessionStorage.removeItem(key));
     navigateToCategory(category);
 }
+
+
+
+
+
