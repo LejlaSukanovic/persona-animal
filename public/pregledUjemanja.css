@@ -128,3 +128,13 @@ footer .col:hover {
         margin: 1.75rem auto;
     }
 }
+
+.container {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+  .container.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
