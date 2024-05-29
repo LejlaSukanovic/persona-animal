@@ -33,7 +33,7 @@ router.get('/novUporabnik/:category', (req, res) => {
 
 router.post('/dodajUporabnika/:idPrijavljenog', async (req, res) => {
     const { name, category } = req.body;
-    const idPrijavljenog = req.params.idPrijavljenog;
+    const idPrijavljenog = parseInt(req.params.idPrijavljenog, 10);
     const newUserId = await getNextUserId();
     const newUser = {
         idUporabnik: newUserId,

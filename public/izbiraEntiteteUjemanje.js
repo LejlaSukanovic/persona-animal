@@ -100,23 +100,44 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem('currentChoice', currentChoice);
         updateProgressBar();
     
+        // Function to extract the user ID from the URL
+        function extractUserId(url) {
+            const segments = url.split('/');
+            const index = segments.indexOf('izbiraEntitete');
+            if (index !== -1 && index + 1 < segments.length) {
+                return segments[index + 1];
+            } else {
+                throw new Error("User ID not found in the URL");
+            }
+        }
+    
         // Parse the current URL to get the `kategorija` parameter
         const url = new URL(window.location.href);
         const kategorija = url.pathname.split('/').pop(); // Assuming kategorija is the last segment in the URL
-    
         console.log(kategorija);
+    
+        // Extract the user ID from the current URL
+        let userId;
+        try {
+            userId = extractUserId(url.pathname);
+        } catch (error) {
+            console.error('Error extracting user ID: ', error);
+            return; // Exit the function if the user ID is not found
+        }
+    
         if (currentChoice >= totalChoices) {
             try {
                 const entityId = chosenEntity.idEntiteta;
-                await fetch(`/ujemanje/rezultat/${entityId}/17/${kategorija}`, { //umjesto /1 treba staviti id prijavljenog uporabnika is session storage
+                await fetch(`/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`, {
                     method: 'GET',
                 });
-                window.location.href = `/ujemanje/rezultat/${entityId}/17/${kategorija}`; //umjesto /1 treba staviti id prijavljenog uporabnika is session storage
+                window.location.href = `/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`;
             } catch (error) {
                 console.error('Error updating Firestore: ', error);
             }
         }
     }
+    
     
 
     function saveChosenEntity(entity) {
