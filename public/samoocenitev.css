@@ -64,6 +64,18 @@ button.btn:hover {
     transform: translateY(-2px) !important;
 }
 
+.button-container {
+    position: absolute;
+    top: 20px; /* Adjust this value as needed */
+    right: 20px; /* Adjust this value as needed */
+}
+
+button.logout {
+    text-align: center;
+}
+
+
+
 .container {
     flex: 1 0 auto;
 }

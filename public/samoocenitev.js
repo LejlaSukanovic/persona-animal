@@ -14,6 +14,29 @@ function clearStorageAndNavigate(category) {
     navigateToCategory(category);
 }
 
+async function Logout(){
+    try {
+        const response = await fetch('/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const data = await response.json();
+        console.log('Received response:', data);
+        if (response.ok) {
+            sessionStorage.removeItem('idUporabnik');
+            alert('User logged out successfully!');
+            window.location.href = '/';
+        } else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        console.error('Error logging out user:', error);
+        alert(error.message);
+    }
+}
+
 
 
 

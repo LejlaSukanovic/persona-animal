@@ -51,7 +51,6 @@ router.post('/login', async (req, res) => {
             email: user.email
         };
 
-        console.log('Saving to session:', req.session.user); // Add logging here
 
         return res.status(200).json({ 
             message: 'User logged in successfully!', 
