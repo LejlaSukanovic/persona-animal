@@ -1,5 +1,5 @@
 const express = require('express');
-const { getTheData,initializeFBApp, getFirebaseAuth,getFirestoreDB, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve,saveUserData,deleteUserByEmail,checkIfEmailExistsInDatabase, deleteOcena, signInWithEmailAndPassword, createUserWithEmailAndPassword} = require('../Database/firebase');
+const { getTheData, initializeFBApp, getFirebaseAuth, getFirestoreDB, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve, saveUserData, deleteUserByEmail, checkIfEmailExistsInDatabase, deleteOcena, signInWithEmailAndPassword, createUserWithEmailAndPassword, getUporabnikByID } = require('../Database/firebase');
 
 initializeFBApp();
 
@@ -24,19 +24,19 @@ router.get('/pregledOcenitve/:kategorija', async (req, res) => {
     }
 });
 
-router.get('/brisanje/:ocena/:kategorija', async(req, res) => {
-    try{
+router.get('/brisanje/:ocena/:kategorija', async (req, res) => {
+    try {
         const kategorija = req.params.kategorija;
-        console.log(kategorija);
-        const idUporabnik = 1;
+        const idUporabnik = req.session.user.id;
         await deleteOcena(idUporabnik, kategorija);
-        res.redirect('samoocenitev');
-    }catch(error){
+        res.redirect('/samoocenitev');
+    } catch (error) {
         console.log(error);
     }
 });
 
 router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
+
     const category = req.params.kategorija;
     const uporabnik = await getUporabnik(1);  // Modify to use the logged-in user's ID
     console.log(uporabnik[category] + 'hhhhhhhh');
@@ -68,68 +68,21 @@ router.get('/izbiraEntitete/:kategorija', async (req, res) => {
     }
 });
 
-router.get('/rezultat/:entitetaId/:kategorija', async(req, res) => {
-    try{
+router.get('/rezultat/:entitetaId/:kategorija', async (req, res) => {
+    try {
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija
-        const uporabnikID = 1;//req.session.user.id;
+        const uporabnikID = req.session.user.id;//req.session.user.id;
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         //const data = await getOcena(entitetaID);
-        /*const uporabnik = getUporabnik(uporabnikID);
-        console.log(uporabnik[kategorija]);*/
         req.session.categoryId = entitetaID;
         res.redirect(`/samoocenitev/pregledOcenitve/${kategorija}`);
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
 });
 
 
-router.get('/ekran', async(req, res) => {
-    try{
-        res.render('prijava');
-    }catch(error){
-        console.log(error);
-    }
-});
 
-// Registration route
-router.post('/register', async (req, res) => {
-    const { email, password, username } = req.body;
-
-    try {
-        const emailExists = await checkIfEmailExistsInDatabase(email);
-        if (emailExists) {
-            return res.status(400).send({ error: 'Email is already in use in the database. Please try a different email.' });
-        }
-
-        await deleteUserByEmail(email);
-
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        // Save user data to Firestore using the new function
-        await saveUserData(user, username);
-
-        res.status(201).send({ message: 'User registered successfully!', user: user.uid });
-    } catch (error) {
-        console.error('Error registering user:', error);
-        res.status(500).send({ error: error.message });
-    }
-});
-
-// Login route
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        res.status(200).send({ message: 'User logged in successfully!', user: user.uid });
-    } catch (error) {
-        console.error('Error logging in user:', error);
-        res.status(500).send({ error: error.message });
-    }
-});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { initializeApp } = require("firebase/app");
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit, getDoc} = require("firebase/firestore");
-const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} = require('firebase/auth');
+const { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } = require('firebase/auth');
 const admin = require('firebase-admin');
 const serviceAccount = require('./persona-animal-firebase-adminsdk-ge6gm-2a1d387556.json'); 
 
@@ -15,12 +15,12 @@ const firebaseConfig = {
 };
 
 let app = initializeApp(firebaseConfig);
-let firestoreDB = getFirestore(app);
+let firestoreDB =getFirestore(app);
 let auth;
 
 const initializeFBApp = () => {
     try {
-        if (!admin.apps.length) { // Check if the admin app is already initialized
+        if (!admin.apps.length) {
             app = initializeApp(firebaseConfig);
             firestoreDB = getFirestore(app);
             auth = getAuth(app);
@@ -30,7 +30,7 @@ const initializeFBApp = () => {
         }
         return app;
     } catch (error) {
-        console.log(error);
+        console.log('Error initializing Firebase app:', error);
     }
 };
 
@@ -48,9 +48,8 @@ const uploadProcessedData = async() => {
         let dataUpdated = await setDoc(document, dataToUpload);
         return dataUpdated;
     } catch(error){
-        console.log(error);
+        console.log('Error uploading processed data:', error);
     };
-
 };
 
 const getTheData = async(category) => {
@@ -66,15 +65,35 @@ const getTheData = async(category) => {
         });
         
         return finalData;
-
-
-
-    }catch(error){  
-        console.log(error);
+    } catch(error) {
+        console.log('Error getting the data:', error);
     }
 }
 
-const getUporabnik = async(id) => {
+const getUporabnikByUID = async (uid) => {
+    try {
+        const collectionRef = collection(firestoreDB, "uporabnik");
+        const q = query(collectionRef, where('uid', '==', uid));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            console.log('No user found with uid:', uid);
+            return null;
+        }
+
+        let finalData = [];
+        querySnapshot.forEach((doc) => {
+            finalData.push(doc.data());
+        });
+
+        return finalData[0];
+    } catch (error) {
+        console.log('Error getting user:', error);
+        throw error;
+    }
+};
+
+const getUporabnikByID = async(id) => {
     try{
         const collectionRef = collection(firestoreDB, "uporabnik");
         let finalData = [];
@@ -89,12 +108,13 @@ const getUporabnik = async(id) => {
         return finalData[0];
     }catch(error) {
         console.log(error);
-    }
+    }
 }
 
 
+
 const getOcena = async (entitetaID) => {
-    try{
+    try {
         const collectionRef = collection(firestoreDB, "entiteta");
         let finalData = [];
         const q = query(collectionRef, where('idEntiteta', '==', entitetaID));
@@ -106,8 +126,8 @@ const getOcena = async (entitetaID) => {
         });
         
         return finalData[0];
-    }catch(error) {
-        console.log(error);
+    } catch(error) {
+        console.log('Error getting rating:', error);
     }
 }
 const getOcenaByNaziv = async (naziv) => {
@@ -163,7 +183,6 @@ const getOcenaByNaziv = async (naziv) => {
 
 const deleteOcena = async (idUporabnik, kategorija) => {
     try {
-        console.log(kategorija);
         const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
         await updateDoc(documentRef, {
             [kategorija]: 0
@@ -171,8 +190,7 @@ const deleteOcena = async (idUporabnik, kategorija) => {
     } catch (error) {
         console.log('Error updating document:', error);
     }
-};
-
+}
 
 const getAllCategories = async() => {
     try {
@@ -187,9 +205,9 @@ const getAllCategories = async() => {
             }
         });
 
-        return Array.from(categories);  // Convert Set to Array
+        return Array.from(categories);
     } catch (error) {
-        console.log(error);
+        console.log('Error getting all categories:', error);
         throw error;
     }
 }
@@ -201,38 +219,53 @@ const saveResultSamoocenitve = async (idUporabnik, idEntiteta, kategorija) => {
             [kategorija]: idEntiteta
         });
     } catch (error) {
-        console.log('Error updating document:', error);
+        console.log('Error saving self-assessment result:', error);
     }
 };
 
 const getNextUserId = async () => {
-    const collectionRef = collection(firestoreDB, "uporabnik");
-    const q = query(collectionRef, orderBy("idUporabnik", "desc"), limit(1));
-    const querySnapshot = await getDocs(q);
-    if (querySnapshot.empty) {
-        return 1; // Start with ID 1 if no users exist
-    } else {
-        const highestId = querySnapshot.docs[0].data().idUporabnik;
-        return highestId + 1;
+    try {
+        const collectionRef = collection(firestoreDB, "uporabnik");
+        const q = query(collectionRef, orderBy("idUporabnik", "desc"), limit(1));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+            return 1; // Start with ID 1 if no users exist
+        } else {
+            const highestId = querySnapshot.docs[0].data().idUporabnik;
+            return highestId + 1;
+        }
+    } catch (error) {
+        console.log('Error getting next user ID:', error);
     }
 };
 
 const saveUserData = async (user, username) => {
-    const newUserId = await getNextUserId();
-    const documentRef = doc(firestoreDB, "uporabnik", newUserId.toString());
-    await setDoc(documentRef, {
-        idUporabnik: newUserId,
-        email: user.email,
-        username: username
-    });
-    return newUserId;
+    try {
+        const newUserId = await getNextUserId();
+        const documentRef = doc(firestoreDB, "uporabnik", newUserId.toString());
+        await setDoc(documentRef, {
+            idUporabnik: newUserId,
+            email: user.email,
+            username: username,
+            uid: user.uid,
+            tip: 1
+        });
+        return newUserId;
+    } catch (error) {
+        console.log('Error saving user data:', error);
+    }
 };
 
+
 const checkIfEmailExistsInDatabase = async (email) => {
-    const collectionRef = collection(firestoreDB, "uporabnik");
-    const q = query(collectionRef, where('email', '==', email));
-    const querySnapshot = await getDocs(q);
-    return !querySnapshot.empty;
+    try {
+        const collectionRef = collection(firestoreDB, "uporabnik");
+        const q = query(collectionRef, where('email', '==', email));
+        const querySnapshot = await getDocs(q);
+        return !querySnapshot.empty;
+    } catch (error) {
+        console.log('Error checking if email exists in database:', error);
+    }
 };
 
 const deleteUserByEmail = async (email) => {
@@ -248,41 +281,6 @@ const deleteUserByEmail = async (email) => {
         }
     }
 };
-
-//ujemanje
-
-const getUporabniki = async () => {
-    try {
-      const uporabnikCollectionRef = collection(firestoreDB, "uporabnik");
-      const entitetaCollectionRef = collection(firestoreDB, "entiteta");
-  
-      const uporabnikData = [];
-      const kategorijeSet = new Set();
-      const entitetaMap = new Map();
-  
-      // Fetch all users
-      const uporabnikSnap = await getDocs(query(uporabnikCollectionRef));
-      uporabnikSnap.forEach(doc => {
-        uporabnikData.push(doc.data());
-      });
-  
-      // Fetch all entities from entiteta
-      const entitetaSnap = await getDocs(query(entitetaCollectionRef));
-      entitetaSnap.forEach(doc => {
-        const data = doc.data();
-        if (data.kategorija) {
-          kategorijeSet.add(data.kategorija);
-        }
-        entitetaMap.set(data.idEntiteta, data);
-      });
-  
-      const kategorije = Array.from(kategorijeSet);
-  
-      return { uporabnikData, kategorije, entitetaMap };
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   
 const calculateUjemanje = async (entiteta1, entiteta2) => {
@@ -330,29 +328,64 @@ const calculateUjemanje = async (entiteta1, entiteta2) => {
     }
   };
 
+  const getUporabniki = async () => {
+    try {
+      const uporabnikCollectionRef = collection(firestoreDB, "uporabnik");
+      const entitetaCollectionRef = collection(firestoreDB, "entiteta");
+  
+      const uporabnikData = [];
+      const kategorijeSet = new Set();
+      const entitetaMap = new Map();
+  
+      // Fetch all users
+      const uporabnikSnap = await getDocs(query(uporabnikCollectionRef));
+      uporabnikSnap.forEach(doc => {
+        uporabnikData.push(doc.data());
+      });
+  
+      // Fetch all entities from entiteta
+      const entitetaSnap = await getDocs(query(entitetaCollectionRef));
+      entitetaSnap.forEach(doc => {
+        const data = doc.data();
+        if (data.kategorija) {
+          kategorijeSet.add(data.kategorija);
+        }
+        entitetaMap.set(data.idEntiteta, data);
+      });
+  
+      const kategorije = Array.from(kategorijeSet);
+  
+      return { uporabnikData, kategorije, entitetaMap };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
 module.exports = {
     initializeFBApp,
     getFirebaseApp,
+    getFirestoreDB,
+    getFirebaseAuth,
     uploadProcessedData,
     getTheData,
-    getUporabnik,
+    getUporabnikByUID,
     getOcena,
     getAllCategories,
     saveResultSamoocenitve,
     deleteOcena,
-    getUporabniki,
-    getFirebaseAuth,
-    getFirestoreDB,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     saveUserData,
     checkIfEmailExistsInDatabase,
     deleteUserByEmail,
-    app,
-    firestoreDB,
     getNextUserId,
     calculateUjemanje,
     getOcenaByNaziv,
     getOpisUjemanja,
+    getUporabnikByID,
+    getUporabniki,
+    app,
+    firestoreDB,,
     getOcenaByUserIdAndCategory
 };

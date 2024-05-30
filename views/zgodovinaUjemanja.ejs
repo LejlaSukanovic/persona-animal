@@ -7,6 +7,17 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
+  <style>
+    .content {
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .content.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
 </head>
 <body>
   <div class="container mt-5 content">

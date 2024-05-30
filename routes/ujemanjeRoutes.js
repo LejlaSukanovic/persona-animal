@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja, getOcenaByUserIdAndCategory} = require('../Database/firebase');
+const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja, getUporabnikByID, getOcenaByUserIdAndCategory} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -43,6 +43,8 @@ router.post('/dodajUporabnika/:idPrijavljenog', async (req, res) => {
         tip: 2
     };
 
+    console.log(newUser.idUporabnik);   
+
     try {
         await setDoc(doc(firestoreDB, 'uporabnik', newUser.idUporabnik.toString()), newUser);
         res.redirect(`/ujemanje/izbiraEntitete/${newUser.idUporabnik}/${category}`);
@@ -69,8 +71,8 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija;
         const uporabnikID = req.params.uporabnikID;
-        const ocenjeniUporabnik = await getUporabnik(parseInt(uporabnikID, 10));
-        const prijavljeniUporabnik = await getUporabnik(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
+        const ocenjeniUporabnik = await getUporabnikByID(parseInt(uporabnikID, 10));
+        const prijavljeniUporabnik = await getUporabnikByID(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
         const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
         const data = await getOcena(entitetaID);
@@ -83,7 +85,7 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
 router.get('/pregledUjemanja/:entiteta1/:entiteta2', async(req, res) => {
     const entiteta1Naziv = req.params.entiteta1;
     const entiteta2Naziv = req.params.entiteta2;
-    const ujemanje = await calculateUjemanje(entiteta1Naziv, entiteta1Naziv);
+    const ujemanje = await calculateUjemanje(entiteta1Naziv, entiteta2Naziv);
     const entiteta1 = await getOcenaByNaziv(entiteta1Naziv);
     const entiteta2 = await getOcenaByNaziv(entiteta2Naziv);
     const opis = await getOpisUjemanja(ujemanje);

@@ -16,6 +16,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     
+    
 }
 
 .container {
@@ -161,6 +162,10 @@ p {
     animation: fadeIn 0.5s forwards;
 }
 
+#entity1, #entity2{
+    background:rgba(255, 255, 255,0.8);
+}
+
 @keyframes fadeOut {
     from {
         opacity: 1;
@@ -226,7 +231,7 @@ footer .col:hover {
 .progress {
     position: relative;
     height: 20px;
-    background-color: #f3f3f3;
+    background:rgba(255, 255, 255,0.8);
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 10px;
@@ -234,7 +239,7 @@ footer .col:hover {
 
 .progress-bar {
     height: 100%;
-    background-color: #4caf50;
+    background: linear-gradient(to right, #4CAF50, #81C784);
     width: 0;
     transition: width 0.5s ease;
 }
@@ -250,7 +255,8 @@ footer .col:hover {
 
 body.slide-in {
     animation: slideInFromRight 0.8s forwards; /* Animation duration and behavior */
-    overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
+    overflow-x: hidden;
+    background:rgba(255, 255, 255,0.8); /* Prevent horizontal scrollbar during animation */
 }
 
 
