@@ -1,5 +1,6 @@
 const express = require('express');
-const { initializeFBApp, getFirebaseAuth, checkIfEmailExistsInDatabase, deleteUserByEmail, createUserWithEmailAndPassword, saveUserData, signInWithEmailAndPassword, getUporabnikByUID } = require('../Database/firebase');
+const { initializeFBApp, getFirebaseAuth } = require("../Database/firebaseInit");
+const { checkIfEmailExistsInDatabase, deleteUserByEmail, createUserWithEmailAndPassword, saveUserData, signInWithEmailAndPassword, getUporabnikByUID } = require('../Database/userService');
 
 initializeFBApp();
 

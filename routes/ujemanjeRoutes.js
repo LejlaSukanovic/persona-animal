@@ -1,12 +1,16 @@
 const express = require('express');
-const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja, getUporabnikByID, getOcenaByUserIdAndCategory} = require('../Database/firebase');
-const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
-const { firestoreDB } = require('../Database/firebase');
+const { deleteOcena, getTheData, saveResultSamoocenitve, getOcena, getOcenaByUserIdAndCategory} = require('../Database/dataService');
+const {calculateUjemanje, getOpisUjemanja, getUporabniki} = require('../Database/ujemanjeService');
+const {doc, setDoc} = require("firebase/firestore");
+const { getFirestoreDB } = require('../Database/firebaseInit');
 const router = express.Router();
+const {getNextUserId, getUporabnikByID} = require('../Database/userService');
+
+const firestoreDB = getFirestoreDB();
 
 router.get('/', async (req, res) => {
     try {
-        const { uporabnikData, kategorije, entitetaMap } = await getUporabniki(); // Fetch all users and categories
+        const { uporabnikData, kategorije, entitetaMap } = await getUporabniki();
         res.render('zgodovinaUjemanja', { uporabniki: uporabnikData, kategorije, entitetaMap });
     } catch (error) {
         res.status(500).send('Error retrieving users');

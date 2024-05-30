@@ -1,5 +1,7 @@
 const express = require('express');
-const { getTheData, initializeFBApp, getFirebaseAuth, getFirestoreDB, getUporabnik, getOcena, getAllCategories, saveResultSamoocenitve, saveUserData, deleteUserByEmail, checkIfEmailExistsInDatabase, deleteOcena, signInWithEmailAndPassword, createUserWithEmailAndPassword, getUporabnikByID } = require('../Database/firebase');
+const { initializeFBApp, getFirebaseAuth, getFirestoreDB } = require("../Database/firebaseInit");
+const { getTheData, getOcena, getAllCategories, saveResultSamoocenitve, deleteOcena } = require('../Database/dataService');
+const { getUporabnikByID } = require('../Database/userService');
 
 initializeFBApp();
 

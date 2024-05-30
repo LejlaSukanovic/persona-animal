@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { initializeFBApp } = require('./Database/firebase');
+const { initializeFBApp } = require('./Database/firebaseInit');
 const samoocenitevRoutes = require('./routes/samoocenitevRoutes');
 const ujemanjeRoutes = require('./routes/ujemanjeRoutes');
 const prijavaRoutes = require('./routes/prijavaRoutes');
