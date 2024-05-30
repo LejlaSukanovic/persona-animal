@@ -2,7 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var successPopup = document.getElementById('success_popup');
     var successAnimationContainer = document.getElementById('success_animation_container');
     var successMessage = document.getElementById('success_message');
-    
+    var beeContainer = document.getElementById('bee_container');
+    var beeAnimationContainer = document.getElementById('bee_animation_container');
+
+
     var successAnimation = lottie.loadAnimation({
         container: successAnimationContainer,
         renderer: 'svg',
@@ -11,6 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
         path: '/Animation/UspjesnoCheck.json'  
     });
 
+    var beeAnimation = lottie.loadAnimation({
+        container: beeAnimationContainer,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: '/Animation/PcelicaMaja.json'
+    });
+
+
+    function moveBee() {
+        beeContainer.style.transition = 'transform 10s linear';
+        beeContainer.style.transform = 'translateX(110vw)';
+
+        setTimeout(() => {
+            beeContainer.style.transition = 'none';
+            beeContainer.style.transform = 'translateX(-10vw)';
+            setTimeout(moveBee, 2000); 
+        }, 10000); 
+    }
+
+    moveBee();
     
     function showSuccessPopup(message) {
         successMessage.innerText = message;
