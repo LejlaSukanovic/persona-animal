@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalChoices = entities.length;
     let seenEntities = new Set(JSON.parse(sessionStorage.getItem('seenEntities')) || []);
     let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [];
+    const loadingElement = document.getElementById('loading');
+    const mainContent = document.getElementById('main-content');
+
 
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
@@ -126,6 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     
         if (currentChoice >= totalChoices) {
+            // Show loading component and hide main content
+            mainContent.style.display = 'none';
+            loadingElement.style.display = 'block';
+    
             try {
                 const entityId = chosenEntity.idEntiteta;
                 await fetch(`/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`, {
