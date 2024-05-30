@@ -46,7 +46,6 @@ router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
         res.redirect('/samoocenitev/izbiraEntitete/' + category);
     } else {
         // Otherwise, redirect to the review page        
-        console.log('lllllll'+uporabnik[category])
         req.session.categoryId = uporabnik[category];
         res.redirect('/samoocenitev/pregledOcenitve/'+category);
         

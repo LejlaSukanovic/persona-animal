@@ -77,7 +77,6 @@ const getUporabnikByUID = async (uid) => {
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-            console.log('No user found with uid:', uid);
             return null;
         }
 
@@ -272,7 +271,6 @@ const deleteUserByEmail = async (email) => {
     try {
         const userRecord = await admin.auth().getUserByEmail(email);
         await admin.auth().deleteUser(userRecord.uid);
-        console.log(`Successfully deleted user: ${userRecord.uid}`);
     } catch (error) {
         if (error.code === 'auth/user-not-found') {
             console.log('User not found, nothing to delete.');
