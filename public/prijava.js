@@ -67,29 +67,4 @@ document.addEventListener("DOMContentLoaded", function () {
             alert(error.message);
         }
     }
-
-    // Logout function
-    window.logout = async function () {
-        try {
-            const response = await fetch('/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            const data = await response.json();
-            console.log('Received response:', data);
-            if (response.ok) {
-                // Clear session storage
-                sessionStorage.removeItem('idUporabnik');
-                alert('User logged out successfully!');
-                window.location.href = '/';
-            } else {
-                throw new Error(data.error);
-            }
-        } catch (error) {
-            console.error('Error logging out user:', error);
-            alert(error.message);
-        }
-    }
 });
