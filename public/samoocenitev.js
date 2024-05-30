@@ -23,7 +23,6 @@ async function Logout(){
             }
         });
         const data = await response.json();
-        console.log('Received response:', data);
         if (response.ok) {
             sessionStorage.removeItem('idUporabnik');
             alert('User logged out successfully!');

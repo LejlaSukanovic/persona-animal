@@ -39,7 +39,6 @@ router.post('/login', async (req, res) => {
         const user = userCredential.user;
 
         const uporabnik = await getUporabnikByUID(user.uid);
-        console.log('Fetched uporabnik:', uporabnik); // Add logging here
 
         if (!uporabnik) {
             return res.status(404).json({ error: 'User not found in database.' });
