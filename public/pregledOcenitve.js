@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       fetch(`/samoocenitev/brisanje/:ocena/${kategorija}`, {
         method: 'GET',
       });
-      window.location.href = `/`;
+      window.location.href = `/samoocenitev`;
     } catch (error) {
       console.error('Error updating Firestore: ', error);
     }
