@@ -286,3 +286,20 @@ footer {
         height: 100px; /* Smaller size on smaller screens */
     }
 }
+
+
+#loading {
+    display: none;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 200px; /* Adjust width to fit the iframe */
+    height: 200px; /* Adjust height to fit the iframe */
+}
+#loading iframe {
+    display: block;
+    margin: 0 auto;
+}
