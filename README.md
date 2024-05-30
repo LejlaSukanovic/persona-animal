@@ -1,93 +1,134 @@
-# Persona Animal II
 
+# Persona Animal
 
+Persona Animal je spletna aplikacija, ki uporabnikom omogoča interakcijo z različnimi entitetami (npr. živali) preko samoocenjevanja in funkcij ujemanja. Projekt uporablja EJS za templating in vključuje animacije ter interaktivne elemente z Lottie datotekami.
 
-## Getting started
+## Kazalo
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- [Pregled Projekta](#pregled-projekta)
+- [Funkcionalnosti](#funkcionalnosti)
+- [Namestitev](#namestitev)
+- [Uporaba](#uporaba)
+- [Struktura Frontend-a](#struktura-frontend-a)
+- [Struktura Backend-a](#struktura-backend-a)
+- [API Končne Točke](#api-končne-točke)
+- [Prispevanje](#prispevanje)
+- [Licenca](#licenca)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## Pregled Projekta
 
-## Add your files
+Persona Animal omogoča uporabnikom:
+- Izbiro entitet (npr. živali) in ogled njihovih podrobnosti.
+- Izvajanje samoocenjevanja na podlagi različnih kategorij.
+- Ogled in upravljanje zgodovine ujemanj.
+- Registracijo in prijavo za upravljanje svojih profilov.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Funkcionalnosti
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/Wifeu/persona-animal-ii.git
-git branch -M main
-git push -uf origin main
-```
+- **Izbira Entitete**: Uporabniki lahko izberejo med seznamom entitet.
+- **Samoocenitev**: Uporabniki lahko izvajajo samoocenjevanje na podlagi različnih kategorij.
+- **Pregled Ujemanj**: Uporabniki lahko pregledajo zgodovino svojih ujemanj in podrobnosti vsakega ujemanja.
+- **Avtentikacija**: Registracija in prijava uporabnikov.
 
-## Integrate with your tools
+## Namestitev
 
-- [ ] [Set up project integrations](https://gitlab.com/Wifeu/persona-animal-ii/-/settings/integrations)
+Za lokalno poganjanje projekta sledite tem korakom:
 
-## Collaborate with your team
+1. **Klonirajte repozitorij**:
+   ```bash
+   git clone https://github.com/yourusername/persona-animal.git
+   cd persona-animal
+   ```
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+2. **Namestite odvisnosti**:
+   ```bash
+   npm install
+   ```
 
-## Test and Deploy
+3. **Zaženite strežnik**:
+   ```bash
+   npm start
+   ```
 
-Use the built-in continuous integration in GitLab.
+4. **Odprite brskalnik** in navigirajte na `http://localhost:3000`.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+## Uporaba
 
-***
+### Struktura Frontend-a
 
-# Editing this README
+- **izbiraEntitete.ejs**: Stran za izbiro entitet.
+- **samoocenitev.ejs**: Stran za samoocenitev.
+- **pregledOcenitve.ejs**: Stran za pregled samoocenitve.
+- **prijava.ejs**: Stran za prijavo in registracijo.
+- **zgodovinaUjemanja.ejs**: Stran za ogled zgodovine ujemanj.
+- **pregledUjemanja.ejs**: Stran za pregled določenega ujemanja.
+- **novUporabnik.ejs**: Stran za dodajanje novega uporabnika.
+- **izbiraEntiteteUjemanje.ejs**: Stran za izbiro entitet za ujemanje.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### Struktura Backend-a
 
-## Suggestions for a good README
+#### `index.js`
+Glavni vstopni točki aplikacije:
+- Nastavi Express strežnik.
+- Inicializira Firebase aplikacijo.
+- Določi seje in statične poti.
+- Definira usmerjanje za različne poti (samoocenitev, ujemanje, prijava).
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+#### `firebase.js`
+Konfiguracija in inicializacija Firebase:
+- Inicializira Firebase aplikacijo in Firestore bazo podatkov.
+- Definira funkcije za delo z bazo podatkov (pridobivanje, shranjevanje, brisanje podatkov).
 
-## Name
-Choose a self-explaining name for your project.
+#### `prijavaRoutes.js`
+Usmerjevalnik za prijavo in registracijo:
+- Registracijska pot: Preverja, ali email že obstaja, in ustvari novega uporabnika.
+- Prijavna pot: Prijavi uporabnika in shrani sejne podatke.
+- Odjava: Izbriše sejo uporabnika.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+#### `samoocenitevRoutes.js`
+Usmerjevalnik za samoocenitev:
+- Pridobi kategorije za samoocenitev.
+- Pridobi podatke o entitetah glede na kategorijo.
+- Shranjuje rezultate samoocenitve.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+#### `ujemanjeRoutes.js`
+Usmerjevalnik za ujemanje:
+- Pridobi in prikaže zgodovino ujemanj.
+- Doda nove uporabnike za ujemanje.
+- Izračuna in prikaže rezultat ujemanja med dvema entitetama.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+### API Končne Točke
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+#### Prijava in Registracija
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+- **POST /register**: Registracija novega uporabnika.
+- **POST /login**: Prijava obstoječega uporabnika.
+- **POST /logout**: Odjava uporabnika.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+#### Samoocenitev
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- **GET /samoocenitev**: Pridobi kategorije za samoocenitev.
+- **GET /samoocenitev/izbiraEntitete/:kategorija**: Pridobi entitete za določeno kategorijo.
+- **GET /samoocenitev/rezultat/:entitetaId/:kategorija**: Shranjuje rezultat samoocenitve.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+#### Ujemanje
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+- **GET /ujemanje**: Pridobi zgodovino ujemanj.
+- **GET /ujemanje/novUporabnik/:category**: Prikaže stran za dodajanje novega uporabnika.
+- **POST /ujemanje/dodajUporabnika/:idPrijavljenog**: Dodaja novega uporabnika za ujemanje.
+- **GET /ujemanje/izbiraEntitete/:idUporabnik/:kategorija**: Pridobi entitete za določeno kategorijo.
+- **GET /ujemanje/pregledUjemanja/:entiteta1/:entiteta2**: Prikaže rezultat ujemanja med dvema entitetama.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Prispevanje
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Prispevki so dobrodošli! Sledite tem korakom za prispevanje:
 
-## License
-For open source projects, say how it is licensed.
+1. Forkajte repozitorij.
+2. Ustvarite novo vejo: `git checkout -b feature-branch-name`.
+3. Naredite spremembe in jih committajte: `git commit -m 'Dodaj funkcionalnost'`.
+4. Potisnite na vejo: `git push origin feature-branch-name`.
+5. Pošljite pull request.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+## Licenca
+
+Ta projekt je licenciran pod MIT licenco. Za več informacij si oglejte datoteko [LICENSE](LICENSE).
