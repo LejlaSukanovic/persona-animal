@@ -5,13 +5,28 @@ const {doc, setDoc} = require("firebase/firestore");
 const { getFirestoreDB } = require('../Database/firebaseInit');
 const router = express.Router();
 const {getNextUserId, getUporabnikByID} = require('../Database/userService');
+const {getAllCategories} = require('../Database/dataService');
 
 const firestoreDB = getFirestoreDB();
 
 router.get('/', async (req, res) => {
     try {
-        const { uporabnikData, kategorije, entitetaMap } = await getUporabniki();
-        res.render('zgodovinaUjemanja', { uporabniki: uporabnikData, kategorije, entitetaMap });
+        // Get the logged-in user
+        const prijavljeniUporabnik = await getUporabnikByID(req.session.user.id);
+
+        // Fetch all users, categories, and entity map
+        const { uporabnikData, entitetaMap } = await getUporabniki();
+        const kategorije = await getAllCategories();
+
+        // Check if the logged-in user has any categories
+        const userCategories = kategorije.filter(category => prijavljeniUporabnik[category] && prijavljeniUporabnik[category] !== '0');
+
+        // Filter users with tip=2 and ujemanjeZ=prijavljeniUporabnik
+        const filteredUporabniki = uporabnikData.filter(uporabnik => 
+            uporabnik.tip === 2 && uporabnik.ujemanjeZ === prijavljeniUporabnik.idUporabnik
+        );
+
+        res.render('zgodovinaUjemanja', { uporabniki: filteredUporabniki, kategorije, entitetaMap, userCategories });
     } catch (error) {
         res.status(500).send('Error retrieving users');
     }

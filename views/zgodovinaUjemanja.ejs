@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zgodovina ujemanja</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
   <style>
     .content {
@@ -24,8 +24,11 @@
     <h1 class="text-center mb-5">Zgodovina ujemanja</h1>
 
     <% const categories = {}; %>
-    <% const filteredUporabniki = uporabniki.filter(uporabnik => uporabnik.tip === 2); %>
-    <% filteredUporabniki.forEach(uporabnik => { %>
+    <% kategorije.forEach(category => { %>
+      <% categories[category] = []; %>
+    <% }); %>
+
+    <% uporabniki.forEach(uporabnik => { %>
       <% Object.keys(uporabnik).forEach(key => { %>
         <% if (kategorije.includes(key)) { %>
           <% if (!categories[key]) { categories[key] = []; } %>
@@ -39,6 +42,7 @@
         <h2 class="text-center"><%= category %></h2>
         <% const categoryUsers = categories[category]; %>
         <% const hasValidUsers = categoryUsers.some(uporabnik => uporabnik[category] && uporabnik[category] !== '0'); %>
+        <% const userHasCategory = userCategories.includes(category); %>
         
         <% if (hasValidUsers) { %>
           <div class="row">
@@ -73,44 +77,49 @@
           </div>
         <% } else { %>
           <div class="no-matches">
-            <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
+            <% if (userHasCategory) { %>
+              <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
+              <button class="btn" onclick="clearStorageAndNavigate('<%= category %>')">Izvedi ujemanje</button>
+            <% } else { %>
+              <p>Nimate samoocenitev za tisto kategorijo, ce zelite narediti ujemanje, najprej naredite samoocenitev.</p>
+              <button class="btn" onclick="navigateTo('/samoocenitev')">Izvedi samoocenitev</button>
+            <% } %>
           </div>
         <% } %>
-        <button class="btn" onclick="clearStorageAndNavigate('<%= category %>')">Izvedi ujemanje</button>
-</div>
+      </div>
     <% }); %>
   </div>
+  
   <br><br><br><br><br><br>
   <footer>
     <div class="row">
         <div class="col footer-col-1" onclick="navigateTo('/samoocenitev');">Samoocenitev</div>
         <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
     </div>
-</footer>
+  </footer>
 
-<!-- Alert -->
-<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
-aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="confirmationModalLabel">Opozorilo</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      Ali ste prepričani da želite izbrisati rezultat samoocenitve? 
-      <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-      <dotlottie-player src="https://lottie.host/f16e66e9-700b-48e9-8ce5-b44a4fef96b0/LTisdNDO59.json" background="transparent" speed="1" style="width: 200px; height: 200px; padding: 0px; margin-left: 25%;" loop autoplay></dotlottie-player>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn" data-dismiss="modal">Ne</button>
-      <button type="button" class="btn" id="confirmDelete">Da</button>
+  <!-- Alert -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmationModalLabel">Opozorilo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Ali ste prepričani da želite izbrisati rezultat samoocenitve?
+          <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+          <dotlottie-player src="https://lottie.host/f16e66e9-700b-48e9-8ce5-b44a4fef96b0/LTisdNDO59.json" background="transparent" speed="1" style="width: 200px; height: 200px; padding: 0px; margin-left: 25%;" loop autoplay></dotlottie-player>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal">Ne</button>
+          <button type="button" class="btn" id="confirmDelete">Da</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
