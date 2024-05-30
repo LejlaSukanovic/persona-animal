@@ -1,5 +1,5 @@
 const express = require('express');
-const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja} = require('../Database/firebase');
+const {getUporabnik, getUporabniki, deleteOcena, getTheData, getNextUserId, saveResultSamoocenitve, getOcena, calculateUjemanje, getOcenaByNaziv, getOpisUjemanja, getOcenaByUserIdAndCategory} = require('../Database/firebase');
 const { getFirestore, doc, setDoc, collection, getDocs, query, where, updateDoc, orderBy, limit} = require("firebase/firestore");
 const { firestoreDB } = require('../Database/firebase');
 const router = express.Router();
@@ -89,5 +89,27 @@ router.get('/pregledUjemanja/:entiteta1/:entiteta2', async(req, res) => {
     const opis = await getOpisUjemanja(ujemanje);
    res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
 });
+
+router.get('/pregledUjemanja/:entiteta1/:idPrijavljenega/:kategorija/:ujemanje', async(req, res) => {
+    const entiteta1Naziv = req.params.entiteta1;
+    const ujemanje = req.params.ujemanje;
+    const kategorija = req.params.kategorija;
+    const idPrijavljenega = parseInt(req.params.idPrijavljenega, 10);
+
+    /*console.log('entiteta 1 naziv: '+entiteta1Naziv);
+    console.log('ujemanje: '+ujemanje);
+    console.log('kategorija: '+kategorija);
+    console.log('idPrijavljenega: '+idPrijavljenega);*/
+    const entiteta1 = await getOcenaByNaziv(entiteta1Naziv);
+
+    //console.log('entiteta1 '+entiteta1.naziv);
+    const entiteta2 = await getOcenaByUserIdAndCategory(idPrijavljenega, kategorija);
+    //console.log(entiteta2+'ppppppppp');
+    const opis = getOpisUjemanja(ujemanje);
+
+    res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
+});
+
+
 
 module.exports = router;

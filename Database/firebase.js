@@ -128,6 +128,39 @@ const getOcenaByNaziv = async (naziv) => {
     }
   };
 
+  const getOcenaByUserIdAndCategory = async (userId, category) => {
+    try {
+      // Retrieve the user document using the user ID
+      const userDocRef = doc(firestoreDB, 'uporabnik', userId.toString());
+      const userDoc = await getDoc(userDocRef);
+
+      console.log('userDoc: ' + userDoc);
+  
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        console.log('user doc entiteta id: '+ userData[category]);
+        const entityId = userData[category]; // Assuming the user document contains a field 'idEntiteta'
+  
+        // Retrieve the entity document from the specified category using the extracted entity ID
+        const entityDocRef = collection(firestoreDB, 'entiteta', entityId.toString());
+        const entityDoc = await getDoc(entityDocRef);
+  
+        if (entityDoc) {
+          return entityDoc.data(); // Assuming there is only one matching document
+        } else {
+          console.log(`No entity found for ID: ${entityId} and category: ${category}`);
+          return null;
+        }
+      } else {
+        console.log(`No user found for ID: ${userId}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error retrieving entity:', error);
+      return null;
+    }
+  };
+
 const deleteOcena = async (idUporabnik, kategorija) => {
     try {
         console.log(kategorija);
@@ -320,5 +353,6 @@ module.exports = {
     getNextUserId,
     calculateUjemanje,
     getOcenaByNaziv,
-    getOpisUjemanja
+    getOpisUjemanja,
+    getOcenaByUserIdAndCategory
 };
