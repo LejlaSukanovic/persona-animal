@@ -46,3 +46,6 @@ const isAuthenticated = (req, res, next) => {
 app.use('/samoocenitev',isAuthenticated, samoocenitevRoutes);
 app.use('/ujemanje',isAuthenticated, ujemanjeRoutes);
 app.use('/', prijavaRoutes);
+app.use((req, res, next) => {
+    res.status(404).render('404');
+});
