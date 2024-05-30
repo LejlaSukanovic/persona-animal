@@ -36,11 +36,10 @@ router.get('/brisanje/:ocena/:kategorija', async (req, res) => {
 
 router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
 
-    console.log("STA")
     const category = req.params.kategorija;
     const uporabnikID = req.session.user.id; 
     const uporabnik = await getUporabnikByID(uporabnikID);
-
+    
 
     if (uporabnik[category] == 0 || !uporabnik[category]) {
         res.redirect('/samoocenitev/izbiraEntitete/' + category);

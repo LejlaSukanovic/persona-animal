@@ -351,5 +351,7 @@ module.exports = {
     getOcenaByNaziv,
     getOpisUjemanja,
     getUporabnikByID,
-    getUporabniki
+    getUporabniki,
+    app,
+    firestoreDB,
 };
