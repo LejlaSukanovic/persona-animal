@@ -16,6 +16,7 @@ router.get('/pregledOcenitve/:kategorija', async (req, res) => {
     const ocena = req.session.categoryId;
     if (ocena) {
         const data = await getOcena(ocena);
+        req.session.categoryId = undefined;
         res.render('PregledOcenitve', { entity: data });
     } else {
         // Handle missing data
@@ -38,19 +39,17 @@ router.get('/brisanje/:ocena/:kategorija', async (req, res) => {
 router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
 
     const category = req.params.kategorija;
-    const uporabnik = await getUporabnik(1);  // Modify to use the logged-in user's ID
-    console.log(uporabnik[category] + 'hhhhhhhh');
-    //const ocena = getocenaByCategory(category);
+    const uporabnik = await getUporabnikByID(req.session.user.id);     
+    
     // If user does not have an entiteta, redirect to the selection page
     if (uporabnik[category] == 0 || !uporabnik[category]) {
         res.redirect('/samoocenitev/izbiraEntitete/' + category);
     } else {
-        // Otherwise, redirect to the review page
-        //req.session.category = category;
+        // Otherwise, redirect to the review page        
         console.log('lllllll'+uporabnik[category])
         req.session.categoryId = uporabnik[category];
         res.redirect('/samoocenitev/pregledOcenitve/'+category);
-        //res.redirect(`/samoocenitev/pregledOcenitve/${uporabnik[category]}/${category}`);
+        
     }
 });
 

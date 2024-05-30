@@ -386,6 +386,6 @@ module.exports = {
     getUporabnikByID,
     getUporabniki,
     app,
-    firestoreDB,,
+    firestoreDB,
     getOcenaByUserIdAndCategory
 };
