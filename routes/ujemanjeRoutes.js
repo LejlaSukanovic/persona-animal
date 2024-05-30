@@ -70,30 +70,30 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
     try{
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija;
-        const uporabnikID = req.params.uporabnikID;
-        const ocenjeniUporabnik = await getUporabnikByID(parseInt(uporabnikID, 10));
-        const prijavljeniUporabnik = await getUporabnikByID(ocenjeniUporabnik.ujemanjeZ); //mozda ce morati se promijeniti funkcija u getUporabnikById
+        const uporabnikID = req.params.uporabnikID;        
+        const prijavljeniUporabnik = await getUporabnikByID(req.session.user.id);
         const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
-        const data = await getOcena(entitetaID);
-        res.redirect(`/ujemanje/pregledUjemanja/${data.naziv}/${ocenaPrijavljenega.naziv}`);
+        req.session.entiteta1 = entitetaID;
+        req.session.entiteta2 = ocenaPrijavljenega;
+        res.redirect(`/ujemanje/pregledUjemanja`);
     }catch(error){
         console.log(error);
     }
 });
 
-router.get('/pregledUjemanja/:entiteta1/:entiteta2', async(req, res) => {
-    const entiteta1Naziv = req.params.entiteta1;
-    const entiteta2Naziv = req.params.entiteta2;
-    const ujemanje = await calculateUjemanje(entiteta1Naziv, entiteta2Naziv);
-    const entiteta1 = await getOcenaByNaziv(entiteta1Naziv);
-    const entiteta2 = await getOcenaByNaziv(entiteta2Naziv);
-    const opis = await getOpisUjemanja(ujemanje);
+router.get('/pregledUjemanja', async(req, res) => {
+    const entiteta1ID = req.session.entiteta1; //get entity 1 ID from session storage
+    const entiteta2 = req.session.entiteta2; //get entity 2 object from session storage
+
+    const entiteta1 = await getOcena(entiteta1ID); //get entity1 object from ID
+    const ujemanje = await calculateUjemanje(entiteta1.naziv, entiteta2.naziv); //calculate ujemanje
+    const opis = await getOpisUjemanja(ujemanje); //retrieve description
    res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
 });
 
 router.get('/pregledUjemanja/:entiteta1/:idPrijavljenega/:kategorija/:ujemanje', async(req, res) => {
-    const entiteta1Naziv = req.params.entiteta1;
+    const entiteta1ID = req.params.entiteta1;
     const ujemanje = req.params.ujemanje;
     const kategorija = req.params.kategorija;
     const idPrijavljenega = parseInt(req.params.idPrijavljenega, 10);
@@ -102,7 +102,7 @@ router.get('/pregledUjemanja/:entiteta1/:idPrijavljenega/:kategorija/:ujemanje',
     console.log('ujemanje: '+ujemanje);
     console.log('kategorija: '+kategorija);
     console.log('idPrijavljenega: '+idPrijavljenega);*/
-    const entiteta1 = await getOcenaByNaziv(entiteta1Naziv);
+    const entiteta1 = await getOcena(entiteta1);
 
     //console.log('entiteta1 '+entiteta1.naziv);
     const entiteta2 = await getOcenaByUserIdAndCategory(idPrijavljenega, kategorija);

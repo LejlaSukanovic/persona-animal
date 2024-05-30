@@ -71,9 +71,8 @@ router.get('/rezultat/:entitetaId/:kategorija', async (req, res) => {
     try {
         const entitetaID = parseInt(req.params.entitetaId, 10);
         const kategorija = req.params.kategorija
-        const uporabnikID = req.session.user.id;//req.session.user.id;
+        const uporabnikID = req.session.user.id;
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
-        //const data = await getOcena(entitetaID);
         req.session.categoryId = entitetaID;
         res.redirect(`/samoocenitev/pregledOcenitve/${kategorija}`);
     } catch (error) {
