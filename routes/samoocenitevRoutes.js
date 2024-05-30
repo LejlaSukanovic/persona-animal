@@ -12,14 +12,16 @@ router.get('/', async (req, res) => {
     res.render('samoocenitev', { categories });
 });
 
-router.get('/pregledOcenitve/:ocena/:kategorija', async (req, res) => {
-    try {
-        const ocena = parseInt(req.params.ocena, 10);
+router.get('/pregledOcenitve/:kategorija', async (req, res) => {
+    const ocena = req.session.categoryId;
+    if (ocena) {
         const data = await getOcena(ocena);
+        req.session.categoryId = undefined;
         res.render('PregledOcenitve', { entity: data });
-    } catch (error) {
+    } else {
+        // Handle missing data
         console.error('Error fetching data:', error);
-        res.status(500).send('Error fetching data');
+        res.redirect('/errorPage');
     }
 });
 
@@ -37,15 +39,17 @@ router.get('/brisanje/:ocena/:kategorija', async (req, res) => {
 router.get('/izvedbaSamoocenitve/:kategorija', async (req, res) => {
 
     const category = req.params.kategorija;
-    const uporabnikID = req.session.user.id; 
-    const uporabnik = await getUporabnikByID(uporabnikID);
+    const uporabnik = await getUporabnikByID(req.session.user.id);     
     
-
+    // If user does not have an entiteta, redirect to the selection page
     if (uporabnik[category] == 0 || !uporabnik[category]) {
         res.redirect('/samoocenitev/izbiraEntitete/' + category);
     } else {
-        // Otherwise, redirect to the review page
-        res.redirect(`/samoocenitev/pregledOcenitve/${uporabnik[category]}/${category}`);
+        // Otherwise, redirect to the review page        
+        console.log('lllllll'+uporabnik[category])
+        req.session.categoryId = uporabnik[category];
+        res.redirect('/samoocenitev/pregledOcenitve/'+category);
+        
     }
 });
 
@@ -69,8 +73,8 @@ router.get('/rezultat/:entitetaId/:kategorija', async (req, res) => {
         const kategorija = req.params.kategorija
         const uporabnikID = req.session.user.id;
         await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
-        const data = await getOcena(entitetaID);
-        res.redirect(`/samoocenitev/pregledOcenitve/${data.idEntiteta}/${kategorija}`);
+        req.session.categoryId = entitetaID;
+        res.redirect(`/samoocenitev/pregledOcenitve/${kategorija}`);
     } catch (error) {
         console.log(error);
     }
