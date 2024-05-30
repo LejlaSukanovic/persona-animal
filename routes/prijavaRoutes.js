@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
     try {
         const emailExists = await checkIfEmailExistsInDatabase(email);
         if (emailExists) {
-            return res.status(400).json({ error: 'Email is already in use in the database. Please try a different email.' });
+            return res.status(400).json({ error: 'Email is already in use in the database' });
         }
 
         await deleteUserByEmail(email);

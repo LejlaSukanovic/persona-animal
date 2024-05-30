@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Persona Animal</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
     <link rel="stylesheet" href="/samoocenitev.css">
 </head>
 <body class="body-slide-in">
@@ -29,13 +30,18 @@
     <div class="button-container">
         <button class="btn btn-primary logout" onclick="Logout()">Logout</button>
     </div>
-    
+
     <footer>
         <div class="row">
             <div class="col footer-col-1" onclick="navigateTo('/samoocenitev');">Samoocenitev</div>
             <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
         </div>
     </footer>
+
+    <div id="success_popup">
+        <div id="success_animation_container"></div>
+        <div id="success_message"></div>
+    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
