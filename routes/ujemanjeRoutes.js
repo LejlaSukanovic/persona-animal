@@ -26,7 +26,8 @@ router.get('/', async (req, res) => {
             uporabnik.tip === 2 && uporabnik.ujemanjeZ === prijavljeniUporabnik.idUporabnik
         );
 
-        res.render('zgodovinaUjemanja', { uporabniki: filteredUporabniki, kategorije, entitetaMap, userCategories });
+
+        res.render('zgodovinaUjemanja', { uporabniki: filteredUporabniki, kategorije, entitetaMap, userCategories, prijavljeniUporabnik });
     } catch (error) {
         res.status(500).send('Error retrieving users');
     }
