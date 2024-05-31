@@ -107,15 +107,32 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
     }
 });
 
-router.get('/pregledUjemanja', async(req, res) => {
-    const entiteta1ID = req.session.entiteta1; //get entity 1 ID from session storage    
-    const entiteta1 = await getOcena(entiteta1ID);    
-    const entiteta2ID = req.session.entiteta2; //get entity 2 object from session storage
-    const entiteta2 = await getOcena(entiteta2ID);  
-    const ujemanje = req.session.ujemanje;      
-    const opis = await getOpisUjemanja(ujemanje); //retrieve description
-   res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
-});
+// Route to handle setting session data
+router.post('/setSessionData', (req, res) => {
+    req.session.entiteta1 = parseInt(req.body.entiteta1, 10);
+    req.session.entiteta2 = parseInt(req.body.entiteta2, 10);
+    req.session.ujemanje = req.body.ujemanje;
+    res.sendStatus(200);
+  });
+  
+  // Existing route to render 'pregledUjemanja'
+  router.get('/pregledUjemanja', async (req, res) => {
+    try {
+      const entiteta1ID = req.session.entiteta1; // Get entity 1 ID from session storage
+      const entiteta1 = await getOcena(entiteta1ID);
+      const entiteta2ID = req.session.entiteta2; // Get entity 2 object from session storage
+      const entiteta2 = await getOcena(entiteta2ID);
+      
+      const ujemanje = req.session.ujemanje;
+      
+      const opis = await getOpisUjemanja(ujemanje); // Retrieve description
+      
+      res.render('pregledUjemanja', { ocenaUjemanja: ujemanje, entiteta1: entiteta1, entiteta2: entiteta2, opis: opis });
+    } catch (error) {
+      res.status(500).send('Error retrieving data');
+    }
+  });
+  
 
 router.get('/pregledUjemanja/:entiteta1/:idPrijavljenega/:kategorija/:ujemanje', async(req, res) => {
     const entiteta1ID = req.params.entiteta1;

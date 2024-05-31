@@ -57,7 +57,7 @@
                     %>
                     <div>
                       <% if (entiteta) { %>
-                        <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>" onclick="saveAndRedirect('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
+                        <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
                       <% } else { %>
                         <p>Ni podatkov</p>
                       <% } %>
@@ -132,9 +132,19 @@
       sessionStorage.setItem('ujemanje', ujemanje);
     }
 
-    function saveAndRedirect(entiteta1, entiteta2, ujemanje) {
+    function saveAndSendData(entiteta1, entiteta2, ujemanje) {
       saveToSessionStorage(entiteta1, entiteta2, ujemanje);
-      window.location.href = '/pregledUjemanja';
+
+      // Send data to the server
+      $.post('ujemanje/setSessionData', {
+        entiteta1: entiteta1,
+        entiteta2: entiteta2,
+        ujemanje: ujemanje
+      }).done(function() {
+        window.location.href = 'ujemanje/pregledUjemanja';
+      }).fail(function() {
+        console.error('Error saving session data');
+      });
     }
   </script>
 </body>
