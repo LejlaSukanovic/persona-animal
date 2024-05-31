@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
             uporabnik.tip === 2 && uporabnik.ujemanjeZ === prijavljeniUporabnik.idUporabnik
         );
 
+        req.session.kategorije = userCategories;
 
         res.render('zgodovinaUjemanja', { uporabniki: filteredUporabniki, kategorije, entitetaMap, userCategories, prijavljeniUporabnik });
     } catch (error) {
@@ -124,14 +125,29 @@ router.post('/setSessionData', (req, res) => {
       const entiteta2 = await getOcena(entiteta2ID);
       
       const ujemanje = req.session.ujemanje;
+      req.session.categoryId = entiteta1ID;
+      const kategorije = req.session.kategorije;
       
       const opis = await getOpisUjemanja(ujemanje); // Retrieve description
       
-      res.render('pregledUjemanja', { ocenaUjemanja: ujemanje, entiteta1: entiteta1, entiteta2: entiteta2, opis: opis });
+      res.render('pregledUjemanja', { ocenaUjemanja: ujemanje, entiteta1: entiteta1, entiteta2: entiteta2, opis: opis, kategorije:kategorije });
     } catch (error) {
       res.status(500).send('Error retrieving data');
     }
   });
+
+  router.get('/pregledOcenitve/:kategorija', async (req, res) => {
+    const ocena = req.session.categoryId;
+    if (ocena) {
+        const data = await getOcena(ocena);
+        req.session.categoryId = undefined;
+        res.render('PregledOcenitve', { entity: data });
+    } else {
+        // Handle missing data
+        console.error('Error fetching data:', error);
+        res.redirect('/errorPage');
+    }
+});
   
 
 router.get('/pregledUjemanja/:entiteta1/:idPrijavljenega/:kategorija/:ujemanje', async(req, res) => {

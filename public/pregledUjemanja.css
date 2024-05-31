@@ -41,6 +41,7 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .entity img {
@@ -50,6 +51,35 @@ html, body {
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.entity-clickable {
+    cursor: pointer;
+}
+
+.entity-clickable:hover img {
+    transform: scale(1.05);
+    opacity: 0.7;
+}
+
+.hover-text {
+    position: absolute;
+    bottom: 60%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    font-size: 16px;
+    text-align: center;
+    z-index: 2;
+}
+
+.entity-clickable:hover .hover-text {
+    display: block;
 }
 
 .ujemanje-score {
@@ -127,14 +157,22 @@ footer .col:hover {
         max-width: 400px;
         margin: 1.75rem auto;
     }
+
+    .entity img {
+        transition: none; /* Disable hover effect on image */
+    }
+
+    .entity-clickable:hover .hover-text {
+        display: none; /* Disable hover text on mobile */
+    }
 }
 
 .container {
     opacity: 0;
     transform: translateY(-100%);
     transition: opacity 1s ease-out, transform 1s ease-out;
-  }
-  .container.visible {
+}
+.container.visible {
     opacity: 1;
     transform: translateY(0);
-  }
+}

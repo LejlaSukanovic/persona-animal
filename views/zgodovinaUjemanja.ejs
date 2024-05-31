@@ -49,15 +49,18 @@
             <% categoryUsers.forEach(uporabnik => { %>
               <% if (uporabnik[category] && uporabnik[category] !== '0') { %>
                 <div class="col-md-4 col-6 mb-4">
-                  <div class="card h-100 position-relative">
-                    <span class="close-btn material-icons" aria-label="Delete result" onclick="confirmDelete('<%= uporabnik.idUporabnik %>', '<%= category %>')">delete</span>
+                  <div class="card h-100 position-relative entity">
+                    <span class="delete-btn material-icons" aria-label="Delete result" onclick="confirmDelete('<%= uporabnik.idUporabnik %>', '<%= category %>')">delete</span>
                     <% 
                       const entitetaId = uporabnik[category];
                       const entiteta = entitetaMap.get(entitetaId);
                     %>
                     <div>
                       <% if (entiteta) { %>
-                        <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
+                        <div class="entity-clickable" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
+                          <div class="hover-text" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">Klik za pregled ujemanja s vašim prijateljem</div>
+                          <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>">
+                        </div>
                       <% } else { %>
                         <p>Ni podatkov</p>
                       <% } %>
@@ -125,27 +128,5 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/zgodovinaUjemanja.js"></script>
-  <script>
-    function saveToSessionStorage(entiteta1, entiteta2, ujemanje) {
-      sessionStorage.setItem('entiteta1', entiteta1);
-      sessionStorage.setItem('entiteta2', entiteta2);
-      sessionStorage.setItem('ujemanje', ujemanje);
-    }
-
-    function saveAndSendData(entiteta1, entiteta2, ujemanje) {
-      saveToSessionStorage(entiteta1, entiteta2, ujemanje);
-
-      // Send data to the server
-      $.post('ujemanje/setSessionData', {
-        entiteta1: entiteta1,
-        entiteta2: entiteta2,
-        ujemanje: ujemanje
-      }).done(function() {
-        window.location.href = 'ujemanje/pregledUjemanja';
-      }).fail(function() {
-        console.error('Error saving session data');
-      });
-    }
-  </script>
 </body>
 </html>
