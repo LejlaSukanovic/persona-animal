@@ -140,7 +140,6 @@ router.post('/setSessionData', (req, res) => {
     const ocena = req.session.categoryId;
     if (ocena) {
         const data = await getOcena(ocena);
-        req.session.categoryId = undefined;
         res.render('PregledOcenitve', { entity: data });
     } else {
         // Handle missing data
