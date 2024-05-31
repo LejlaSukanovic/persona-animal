@@ -20,14 +20,6 @@ const entities = [
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
     slika: './images/konj.jpeg',
     kategorija: 'Zivali',
-    ujemanja: [
-      {//id of the document is the name of the entity 
-        ocena_ujemanja: 5
-      },
-      {//id of the document is the name of the entity 
-        ocena_ujemanja: 4
-      } //...
-    ]
   },
   {
     idEntiteta: 2,
@@ -185,22 +177,22 @@ const entities = [
 ];
 
 let ujemanjaTable = {
-  Konj: { Pes: 3, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Opica: 2, Zajec: 2, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 4, Slon: 4, Srna: 4, Čebela: 3, Bik: 4 },
-  Pes: { Konj: 3, Sova: 5, Medved: 5, Lev: 3, Lisica: 4, Opica: 2, Zajec: 2, Mačka: 4, Galeb: 3, Mravlja: 4, Orel: 5, Slon: 5, Srna: 5, Čebela: 4, Bik: 5 },
-  Sova: { Konj: 5, Pes: 5, Medved: 2, Lev: 1, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 2, Galeb: 5, Mravlja: 5, Orel: 5, Slon: 5, Srna: 5, Čebela: 5, Bik: 4 },
-  Medved: { Konj: 4, Pes: 5, Sova: 2, Lev: 2, Lisica: 2, Opica: 4, Zajec: 4, Mačka: 5, Galeb: 5, Mravlja: 4, Orel: 5, Slon: 5, Srna: 4, Čebela: 5, Bik: 5 },
-  Lev: { Konj: 4, Pes: 3, Sova: 1, Medved: 2, Lisica: 2, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 5, Slon: 5, Srna: 5, Čebela: 5, Bik: 5 },
-  Lisica: { Konj: 4, Pes: 4, Sova: 5, Medved: 2, Lev: 2, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
-  Opica: { Konj: 2, Pes: 2, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 2, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
-  Zajec: { Konj: 2, Pes: 2, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Opica: 2, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 4, Srna: 4, Čebela: 5, Bik: 5 },
-  Mačka: { Konj: 3, Pes: 4, Sova: 2, Medved: 5, Lev: 3, Lisica: 3, Opica: 3, Zajec: 4, Galeb: 2, Mravlja: 4, Orel: 4, Slon: 3, Srna: 4, Čebela: 5, Bik: 5 },
-  Galeb: { Konj: 4, Pes: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 4, Opica: 4, Zajec: 4, Mačka: 2, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5, Bik: 5 },
-  Mravlja: { Konj: 5, Pes: 4, Sova: 5, Medved: 4, Lev: 5, Lisica: 5, Opica: 3, Zajec: 3, Mačka: 4, Galeb: 5, Orel: 4, Slon: 4, Srna: 5, Čebela: 3, Bik: 5 },
-  Orel: { Konj: 4, Pes: 5, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 4, Galeb: 5, Mravlja: 4, Slon: 4, Srna: 2, Čebela: 2, Bik: 5 },
-  Slon: { Konj: 4, Pes: 5, Sova: 5, Medved: 5, Lev: 5, Lisica: 4, Opica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 4, Orel: 4, Srna: 4, Čebela: 4, Bik: 4 },
-  Srna: { Konj: 4, Pes: 5, Sova: 5, Medved: 4, Lev: 5, Lisica: 5, Opica: 5, Zajec: 4, Mačka: 4, Galeb: 5, Mravlja: 5, Orel: 2, Slon: 4, Čebela: 5, Bik: 5 },
-  Čebela: { Konj: 3, Pes: 4, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 3, Orel: 2, Slon: 4, Srna: 5, Bik: 5 },
-  Bik: { Konj: 4, Pes: 5, Sova: 4, Medved: 5, Lev: 5, Lisica: 5, Opica: 5, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 5, Orel: 5, Slon: 4, Srna: 5, Čebela: 5 }
+  Konj: { Pes: 3, Sova: 5, Medved: 4, Lev: 3, Lisica: 4, Opica: 2, Zajec: 3, Mačka: 3, Galeb: 3, Mravlja: 2, Orel: 4, Slon: 1, Srna: 3, Čebela: 2, Bik: 4 },
+  Pes: { Konj: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 5, Opica: 1, Zajec: 4, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 2, Srna: 4, Čebela: 2, Bik: 5 },
+  Sova: { Konj: 5, Pes: 5, Medved: 2, Lev: 3, Lisica: 2, Opica: 5, Zajec: 4, Mačka: 2, Galeb: 4, Mravlja: 5, Orel: 2, Slon: 5, Srna: 4, Čebela: 5, Bik: 3 },
+  Medved: { Konj: 4, Pes: 5, Sova: 2, Lev: 1, Lisica: 1, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 1 },
+  Lev: { Konj: 3, Pes: 4, Sova: 3, Medved: 1, Lisica: 2, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 3 },
+  Lisica: { Konj: 4, Pes: 5, Sova: 2, Medved: 1, Lev: 2, Opica: 4, Zajec: 2, Mačka: 3, Galeb: 3, Mravlja: 5, Orel: 1, Slon: 4, Srna: 3, Čebela: 5, Bik: 1 },
+  Opica: { Konj: 2, Pes: 1, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 4, Slon: 1, Srna: 3, Čebela: 3, Bik: 5 },
+  Zajec: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 2, Opica: 4, Mačka: 2, Galeb: 1, Mravlja: 5, Orel: 3, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
+  Mačka: { Konj: 3, Pes: 4, Sova: 2, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 2, Galeb: 2, Mravlja: 5, Orel: 4, Slon: 2, Srna: 2, Čebela: 5, Bik: 3 },
+  Galeb: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 4, Zajec: 1, Mačka: 2, Mravlja: 5, Orel: 4, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
+  Mravlja: { Konj: 2, Pes: 3, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Orel: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
+  Orel: { Konj: 4, Pes: 5, Sova: 2, Medved: 2, Lev: 2, Lisica: 1, Opica: 4, Zajec: 3, Mačka: 4, Galeb: 4, Mravlja: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
+  Slon: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 3, Mravlja: 3, Orel: 4, Srna: 2, Čebela: 3, Bik: 4 },
+  Srna: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 1, Mravlja: 4, Orel: 4, Slon: 2, Čebela: 2, Bik: 2 },
+  Čebela: { Konj: 2, Pes: 2, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 1, Orel: 5, Slon: 3, Srna: 4, Bik: 5 },
+  Bik: { Konj: 4, Pes: 5, Sova: 3, Medved: 1, Lev: 3, Lisica: 1, Opica: 5, Zajec: 2, Mačka: 3, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 4, Srna: 2, Čebela: 5 }
 };
 
 // Ensure all mutual matches are correctly filled
