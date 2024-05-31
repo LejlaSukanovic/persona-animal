@@ -1,32 +1,46 @@
 const { getFirestoreDB } = require('./firebaseInit');
-const { doc, getDoc, collection, getDocs, query } = require("firebase/firestore");
+const { doc, getDoc, collection, getDocs, query, updateDoc } = require("firebase/firestore");
 
 const firestoreDB = getFirestoreDB();
-
-const calculateUjemanje = async (entiteta1, entiteta2) => {
-    try {
-
-        if(entiteta1 === entiteta2){
-            return 1;
-        }
-      // Access the 'ujemanja' sub-collection of 'entiteta1'
-      const entiteta1DocRef = doc(firestoreDB, 'entiteta', entiteta1);
+const calculateUjemanje = async (entiteta1, entiteta2, uporabnikID) => {
+  try {
+      if (entiteta1 === entiteta2) {
+          return 1;
+      }
+      
+      // Access the document in the 'ujemanja' sub-collection of 'entiteta1'
       const ujemanjeDocRef = doc(firestoreDB, 'entiteta', entiteta1, 'ujemanja', entiteta2);
       const ujemanjeDoc = await getDoc(ujemanjeDocRef);
-  
+
       if (ujemanjeDoc.exists()) {
-        // Retrieve the 'ocena_ujemanja' field from the document
-        const ocenaUjemanja = ujemanjeDoc.data().ocena_ujemanja;
-        return ocenaUjemanja;
+          // Retrieve the 'ocena_ujemanja' field from the document
+          const ocenaUjemanja = ujemanjeDoc.data().ocena_ujemanja;
+
+          // Access the document in the 'uporabnik' collection
+          const uporabnikDocRef = doc(firestoreDB, 'uporabnik', uporabnikID);
+          const uporabnikDoc = await getDoc(uporabnikDocRef);
+
+          if (uporabnikDoc.exists()) {
+              // Update the 'ocena_ujemanja' field in the 'uporabnik' document
+              await updateDoc(uporabnikDocRef, {
+                  ocena_ujemanja: ocenaUjemanja
+              });
+
+              return ocenaUjemanja;
+          } else {
+              console.log(`No matching document found for uporabnikID: ${uporabnikID}`);
+              return null;
+          }
       } else {
-        console.log(`No matching document found for entiteta2: ${entiteta2} in the ujemanja sub-collection of entiteta1: ${entiteta1}`);
-        return null;
+          console.log(`No matching document found for entiteta2: ${entiteta2} in the ujemanja sub-collection of entiteta1: ${entiteta1}`);
+          return null;
       }
-    } catch (error) {
+  } catch (error) {
       console.error('Error retrieving ocena_ujemanja:', error);
       return null;
-    }
-  };
+  }
+};
+
 
   const getOpisUjemanja = async (idOdnos) => {
     try {

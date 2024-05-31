@@ -85,16 +85,21 @@ router.get('/izbiraEntitete/:idUporabnik/:kategorija', async (req, res) => {
     }
 });
 
+
+//TODO optimizirati jer je predugo
 router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => {
     try{
-        const entitetaID = parseInt(req.params.entitetaId, 10);
-        const kategorija = req.params.kategorija;
-        const uporabnikID = req.params.uporabnikID;        
+        const entitetaID = parseInt(req.params.entitetaId, 10); //id rezultata
+        const kategorija = req.params.kategorija; //kategorija rezultata
+        const uporabnikID = req.params.uporabnikID; //id uporabnika za katereg je narejena ocenitev
         const prijavljeniUporabnik = await getUporabnikByID(req.session.user.id);
         const ocenaPrijavljenega = await getOcena(prijavljeniUporabnik[kategorija]);
-        await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija);
+        await saveResultSamoocenitve(uporabnikID, entitetaID, kategorija); //sačuva rez ocenitve za uporabnikID
         req.session.entiteta1 = entitetaID;
-        req.session.entiteta2 = ocenaPrijavljenega;
+        req.session.entiteta2 = ocenaPrijavljenega.idEntiteta;
+        const entiteta1 = await getOcena(entitetaID); //pridobi entitio drugog uporabnika
+        const ujemanje = await calculateUjemanje(entiteta1.naziv, ocenaPrijavljenega.naziv, uporabnikID); //calculate ujemanje
+        req.session.ujemanje = ujemanje;
         res.redirect(`/ujemanje/pregledUjemanja`);
     }catch(error){
         console.log(error);
@@ -102,11 +107,11 @@ router.get('/rezultat/:entitetaId/:uporabnikID/:kategorija', async(req, res) => 
 });
 
 router.get('/pregledUjemanja', async(req, res) => {
-    const entiteta1ID = req.session.entiteta1; //get entity 1 ID from session storage
-    const entiteta2 = req.session.entiteta2; //get entity 2 object from session storage
-
-    const entiteta1 = await getOcena(entiteta1ID); //get entity1 object from ID
-    const ujemanje = await calculateUjemanje(entiteta1.naziv, entiteta2.naziv); //calculate ujemanje
+    const entiteta1ID = req.session.entiteta1; //get entity 1 ID from session storage    
+    const entiteta1 = await getOcena(entiteta1ID);    
+    const entiteta2ID = req.session.entiteta2; //get entity 2 object from session storage
+    const entiteta2 = await getOcena(entiteta2ID);  
+    const ujemanje = req.session.ujemanje;      
     const opis = await getOpisUjemanja(ujemanje); //retrieve description
    res.render('pregledUjemanja', {ocenaUjemanja:ujemanje, entiteta1:entiteta1, entiteta2:entiteta2, opis:opis});
 });
