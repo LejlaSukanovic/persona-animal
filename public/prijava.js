@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    function validateFields(fields) {
+    function validateFields(fields, type) {
         let isValid = true;
         fields.forEach(field => {
-            const input = document.getElementById(field.id);
+            const input = document.getElementById(`${type}-${field.id}`);
             const validationMessage = document.getElementById(`${field.id}-validation`);
             if (input.value.trim() === '') {
                 validationMessage.innerText = 'Prosimo vnesite vaše podatke!';
@@ -97,12 +97,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Register function
     window.register = async function () {
         const fields = [
-            { id: 'register-email' },
-            { id: 'register-password' },
-            { id: 'register-username' }
+            { id: 'email' },
+            { id: 'password' },
+            { id: 'username' }
         ];
 
-        if (!validateFields(fields)) {
+        if (!validateFields(fields, 'register')) {
             return;
         }
 
@@ -148,11 +148,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Login function
     window.login = async function () {
         const fields = [
-            { id: 'login-email' },
-            { id: 'login-password' }
+            { id: 'email' },
+            { id: 'password' }
         ];
 
-        if (!validateFields(fields)) {
+        if (!validateFields(fields, 'login')) {
             return;
         }
 
