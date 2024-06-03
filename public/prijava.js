@@ -8,7 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var errorPopup = document.getElementById('error_popup');
     var errorAnimationContainer = document.getElementById('error_animation_container');
     var errorMessage = document.getElementById('error_message');
-    
+
+    var loginForm = document.getElementById('form-content-prijava');
+    var registerForm = document.getElementById('form-content-registracija');
+    var showRegisterLink = document.getElementById('show_register');
+    var showLoginLink = document.getElementById('show_login');
+
     var animation = lottie.loadAnimation({
         container: animationContainer,
         renderer: 'svg',
@@ -92,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Register function
     window.register = async function () {
         const fields = [
-            { id: 'email' },
-            { id: 'password' },
-            { id: 'username' }
+            { id: 'register-email' },
+            { id: 'register-password' },
+            { id: 'register-username' }
         ];
 
         if (!validateFields(fields)) {
@@ -110,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        email: document.getElementById('email').value,
-                        password: document.getElementById('password').value,
-                        username: document.getElementById('username').value
+                        email: document.getElementById('register-email').value,
+                        password: document.getElementById('register-password').value,
+                        username: document.getElementById('register-username').value
                     })
                 }),
                 delay(2000)
@@ -143,8 +148,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Login function
     window.login = async function () {
         const fields = [
-            { id: 'email' },
-            { id: 'password' }
+            { id: 'login-email' },
+            { id: 'login-password' }
         ];
 
         if (!validateFields(fields)) {
@@ -160,8 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        email: document.getElementById('email').value,
-                        password: document.getElementById('password').value
+                        email: document.getElementById('login-email').value,
+                        password: document.getElementById('login-password').value
                     })
                 }),
                 delay(2000)
@@ -184,4 +189,37 @@ document.addEventListener("DOMContentLoaded", function () {
             hideSuccessPopup();
         }
     }
+
+    // Toggle between login and register forms
+   /* showRegisterLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        loginForm.style.transform = 'translateX(-100%)';
+        registerForm.style.transform = 'translateX(0)';
+        showLoginLink.style.display = 'inline';
+        showRegisterLink.style.display = 'none';
+    });
+
+    showLoginLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        loginForm.style.transform = 'translateX(0)';
+        registerForm.style.transform = 'translateX(100%)';
+        showLoginLink.style.display = 'none';
+        showRegisterLink.style.display = 'inline';
+    });*/
+    // Toggle between login and register forms
+    showRegisterLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+        showLoginLink.style.display = 'inline';
+        showRegisterLink.style.display = 'none';
+    });
+
+    showLoginLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+        showLoginLink.style.display = 'none';
+        showRegisterLink.style.display = 'inline';
+    });
 });

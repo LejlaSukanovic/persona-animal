@@ -11,26 +11,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/prijava.css">
+    <style>
+        /* Add styles for the green links */
+        #form_toggle_links a {
+            color: green;
+            text-decoration: underline;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div id="content_container">
         <div id="centered">
             <div id="animation_container"></div>
             <div id="form_container">
-                <div id="form_header_container">
-                    <h2 id="form_header"> Prijava </h2>
-                </div>
+                
                 <div id="form_content_container">
                     <div id="form_content_inner_container">
-                        <input type="text" id="username" placeholder="Uporabnisko Ime">
-                        <div class="validation-message" id="username-validation"></div>
-                        <input type="email" id="email" placeholder="Email">
-                        <div class="validation-message" id="email-validation"></div>
-                        <input type="password" id="password" placeholder="Geslo">
-                        <div class="validation-message" id="password-validation"></div>
-                        <div id="button_container">
-                            <button onclick="login()">Login</button>
-                            <button onclick="register()">Register</button>
+                        <div id="form-content-prijava">
+                            <div id="form_header_container">
+                                <h2 id="form_header"> Prijava </h2>
+                            </div>
+                            <input type="text" id="login-username" placeholder="Uporabniško Ime">
+                            <div class="validation-message" id="username-validation"></div>
+                            <input type="email" id="login-email" placeholder="Email">
+                            <div class="validation-message" id="email-validation"></div>
+                            <input type="password" id="login-password" placeholder="Geslo">
+                            <div class="validation-message" id="password-validation"></div>
+                            <div id="button_container">
+                                <button onclick="login()">Prijava</button>
+                            </div>
+                        </div>
+                        <div id="form-content-registracija" style="display: none;">
+                            <div id="form_header_container">
+                                <h2 id="form_header"> Registracija</h2>
+                            </div>
+                            <input type="text" id="register-username" placeholder="Uporabniško Ime">
+                            <div class="validation-message" id="username-validation"></div>
+                            <input type="email" id="register-email" placeholder="Email">
+                            <div class="validation-message" id="email-validation"></div>
+                            <input type="password" id="register-password" placeholder="Geslo">
+                            <div class="validation-message" id="password-validation"></div>
+                            <div id="button_container">
+                                <button onclick="register()">Registracija</button>
+                            </div>
+                        </div>
+                        <div id="form_toggle_links">
+                            <!-- Change the links to be more user-friendly and green -->
+                            <a href="#" id="show_register">Še nimate računa? Registrirajte se tukaj.</a>
+                            <a href="#" id="show_login" style="display: none;">Imate že račun? Prijavite se tukaj.</a>
                         </div>
                     </div>
                 </div>
