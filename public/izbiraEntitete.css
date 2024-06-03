@@ -4,10 +4,12 @@
 
 html, body {
     width: 100%;
-    height: 100%;
+    height: 100vh; /* Ensure it covers the full viewport height */
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Ensures no scrollbar appears */
+    overflow: hidden; /* Prevent horizontal scrollbar */
+    display: flex;
+    flex-direction: column;
 }
 
 body {
@@ -15,23 +17,28 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
-    
+    background: rgba(255, 255, 255, 0.8); /* White background with opacity */
+    flex: 1;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    width: 100%;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    margin-top: 10%;
-    width: 90%; /* or max-width: 100%; depending on your design */
+    width: 100%;
     overflow-x: hidden; /* Hide any accidental horizontal overflow */
     background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
     background-size: cover;  /* Cover the entire page */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  border-radius: 5% 5% 0 0;
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    border-radius: 5% 5% 0 0;
 }
 
 .progress-bar-container {
@@ -162,8 +169,8 @@ p {
     animation: fadeIn 0.5s forwards;
 }
 
-#entity1, #entity2{
-    background:rgba(255, 255, 255,0.8);
+#entity1, #entity2 {
+    background: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes fadeOut {
@@ -188,8 +195,6 @@ p {
 footer {
     width: 100%;
     box-sizing: border-box;
-    bottom: 0;
-    position: absolute;
     background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
     color: white;
     padding: 20px 0; /* Increased padding */
@@ -197,6 +202,7 @@ footer {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
+    flex-shrink: 0;
 }
 
 footer .col {
@@ -231,7 +237,7 @@ footer .col:hover {
 .progress {
     position: relative;
     height: 20px;
-    background:rgba(255, 255, 255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 10px;
@@ -256,14 +262,7 @@ footer .col:hover {
 body.slide-in {
     animation: slideInFromRight 0.8s forwards; /* Animation duration and behavior */
     overflow-x: hidden;
-    background:rgba(255, 255, 255,0.8); /* Prevent horizontal scrollbar during animation */
-}
-
-
-body {
-    position: relative;
-    min-height: 100vh; /* Ensures the body takes at least the height of the viewport */
-    padding-bottom: 150px; /* Provides space for the animation above the footer */
+    background: rgba(255, 255, 255, 0.8); /* Prevent horizontal scrollbar during animation */
 }
 
 .cow-animation {
@@ -271,11 +270,6 @@ body {
     right: 5%; /* Positions the animation on the right */
     bottom: 100px; /* Adjust this value based on the height of your footer */
     pointer-events: none; /* Allows clicks to pass through the iframe */
-}
-
-footer {
-    position: absolute;
-    width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -286,7 +280,6 @@ footer {
         height: 100px; /* Smaller size on smaller screens */
     }
 }
-
 
 #loading {
     display: none;
