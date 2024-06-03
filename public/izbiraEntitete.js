@@ -133,3 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
     updateEntitiesDisplay();
     updateProgressBar();
 });
+
+function closeOverlay() {
+    const overlay = document.getElementById('overlay');
+    overlay.classList.add('slide-out');
+
+    // Remove the overlay after the animation duration
+    setTimeout(() => {
+        overlay.style.display = 'none';
+    }, 500); // 500ms matches the duration of the slideOutTopToBottom animation
+}
+
+
