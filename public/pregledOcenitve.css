@@ -4,7 +4,6 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100vh; /* This will ensure it at least covers the full viewport height */
-  min-height: 100vh; /* Ensures that the body is at least the height of the viewport */
   background-color: #f8f9fa;
   color: #212529;
   font-family: 'Roboto', sans-serif;
@@ -14,10 +13,14 @@ html, body {
   background-repeat: no-repeat; /* Do not repeat the image */
   width: 100%;
   overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
   margin-top: 20px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .card {
@@ -103,18 +106,6 @@ html, body {
   right: 10px;
   top: 10px;
   cursor: pointer;
-}
-
-.wrapper {
-  position: relative;
-  max-width: 500px;
-  margin: auto;
-}
-
-.image-container {
-  position: relative;
-  height: 300px;
-  overflow: hidden;
 }
 
 .image-container img {
@@ -281,22 +272,9 @@ html, body {
   /* Off-white color for the list items */
 }
 
-.close-btn {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  color: #dc3545;
-  /* Red color to signify deletion */
-  font-size: 24px;
-  /* Adjust size as necessary */
-  cursor: pointer;
-}
-
 footer {
   width: 100%;
   box-sizing: border-box;
-  bottom: 0;
-  position: absolute;
   background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
   color: white;
   padding: 20px 0; /* Increased padding */
@@ -304,6 +282,7 @@ footer {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
+  flex-shrink: 0;
 }
 
 footer .col {
@@ -334,7 +313,6 @@ footer .col:hover {
       border-bottom: none;
   }
 }
-
 
 .modal-content {
   margin-top: 150px;
