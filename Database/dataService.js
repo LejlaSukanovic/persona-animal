@@ -1,5 +1,5 @@
 const { getFirestoreDB } = require('./firebaseInit');
-const { doc, getDocs, query, where, updateDoc, collection, getDoc } = require("firebase/firestore");
+const { doc, getDocs, query, where, updateDoc, collection, getDoc, deleteDoc } = require("firebase/firestore");
 
 const firestoreDB = getFirestoreDB();
 
@@ -90,12 +90,33 @@ const getOcenaByUserIdAndCategory = async (userId, category) => {
     }
   };
 
-const deleteOcena = async (idUporabnik, kategorija) => {
+const deleteOcena = async (idUporabnik, kategorija, isMatchingDeletion = false) => {
     try {
         const documentRef = doc(firestoreDB, "uporabnik", idUporabnik.toString());
+
+        // Fetch the user's current data before deletion
+        const userDoc = await getDoc(documentRef);
+        const userData = userDoc.data();
+        const entitetaId = userData[kategorija];
+
+        // Delete the self-assessment
         await updateDoc(documentRef, {
             [kategorija]: 0
         });
+
+        if (!isMatchingDeletion) {
+            console.log("MATER")
+            const usersQuery = query(collection(firestoreDB, "uporabnik"), where("ujemanjeZ", "==", idUporabnik));
+            const usersSnapshot = await getDocs(usersQuery);
+
+            console.log("TI")
+
+            for (const userDoc of usersSnapshot.docs) {
+                await deleteDoc(userDoc.ref);
+            }
+            console.log("JEBEM");
+        }
+        //Treba dodati, u slucaju ako je matchingDeletion true tj. da user brise samo specificno ujemanje da ce se to izbrisati.Sada to radi medjutim samo na frontendu iz baze se ne brise. U principu moze i tako sve da radi ali bilo bi bolje da se izbrise iz baze istovremeno taj novo dodani user za ujemanje. 
     } catch (error) {
         console.log('Error updating document:', error);
     }
