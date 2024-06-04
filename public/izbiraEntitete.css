@@ -1,5 +1,3 @@
-/* izbiraEntitete.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 html, body {
@@ -10,50 +8,32 @@ html, body {
     overflow: hidden; /* Prevent horizontal scrollbar */
     display: flex;
     flex-direction: column;
+    position: relative; /* Ensure absolute positioning of children is relative to the body */
+    font-family: 'Roboto', sans-serif;
+    background: rgba(255, 255, 255, 0.8);
+    background-image: url('/Database/images/background_main.png'); /* Set the background image for the whole page */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    animation: slideInFromRight 0.8s forwards; /* Slide in from right to left */
 }
-html, body {
-    position: relative; /* This ensures that absolute positioning of children is relative to the body */
-    width: 100%;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%); /* Start off-screen from the right */
+    }
+    to {
+        transform: translateX(0); /* Slide to the natural position */
+    }
 }
 
 .main-content {
     flex: 1 0 auto; /* Flex properties to fill available space */
     overflow-y: auto; /* Scroll inside main content if needed */
-    padding-bottom: 100px; /* Adjust this value to the height of your footer */
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradient*/
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.8); /* White background with opacity */
-    flex: 1;
-}
-
-.main-content {
-    flex: 1; /* Ensures that this container takes up all remaining space */
-    overflow-y: auto; /* Allows scrolling within the main content itself */
     width: 100%; /* Full width */
     display: flex; /* Using flex to control inner items */
     flex-direction: column; /* Stack children vertically */
-}
-.main-content {
-    flex: 1 0 auto; /* Flex properties to fill available space */
-    overflow-y: auto; /* Scroll inside main content if needed */
     padding-bottom: 100px; /* Adjust this value to the height of your footer */
 }
 
@@ -63,23 +43,6 @@ body {
     align-items: center;
     width: 100%;
     overflow-x: hidden; /* Hide any accidental horizontal overflow */
-    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
-    background-size: cover;  /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    /*border-radius: 5% 5% 0 0;*/
-}
-.container {
-    flex: 1; /* Makes sure the container stretches to fill available space within .main-content */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers children vertically if there's extra space */
-    width: 100%; /* Full width */
-}
-
-.main-content, .container {
-    padding: 0;
-    margin: 0;
 }
 
 .progress-bar-container {
@@ -126,7 +89,7 @@ p {
 
 .entity img {
     width: 150px;
-    height: 150px;
+    height:150px;
     border-radius: 10px;
     border: 2px solid #76c7c0;
     transition: opacity 0.3s, transform 0.3s;
@@ -235,23 +198,11 @@ p {
 /* Footer Styles */
 footer {
     width: 100%;
-    box-sizing: border-box;
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
-    color: white;
-    padding: 20px 0; /* Increased padding */
-    text-align: center;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1); /* Similar shadow effect */
-    flex-shrink: 0;
-}
-footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradient for visual effect */
+    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradient */
     color: white;
-    padding: 20px 0; /* Maintain your padding */
+    padding: 20px 0; /* Increased padding */
     text-align: center;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -303,37 +254,6 @@ footer .col:hover {
     transition: width 0.5s ease;
 }
 
-@keyframes slideInFromRight {
-    from {
-        transform: translateX(100%); /* Start off-screen from the right */
-    }
-    to {
-        transform: translateX(0); /* Slide to the natural position */
-    }
-}
-
-body.slide-in {
-    animation: slideInFromRight 0.8s forwards; /* Animation duration and behavior */
-    overflow-x: hidden;
-    background: rgba(255, 255, 255, 0.8); /* Prevent horizontal scrollbar during animation */
-}
-
-.cow-animation {
-    position: absolute;
-    right: 5%; /* Positions the animation on the right */
-    bottom: 100px; /* Adjust this value based on the height of your footer */
-    pointer-events: none; /* Allows clicks to pass through the iframe */
-}
-
-@media (max-width: 768px) {
-    .cow-animation {
-        right: 5px; /* Adjust right position on smaller screens */
-        margin-bottom: 8%; /* Adjust bottom position on smaller screens */
-        width: 100px; /* Smaller size on smaller screens */
-        height: 100px; /* Smaller size on smaller screens */
-    }
-}
-
 #loading {
     display: none;
     text-align: center;
@@ -377,11 +297,6 @@ body.slide-in {
     overflow-y: auto;  /* Scroll if content overflows */
 }
 
-
-.overlay-content.show {
-    transform: translateY(0);
-}
-
 .close-btn {
     position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
     top: 10px;  /* 10px from the top of the .overlay-content */
@@ -390,6 +305,7 @@ body.slide-in {
     font-size: 24px;
     color: #333;
 }
+
 @keyframes slideOutTopToBottom {
     from {
         transform: translateY(0);
@@ -405,6 +321,3 @@ body.slide-in {
 #overlay.slide-out {
     animation: slideOutTopToBottom 0.5s forwards;
 }
-
-
-
