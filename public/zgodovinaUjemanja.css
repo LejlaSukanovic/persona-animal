@@ -16,6 +16,23 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scrollbar during animation */
 }
 
+.slide-in {
+    position: relative;
+    animation: slideIn 1s forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
 .container {
     flex: 1;
     display: flex;
