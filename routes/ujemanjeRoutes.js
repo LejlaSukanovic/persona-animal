@@ -80,7 +80,7 @@ router.get('/izbiraEntitete/:idUporabnik/:kategorija', async (req, res) => {
         const category = req.params.kategorija;
         const idUporabnik = req.params.idUporabnik || null; // Handle optional idUporabnik parameter
         const data = await getTheData(category); // Fetch entities based on category
-        res.render('IzbiraEntiteteUjemanje', { entities: data, category, idUporabnik });
+        res.render('izbiraEntiteteUjemanje', { entities: data, category, idUporabnik });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');

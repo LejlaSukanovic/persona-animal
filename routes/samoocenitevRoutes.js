@@ -60,7 +60,7 @@ router.get('/izbiraEntitete/:kategorija', async (req, res) => {
     try {
         const category = req.params.kategorija;
         const data = await getTheData(category); //dodati u get the data da se dobiju entitete na osnovu neke kategorije
-        res.render('IzbiraEntitete', { entities: data });
+        res.render('izbiraEntitete', { entities: data });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Error fetching data');
