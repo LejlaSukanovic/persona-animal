@@ -42,9 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
   confirmDeleteBtn.addEventListener('click', handleConfirmDelete);
   confirmDeleteBtn.addEventListener('touchstart', handleConfirmDelete, { passive: false });
 
-  cancelDeleteBtn.addEventListener('click', handleCancelDelete);
-  cancelDeleteBtn.addEventListener('touchstart', handleCancelDelete, { passive: false });
-
   footerCols.forEach(col => {
     col.addEventListener('click', handleFooterClick);
     col.addEventListener('touchstart', handleFooterClick, { passive: false });

@@ -47,52 +47,61 @@ document.addEventListener('DOMContentLoaded', function() {
             if (index === 0) {
                 currentEntities = [currentEntities[0], nextEntityIndex];
             } else {
-                currentEntities = [currentEntities[1], nextEntityIndex];
+                currentEntities = [nextEntityIndex, currentEntities[1]];
             }
 
             sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
-            animateEntities();
-            setTimeout(async () => {
-                updateEntitiesDisplay();
-                await updateProgress(chosenEntity);
-                saveChosenEntity(chosenEntity);
-            }, 500); // Delay to match the animation duration
+            await animateEntities(index);
+            updateEntitiesDisplay(index);
+            await updateProgress(chosenEntity);
+            saveChosenEntity(chosenEntity);
         } catch (error) {
             console.error('Error handling choice:', error);
         }
     }
 
-    function animateEntities() {
-        const entity1 = document.getElementById('entity1');
-        const entity2 = document.getElementById('entity2');
+    function animateEntities(selectedIndex) {
+        return new Promise(resolve => {
+            const entity1 = document.getElementById('entity1');
+            const entity2 = document.getElementById('entity2');
 
-        entity1.classList.add('fade-out');
-        entity2.classList.add('fade-out');
-
-        setTimeout(() => {
-            entity1.classList.remove('fade-out');
-            entity2.classList.remove('fade-out');
-            entity1.classList.add('fade-in');
-            entity2.classList.add('fade-in');
+            if (selectedIndex === 0) {
+                entity2.classList.add('fade-out');
+            } else {
+                entity1.classList.add('fade-out');
+            }
 
             setTimeout(() => {
-                entity1.classList.remove('fade-in');
-                entity2.classList.remove('fade-in');
+                if (selectedIndex === 0) {
+                    entity2.classList.remove('fade-out');
+                    entity2.classList.add('fade-in');
+                } else {
+                    entity1.classList.remove('fade-out');
+                    entity1.classList.add('fade-in');
+                }
+                resolve();
             }, 500);
-        }, 500);
+        });
     }
 
-    function updateEntitiesDisplay() {
+    function updateEntitiesDisplay(selectedIndex) {
         const entity1 = document.getElementById('entity1');
         const entity2 = document.getElementById('entity2');
 
-        entity1.querySelector('img').src = entities[currentEntities[0]].slika;
-        entity1.querySelector('p').innerText = entities[currentEntities[0]].naziv;
-        entity1.setAttribute('data-index', currentEntities[0]);
+        if (selectedIndex === 0) {
+            entity2.querySelector('img').src = entities[currentEntities[1]].slika;
+            entity2.querySelector('p').innerText = entities[currentEntities[1]].naziv;
+            entity2.setAttribute('data-index', currentEntities[1]);
+        } else {
+            entity1.querySelector('img').src = entities[currentEntities[0]].slika;
+            entity1.querySelector('p').innerText = entities[currentEntities[0]].naziv;
+            entity1.setAttribute('data-index', currentEntities[0]);
+        }
 
-        entity2.querySelector('img').src = entities[currentEntities[1]].slika;
-        entity2.querySelector('p').innerText = entities[currentEntities[1]].naziv;
-        entity2.setAttribute('data-index', currentEntities[1]);
+        setTimeout(() => {
+            entity1.classList.remove('fade-in');
+            entity2.classList.remove('fade-in');
+        }, 500);
     }
 
     async function updateProgress(chosenEntity) {
@@ -117,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
 
     function saveChosenEntity(entity) {
         sessionStorage.setItem('lastChosenEntity', JSON.stringify(entity));
@@ -130,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    updateEntitiesDisplay();
+    updateEntitiesDisplay(0);
     updateProgressBar();
 });
 
@@ -143,5 +151,3 @@ function closeOverlay() {
         overlay.style.display = 'none';
     }, 500); // 500ms matches the duration of the slideOutTopToBottom animation
 }
-
-
