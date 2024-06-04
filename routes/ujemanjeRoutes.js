@@ -136,11 +136,11 @@ router.post('/setSessionData', (req, res) => {
     }
   });
 
-  router.get('/pregledOcenitve/:kategorija', async (req, res) => {
+  router.get('/pregledOcenitveDrugega/:kategorija', async (req, res) => {
     const ocena = req.session.categoryId;
     if (ocena) {
         const data = await getOcena(ocena);
-        res.render('PregledOcenitve', { entity: data });
+        res.render('PregledOcenitveDrugega', { entity: data });
     } else {
         // Handle missing data
         console.error('Error fetching data:', error);
