@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #f8f9fa;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  background-image: url("/Database/images/background_main.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.info-box {
+  background-color: #aadbad;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+}
+
+.form-group {
+  width: 100%;
+  max-width: 400px;
+}
+
+input.form-control {
+  width: 100%;
+  max-width: 100%;
+}
+
+button.btn {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #4caf50, #81c784);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  min-width: 80px;
+}
+
+button.btn:hover {
+  background: linear-gradient(to right, #388e3c, #66bb6a) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+#bee_container {
+    position: fixed;
+    top: 50%;
+    left: -10%;
+    transform: translateY(-50%);
+    z-index: 9999; 
+}
+
+#bee_animation_container {
+    width: 150px; 
+    height: 150px; 
+}

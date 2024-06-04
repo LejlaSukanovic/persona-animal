@@ -5,24 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dodaj Uporabnika</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
-  <link rel="stylesheet" href="/zgodovinaUjemanja.css">
+  <link rel="stylesheet" href="/novUporabnik.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
 </head>
 <body>
-  <div class="container mt-5">
-    <h1 class="text-center mb-5">Dodaj Uporabnika</h1>
-    <form action="/ujemanje/dodajUporabnika" method="post"> <!--Popraviti da ne bude /1 nego /idPrijavljenogUporabnika is session storage-->
-      <div class="form-group">
+  <div class="container mt-5 d-flex flex-column align-items-center">
+    <div class="info-box p-3 mb-4">
+      <p>Vnesite ime vašega prijatelja, s katerim se želite ujemati!</p>
+    </div>
+    <form action="/ujemanje/dodajUporabnika" method="post" class="w-100 d-flex flex-column align-items-center">
+      <div class="form-group w-50">
         <label for="name">Ime:</label>
         <input type="text" class="form-control" id="name" name="name" required>
       </div>
       <input type="hidden" name="category" value="<%= category %>">
-      <button type="submit" class="btn btn-primary">Dodaj</button>
+      <button type="submit" class="btn btn-primary mt-3">Dodaj</button>
     </form>
+  </div>
+  <div id="bee_container">
+    <div id="bee_animation_container"></div>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/novUporabnik.js"></script>
 </body>
 </html>
