@@ -95,55 +95,62 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Register function
-    window.register = async function () {
-        const fields = [
-            { id: 'email' },
-            { id: 'password' },
-            { id: 'username' }
-        ];
+// Updated register function
+window.register = async function () {
+    const fields = [
+        { id: 'email' },
+        { id: 'password' },
+        { id: 'username' }
+    ];
 
-        if (!validateFields(fields, 'register')) {
-            return;
-        }
-
-        showLoading();
-        try {
-            const response = await Promise.all([
-                fetch('/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        email: document.getElementById('register-email').value,
-                        password: document.getElementById('register-password').value,
-                        username: document.getElementById('register-username').value
-                    })
-                }),
-                delay(2000)
-            ]);
-
-            const data = await response[0].json();
-            if (response[0].ok) {
-                showSuccessPopup('Uspešno ste se registrirali!');
-                await delay(2000);
-            } else {
-                throw new Error(data.error);
-            }
-        } catch (error) {
-            if (error.message.includes('Email is already in use in the database')) {
-                showErrorPopup('Email je že v uporabi. Prosimo, poskusite z drugim emailom!');
-                await delay(2000);
-                hideErrorPopup();
-            } else {
-                console.error('Error registering user:', error);
-                alert(error.message);
-            }
-        } finally {
-            hideLoading();
-            hideSuccessPopup();
-        }
+    if (!validateFields(fields, 'register')) {
+        return;
     }
+
+    showLoading();
+    try {
+        const response = await Promise.all([
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: document.getElementById('register-email').value,
+                    password: document.getElementById('register-password').value,
+                    username: document.getElementById('register-username').value
+                })
+            }),
+            delay(2000)
+        ]);
+
+        const data = await response[0].json();
+        if (response[0].ok) {
+            showSuccessPopup('Uspešno ste se registrirali!');
+            await delay(2000);
+            hideSuccessPopup();
+
+            // Switch to login form
+            showLoginLink.click();
+        } else {
+            throw new Error(data.error);
+        }
+    } catch (error) {
+        if (error.message.includes('Email is already in use in the database')) {
+            showErrorPopup('Email je že v uporabi. Prosimo, poskusite z drugim emailom!');
+            await delay(2000);
+            hideErrorPopup();
+        } else {
+            console.error('Error registering user:', error);
+            alert(error.message);
+        }
+    } finally {
+        hideLoading();
+    }
+}
+
+// The rest of the script remains unchanged
+
 
     // Login function
     window.login = async function () {
