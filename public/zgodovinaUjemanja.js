@@ -60,3 +60,27 @@ function saveAndSendData(entiteta1, entiteta2, ujemanje) {
         console.error('Error saving session data');
     });
 }
+
+$(document).ready(function() {
+    // Loop through each rating circle and set color based on rating value
+    $('.rating-circle').each(function() {
+        var ratingValue = parseInt($(this).text());
+        var colorClass = getColorClassForRating(ratingValue);
+        $(this).addClass(colorClass);
+    });
+});
+
+// Function to get color class based on rating value
+function getColorClassForRating(rating) {
+    if (rating === 5) {
+        return 'red';
+    } else if (rating === 4) {
+        return 'orange';
+    } else if (rating === 3) {
+        return 'yellow';
+    } else if (rating === 2) {
+        return 'light-green';
+    } else {
+        return 'green';
+    }
+}
