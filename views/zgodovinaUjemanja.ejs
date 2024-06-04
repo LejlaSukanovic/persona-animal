@@ -70,7 +70,7 @@
                         <%= uporabnik.ime %>
                       </h5>
                       <div class="rating-text">
-                        Ocena ujemanja: <span class="rating-circle"><%= uporabnik.ocena_ujemanja || '/' %></span>
+                        <span class="rating-circle"><%= uporabnik.ocena_ujemanja || '1' %></span>
                       </div>
                     </div>
                   </div>
@@ -112,7 +112,7 @@
           </button>
         </div>
         <div class="modal-body">
-          Ali ste prepričani da želite izbrisati rezultat samoocenitve?
+          Ali ste prepričani da želite izbrisati rezultat ocenitve?
           <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
           <dotlottie-player src="https://lottie.host/f16e66e9-700b-48e9-8ce5-b44a4fef96b0/LTisdNDO59.json" background="transparent" speed="1" style="width: 200px; height: 200px; padding: 0px; margin-left: 25%;" loop autoplay></dotlottie-player>
         </div>

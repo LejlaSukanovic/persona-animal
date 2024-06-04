@@ -309,16 +309,22 @@ footer .col:hover {
       border-bottom: 1px solid #66BB6A;
   }
 
+  .modal-dialog {
+    max-width: 400px; /* Adjust the maximum width */
+    margin: 1.75rem auto; /* Center the modal */
+}
+
   footer .col:last-child {
       border-bottom: none;
   }
 }
 
 .modal-content {
-  margin-top: 150px;
+  margin-top: 100px; /* Adjust the top margin */
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   z-index: 1050; /* Ensure this element is on top */
+  padding: 20px; /* Add padding for spacing */
 }
 
 .modal-header {
@@ -347,12 +353,29 @@ footer .col:hover {
   border-bottom-right-radius: 10px;
   display: flex;
   justify-content: space-between; /* Ensure buttons are spread out */
+  align-items: center;
 }
 
-.modal-footer .btn {
+button.btn {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #4CAF50, #81C784);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   min-width: 80px;
   font-size: 0.875rem;
   z-index: 1051; /* Ensure buttons are on top */
+}
+
+button.btn:hover {
+  background: linear-gradient(to right, #388E3C, #66BB6A) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-2px) !important;
 }
 
 .btn-secondary {
