@@ -4,10 +4,6 @@ const { doc, getDoc, collection, getDocs, query, updateDoc } = require("firebase
 const firestoreDB = getFirestoreDB();
 const calculateUjemanje = async (entiteta1, entiteta2, uporabnikID) => {
   try {
-      if (entiteta1 === entiteta2) {
-          return 1;
-      }
-      
       // Access the document in the 'ujemanja' sub-collection of 'entiteta1'
       const ujemanjeDocRef = doc(firestoreDB, 'entiteta', entiteta1, 'ujemanja', entiteta2);
       const ujemanjeDoc = await getDoc(ujemanjeDocRef);
