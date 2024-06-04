@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadingElement = document.getElementById('loading');
     const mainContent = document.getElementById('main-content');
 
-
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
 
@@ -50,59 +49,68 @@ document.addEventListener('DOMContentLoaded', function() {
             if (index === 0) {
                 currentEntities = [currentEntities[0], nextEntityIndex];
             } else {
-                currentEntities = [currentEntities[1], nextEntityIndex];
+                currentEntities = [nextEntityIndex, currentEntities[1]];
             }
 
             sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
-            animateEntities();
-            setTimeout(async () => {
-                updateEntitiesDisplay();
-                await updateProgress(chosenEntity);
-                saveChosenEntity(chosenEntity);
-            }, 500); // Delay to match the animation duration
+            await animateEntities(index);
+            updateEntitiesDisplay(index);
+            await updateProgress(chosenEntity);
+            saveChosenEntity(chosenEntity);
         } catch (error) {
             console.error('Error handling choice:', error);
         }
     }
 
-    function animateEntities() {
-        const entity1 = document.getElementById('entity1');
-        const entity2 = document.getElementById('entity2');
+    function animateEntities(selectedIndex) {
+        return new Promise(resolve => {
+            const entity1 = document.getElementById('entity1');
+            const entity2 = document.getElementById('entity2');
 
-        entity1.classList.add('fade-out');
-        entity2.classList.add('fade-out');
-
-        setTimeout(() => {
-            entity1.classList.remove('fade-out');
-            entity2.classList.remove('fade-out');
-            entity1.classList.add('fade-in');
-            entity2.classList.add('fade-in');
+            if (selectedIndex === 0) {
+                entity2.classList.add('fade-out');
+            } else {
+                entity1.classList.add('fade-out');
+            }
 
             setTimeout(() => {
-                entity1.classList.remove('fade-in');
-                entity2.classList.remove('fade-in');
+                if (selectedIndex === 0) {
+                    entity2.classList.remove('fade-out');
+                    entity2.classList.add('fade-in');
+                } else {
+                    entity1.classList.remove('fade-out');
+                    entity1.classList.add('fade-in');
+                }
+                resolve();
             }, 500);
-        }, 500);
+        });
     }
 
-    function updateEntitiesDisplay() {
+    function updateEntitiesDisplay(selectedIndex) {
         const entity1 = document.getElementById('entity1');
         const entity2 = document.getElementById('entity2');
 
-        entity1.querySelector('img').src = entities[currentEntities[0]].slika;
-        entity1.querySelector('p').innerText = entities[currentEntities[0]].naziv;
-        entity1.setAttribute('data-index', currentEntities[0]);
+        if (selectedIndex === 0) {
+            entity2.querySelector('img').src = entities[currentEntities[1]].slika;
+            entity2.querySelector('p').innerText = entities[currentEntities[1]].naziv;
+            entity2.setAttribute('data-index', currentEntities[1]);
+        } else {
+            entity1.querySelector('img').src = entities[currentEntities[0]].slika;
+            entity1.querySelector('p').innerText = entities[currentEntities[0]].naziv;
+            entity1.setAttribute('data-index', currentEntities[0]);
+        }
 
-        entity2.querySelector('img').src = entities[currentEntities[1]].slika;
-        entity2.querySelector('p').innerText = entities[currentEntities[1]].naziv;
-        entity2.setAttribute('data-index', currentEntities[1]);
+        setTimeout(() => {
+            entity1.classList.remove('fade-in');
+            entity2.classList.remove('fade-in');
+        }, 500);
     }
 
     async function updateProgress(chosenEntity) {
         currentChoice++;
         sessionStorage.setItem('currentChoice', currentChoice);
         updateProgressBar();
-    
+
         // Function to extract the user ID from the URL
         function extractUserId(url) {
             const segments = url.split('/');
@@ -113,12 +121,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error("User ID not found in the URL");
             }
         }
-    
+
         // Parse the current URL to get the `kategorija` parameter
         const url = new URL(window.location.href);
         const kategorija = url.pathname.split('/').pop(); // Assuming kategorija is the last segment in the URL
         console.log(kategorija);
-    
+
         // Extract the user ID from the current URL
         let userId;
         try {
@@ -127,12 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error extracting user ID: ', error);
             return; // Exit the function if the user ID is not found
         }
-    
+
         if (currentChoice >= totalChoices) {
             // Show loading component and hide main content
             mainContent.style.display = 'none';
             loadingElement.style.display = 'block';
-    
+
             try {
                 const entityId = chosenEntity.idEntiteta;
                 await fetch(`/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`, {
@@ -144,8 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    
-    
 
     function saveChosenEntity(entity) {
         sessionStorage.setItem('lastChosenEntity', JSON.stringify(entity));
@@ -158,6 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    updateEntitiesDisplay();
+    updateEntitiesDisplay(0);
     updateProgressBar();
 });
