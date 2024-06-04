@@ -86,3 +86,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.Logout = Logout;
 });
+
+
+function openOverlay() {
+    var overlay = document.getElementById('overlay');
+    var overlayContent = document.querySelector('.overlay-content');
+    overlay.style.display = 'flex';
+    setTimeout(function() {
+        overlayContent.classList.add('show');
+    }, 10); // slight delay to ensure display:flex is set
+}
+
+function closeOverlay() {
+    var overlay = document.getElementById('overlay');
+    var overlayContent = document.querySelector('.overlay-content');
+    overlayContent.classList.remove('show');
+    setTimeout(function() {
+        overlay.style.display = 'none';
+    }, 500); // match the duration of the slide-up transition
+}

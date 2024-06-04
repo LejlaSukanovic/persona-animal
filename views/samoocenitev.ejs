@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Persona Animal</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.8/lottie.min.js"></script>
     <link rel="stylesheet" href="/samoocenitev.css">
 </head>
 <body class="body-slide-in">
+
+    <div id="overlay" class="hidden">
+        <div class="overlay-content">
+            <div class="close-btn" onclick="closeOverlay()">
+                <i class="material-icons">close</i>
+            </div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+    </div>
+
     <header class="bg-transparent py-3">
         <div class="container text-center">
-            <img class="logo" src="/Database/images/PALogo.png" alt="PersonaAnimal Logo">
+            <img class="logo" src="/Database/images/persona-logo.png" alt="PersonaAnimal Logo">
         </div>
     </header>
 
@@ -24,11 +36,15 @@
                     </button>
                 </div>
             <% }); %>
+                
+            <div class="col-12 mb-3">
+            </div>
         </div>
     </div>
 
     <div class="button-container">
         <button class="btn btn-primary logout" onclick="Logout()">Logout</button>
+        <button class="btn btn-primary about" onclick="openOverlay()">About</button>
     </div>
 
     <footer>
