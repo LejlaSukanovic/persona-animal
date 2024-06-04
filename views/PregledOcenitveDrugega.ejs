@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Persona Animal</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
+  <link rel="stylesheet" href="/pregledOcenitve.css">
+</head>
+
+<body class="body-slide-in">
+
+  <div class="container text-center">
+    <!-- Responsive Wrapper for all content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="wrapper">
+          <div class="image-container">
+            <img src="<%= entity.slika %>" class="card-img-top img-fluid" alt="<%= entity.naziv %>">
+          </div>
+          <div class="info-container">
+            <div class="entity-name">
+              <%= entity.naziv %>
+            </div>
+            <div class="card-body">
+              <div class="attributes">
+                <p>
+                  <%= entity.opis %>
+                </p>
+              </div>
+              <div class="traits-container">
+                <div class="trait positive">
+                  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+                  <dotlottie-player src="https://lottie.host/39e03a1d-546e-4768-97b9-4ae3f040e9da/InECLwmIxs.json" background="transparent" speed="1" style="width: 70px; height: 70px; margin-left: 35%" loop autoplay></dotlottie-player>
+                  <div class="positive-traits">
+                    <ul>
+                      <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
+                        <li>
+                          <%= trait.trim() %>
+                        </li>
+                        <% }); %>
+                    </ul>
+                  </div>
+                </div>
+                <div class="trait negative">
+                  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    <dotlottie-player src="https://lottie.host/945b88be-f5d4-4401-ade9-3dbebd3a7761/4jJ46Vj5Ve.json" background="transparent" speed="1" style="width: 70px; height: 70px; margin-left: 35%;" loop autoplay></dotlottie-player>
+                  <div class="negative-traits">
+                    <ul>
+                      <% entity.negLastnosti.split(',').forEach(function(trait) { %>
+                        <li>
+                          <%= trait.trim() %>
+                        </li>
+                        <% }); %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="row">
+        <div class="col footer-col-1" onclick="navigateTo('/samoocenitev');">Samoocenitev</div>
+        <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/pregledOcenitve.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</body>
+
+</html>
