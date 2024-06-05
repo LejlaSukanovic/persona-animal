@@ -26,13 +26,15 @@
       <% }) %>
     </div>
     <br>
-    <div class="ujemanje-score">
-      Ujemanje: <div class="rating-circle"><%= ocenaUjemanja %></div>
-    </div>
-    <br>
-    <div class="opis">
-      <p><%= opis %></p>
-    </div>
+      <div class="ujemanje-score">
+        <div class="percentage-circle" data-percentage="<%= ocenaUjemanja %>"></div>
+      </div>
+      <br>
+      <div class="opis">
+        <p class="description-short"><%= opis %></p>
+        <button class="btn btn-link toggle-description">Read More</button>
+      </div>
+    
   </div>
   <footer>
     <div class="row">
@@ -56,6 +58,19 @@
     function redirectToCategory(category) {
       window.location.href = `pregledOcenitveDrugega/${category}`;
     }
+
+    $(document).ready(function() {
+    $('.percentage-circle').each(function() {
+      const percentage = parseInt($(this).data('percentage'));
+      const degrees = percentage * 3.6;
+      $(this).css('background-image', `conic-gradient(#4CAF50 ${degrees}deg, #e0e0e0 ${degrees}deg)`);
+    });
+  
+    $('.toggle-description').click(function() {
+      $(this).prev('.description-short').toggle();
+      $(this).text($(this).text() === 'Read More' ? 'Read Less' : 'Read More');
+    });
+  });
   </script>
 </body>
 </html>
