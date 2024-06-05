@@ -43,6 +43,7 @@ html, body {
     align-items: center;
     width: 100%;
     overflow-x: hidden; /* Hide any accidental horizontal overflow */
+    margin-top: 5%
 }
 
 .progress-bar-container {
@@ -75,23 +76,25 @@ p {
     gap: 20px; /* Space between cards */
 }
 
-.entity {
+.entity-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background: #fff;
+}
+
+.entity {
+    width: 150px;
+    height: 150px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .entity img {
-    width: 150px;
-    height:150px;
-    border-radius: 10px;
-    border: 2px solid #76c7c0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
     transition: opacity 0.3s, transform 0.3s;
 }
 
@@ -100,11 +103,11 @@ p {
     transform: scale(1.05);
 }
 
-.entity p {
-    margin-top: 10px;
-    font-size: 16px;
+.entity-name {
+    font-size: 20px;
     text-align: center;
-    color: #333;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .entity:hover {
@@ -112,19 +115,18 @@ p {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
-    .progress-bar-container {
-        width: 50%;
-    }
+.arrow-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15%;
+}
 
-    .entity img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .entity p {
-        font-size: 14px;
-    }
+.arrow {
+    width: 48px;
+    height: 48px;
+    transition: width 0.3s, height 0.3s;
 }
 
 @media (max-width: 576px) {
@@ -140,28 +142,44 @@ p {
         font-size: 16px;
     }
 
-    .entity img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .entity p {
-        font-size: 12px;
+    .entity-wrapper {
+        flex: 1;
+        margin: 0 5px;
     }
 
     .entity {
-        padding: 15px;
+        width: 120px; /* Adjust the width for mobile */
+        height: 120px; /* Adjust the height for mobile */
     }
-}
 
-@media (max-width: 400px) {
     .entity img {
-        width: 80px;
-        height: 80px;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
     }
 
-    .entity p {
-        font-size: 10px;
+    .entity-name {
+        font-size: 18px; /* Adjust font size for mobile */
+        text-align: center;
+    }
+
+    .arrow-wrapper {
+        margin-top: 15%; /* Reduce margin-top for mobile */
+    }
+
+    .arrow {
+        width: 36px; /* Adjust arrow size for mobile */
+        height: 36px;
+    }
+
+    .container {
+        align-items: center; /* Center everything */
+        margin-top: 20%
+    }
+
+    .entities-container {
+        flex-wrap: nowrap; /* Ensure entities remain in a row */
+        gap: 10px; /* Reduce the gap between entities */
     }
 }
 
@@ -195,49 +213,6 @@ p {
     }
 }
 
-/* Footer Styles */
-footer {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Gradient */
-    color: white;
-    padding: 20px 0; /* Increased padding */
-    text-align: center;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-}
-
-footer .col {
-    cursor: pointer;
-    padding: 15px 0; /* Increased padding */
-    border-right: 1px solid #66BB6A;
-    transition: all 0.3s ease; /* Added transition for hover effect */
-}
-
-footer .col:last-child {
-    border-right: none;
-}
-
-footer .col:hover {
-    background: #388E3C; /* Darker green on hover */
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
-
-@media (max-width: 767.98px) {
-    footer .col {
-        border-right: none;
-        border-bottom: 1px solid #66BB6A;
-    }
-
-    footer .col:last-child {
-        border-bottom: none;
-    }
-}
-
 .progress {
     position: relative;
     height: 20px;
@@ -252,6 +227,8 @@ footer .col:hover {
     background: linear-gradient(to right, #4CAF50, #81C784);
     width: 0;
     transition: width 0.5s ease;
+    border: 2px solid white;
+
 }
 
 #loading {

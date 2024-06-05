@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let seenEntities = new Set(JSON.parse(sessionStorage.getItem('seenEntities')) || []);
     let currentEntities = JSON.parse(sessionStorage.getItem('currentEntities')) || [];
     const loadingElement = document.getElementById('loading');
-    const mainContent = document.getElementById('main-content');
+    const mainContent = document.querySelector('.main-content');
 
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
+    const arrowLeft = document.getElementById('arrow-left');
+    const arrowRight = document.getElementById('arrow-right');
 
     function updateProgressBar() {
         const progressPercentage = (currentChoice / totalChoices) * 100;
@@ -48,8 +50,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (index === 0) {
                 currentEntities = [currentEntities[0], nextEntityIndex];
+                arrowLeft.style.width = '50px';
+                arrowLeft.style.height = '50px';
+                arrowRight.style.width = '38px';
+                arrowRight.style.height = '38px';
             } else {
                 currentEntities = [nextEntityIndex, currentEntities[1]];
+                arrowRight.style.width = '50px';
+                arrowRight.style.height = '50px';
+                arrowLeft.style.width = '38px';
+                arrowLeft.style.height = '38px';
             }
 
             sessionStorage.setItem('currentEntities', JSON.stringify(currentEntities));
@@ -89,14 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateEntitiesDisplay(selectedIndex) {
         const entity1 = document.getElementById('entity1');
         const entity2 = document.getElementById('entity2');
+        const entityName1 = document.querySelector('.entity-wrapper[data-index="0"] .entity-name');
+        const entityName2 = document.querySelector('.entity-wrapper[data-index="1"] .entity-name');
 
         if (selectedIndex === 0) {
             entity2.querySelector('img').src = entities[currentEntities[1]].slika;
-            entity2.querySelector('p').innerText = entities[currentEntities[1]].naziv;
+            entityName2.innerText = entities[currentEntities[1]].naziv;
             entity2.setAttribute('data-index', currentEntities[1]);
         } else {
             entity1.querySelector('img').src = entities[currentEntities[0]].slika;
-            entity1.querySelector('p').innerText = entities[currentEntities[0]].naziv;
+            entityName1.innerText = entities[currentEntities[0]].naziv;
             entity1.setAttribute('data-index', currentEntities[0]);
         }
 
@@ -125,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Parse the current URL to get the `kategorija` parameter
         const url = new URL(window.location.href);
         const kategorija = url.pathname.split('/').pop(); // Assuming kategorija is the last segment in the URL
-        console.log(kategorija);
 
         // Extract the user ID from the current URL
         let userId;
@@ -138,8 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (currentChoice >= totalChoices) {
             // Show loading component and hide main content
-            mainContent.style.display = 'none';
-            loadingElement.style.display = 'block';
+            if (mainContent) mainContent.style.display = 'none';
+            if (loadingElement) loadingElement.style.display = 'block';
 
             try {
                 const entityId = chosenEntity.idEntiteta;
@@ -159,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.entity').forEach(entity => {
         entity.addEventListener('click', function() {
-            const index = parseInt(this.getAttribute('data-index'), 10) === currentEntities[0] ? 0 : 1;
+            const index = parseInt(this.parentElement.getAttribute('data-index'), 10);
             handleChoice(index);
         });
     });
