@@ -105,16 +105,13 @@ const deleteOcena = async (idUporabnik, kategorija, isMatchingDeletion = false) 
         });
 
         if (!isMatchingDeletion) {
-            console.log("MATER")
             const usersQuery = query(collection(firestoreDB, "uporabnik"), where("ujemanjeZ", "==", idUporabnik));
             const usersSnapshot = await getDocs(usersQuery);
 
-            console.log("TI")
 
             for (const userDoc of usersSnapshot.docs) {
                 await deleteDoc(userDoc.ref);
             }
-            console.log("JEBEM");
         }
         //Treba dodati, u slucaju ako je matchingDeletion true tj. da user brise samo specificno ujemanje da ce se to izbrisati.Sada to radi medjutim samo na frontendu iz baze se ne brise. U principu moze i tako sve da radi ali bilo bi bolje da se izbrise iz baze istovremeno taj novo dodani user za ujemanje. 
     } catch (error) {
