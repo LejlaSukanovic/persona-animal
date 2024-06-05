@@ -26,9 +26,24 @@
       <% }) %>
     </div>
     <br>
-      <div class="ujemanje-score">
-        <div class="percentage-circle" data-percentage="<%= ocenaUjemanja %>"></div>
-      </div>
+    <!-- <div class="circle-wrap">
+      <div class="circle">
+          <div class="mask full" style="transform: rotate(0deg);">
+              <div class="fill" style="transform: rotate(0deg);"></div>
+          </div>
+          <div class="mask half">
+              <div class="fill" style="transform: rotate(0deg);"></div>
+          </div>
+          <div class="inside-circle"><%- ocenaUjemanja%> ></div> Dynamically update this value 
+      </div> -->
+
+      <div class="grade-scale">
+        <div class="grade-bar"></div>
+    </div>
+
+    
+  </div>
+  
       <br>
       <div class="opis">
         <p>
@@ -55,6 +70,32 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/zgodovinaUjemanja.js"></script>
   <script>
+
+function updateGrade(grade) {
+    let width;
+    switch (grade) {
+        case 1:
+            width = '100%'; // Full score
+            break;
+        case 2:
+            width = '80%'; // Almost full score
+            break;
+        case 3:
+            width = '50%'; // Half score
+            break;
+        case 4:
+            width = '25%'; // Little score
+            break;
+        case 5:
+            width = '10%'; // Very low score
+            break;
+        default:
+            width = '0%'; // No score or invalid input
+            break;
+    }
+    $('.grade-bar').css('width', width);
+}
+
     $(document).ready(function() {
       $('.container').addClass('visible');
     });
@@ -68,6 +109,8 @@
     }
 
     $(document).ready(function() {
+
+      updateGrade(<%- ocenaUjemanja %>); // Adjust this value based on actual data
     $('.percentage-circle').each(function() {
       const percentage = parseInt($(this).data('percentage'));
       const degrees = percentage * 3.6;
