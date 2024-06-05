@@ -91,17 +91,25 @@ document.addEventListener("DOMContentLoaded", function () {
 function openOverlay() {
     var overlay = document.getElementById('overlay');
     var overlayContent = document.querySelector('.overlay-content');
-    overlay.style.display = 'flex';
-    setTimeout(function() {
-        overlayContent.classList.add('show');
-    }, 10); // slight delay to ensure display:flex is set
+    overlay.style.display = 'flex'; // Set display to flex to make it visible and to take layout space
+    overlay.style.opacity = '1'; // Ensure it's visible
+    overlay.style.visibility = 'visible'; // Make sure it's not hidden
+
+    // Use setTimeout to ensure the display change has taken effect before sliding in
+    setTimeout(() => {
+        overlayContent.style.transform = 'translateY(0)'; // Slide content into view
+    }, 10);
 }
 
 function closeOverlay() {
     var overlay = document.getElementById('overlay');
     var overlayContent = document.querySelector('.overlay-content');
-    overlayContent.classList.remove('show');
-    setTimeout(function() {
-        overlay.style.display = 'none';
-    }, 500); // match the duration of the slide-up transition
+    overlayContent.style.transform = 'translateY(100%)'; // Slide content out of view
+
+    setTimeout(() => {
+        overlay.style.opacity = '0'; // Start fading out
+        overlay.style.visibility = 'hidden'; // Fully hide overlay after transition
+        overlay.style.display = 'none'; // Finally set display to none
+    }, 500); // Ensure timeout matches transition duration
 }
+
