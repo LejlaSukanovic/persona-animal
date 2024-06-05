@@ -31,6 +31,18 @@ body, html {
     }
 }
 
+.mobile-space {
+    display: none;
+}
+
+/* Show the space div on small screens */
+@media (max-width: 576px) {
+    .mobile-space {
+        display: block;
+        height: 2rem; /* Adjust the height as needed */
+    }
+}
+
 header {
     padding: 10px 20px;
     text-align: center;

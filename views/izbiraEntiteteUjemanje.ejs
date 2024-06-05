@@ -11,20 +11,32 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body class="slide-in">
-
-    <div id="main-content" class="main-content">
+<body>
+    
+    <div class="main-content">
         <div class="container">
-            <p>Izberite fotografijo</p>
+            <br>
+            <h2 style="color: white;">Izberite fotografijo</h2>
+            <br>
 
             <div class="entities-container">
-                <div id="entity1" class="entity" data-index="0">
-                    <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
-                    <p><%= entities[0].naziv %></p>
+                <div class="entity-wrapper" data-index="0">
+                    <p class="entity-name"><%= entities[0].naziv %></p>
+                    <div id="entity1" class="entity">
+                        <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
+                    </div>
                 </div>
-                <div id="entity2" class="entity" data-index="1">
-                    <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
-                    <p><%= entities[1].naziv %></p>
+                
+                <div class="arrow-wrapper">
+                    <img id="arrow-left" class="arrow" src="/Animation/ArrowLeft.svg" alt="Arrow Left">
+                    <img id="arrow-right" class="arrow" src="/Animation/ArrowRight.svg" alt="Arrow Right">
+                </div>
+
+                <div class="entity-wrapper" data-index="1">
+                    <p class="entity-name"><%= entities[1].naziv %></p>
+                    <div id="entity2" class="entity">
+                        <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
+                    </div>
                 </div>
             </div>
 
@@ -44,18 +56,6 @@
         </div>
     </div>
 
-    <div class="cow-animation">
-        <iframe src="https://lottie.host/embed/cef62d05-efdc-456f-95e1-88fc1a3a7a2b/O639VXexET.json" frameborder="0" width="150" height="150" style="pointer-events: none;"></iframe>
-    </div>
-
-    <footer>
-        <div class="row">
-            <div class="col footer-col-1" onclick="navigateTo('/samoocenitev');">Samoocenitev</div>
-            <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
-        </div>
-    </footer>
-
-    <!-- loading element -->
     <div id="loading" style="display: none;">
         <iframe src="https://lottie.host/embed/11f10d92-38bc-4d8c-9d37-6a67895c93d6/Ydbur6aJNy.json" style="border: none; width: 200px; height: 200px;"></iframe>
     </div>

@@ -18,22 +18,50 @@
             <div class="close-btn" onclick="closeOverlay()">
                 <i class="material-icons">close</i>
             </div>
-            <p style="color: #333;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <br>
+            <h3>Navodila za uporabo</h3><br><br>
+            <h4>1. Izbira med pari živali</h4>
+            <p style="color: black">Prikazali se vam bodo pari entitet.
+                V vsakem koraku izberite tisto entiteto, s katero se najbolj poistovetite, s preprostim pritiskom na
+                sliko.</p><br>
+            <h4>2. Prekinitev samoocenitve</h4>
+            <p style="color: black;">V kolikor želite prekiniti samoocenitev, to lahko storite kadarkoli pritiskom na
+                gumb cancel.
+                Vračanje nazaj ni dovoljeno.</p><br>
+            <h4>3. Spremljanje napredka</h4>
+            <p style="color: black;">Med samoocenjevanjem boste lahko spremljali svoj napredek.
+                Prikazalo se bo, koliko izbir vas še čaka do zaključka.</p><br>
+            <h4>4. Pregled samoocenitve:</h4>
+            <p style="color: black;">Ko zaključite z izbiranjem, bo aplikacija samodejno prikazala "Pregled
+                samoocenitve".
+                V tem pregledu boste videli analizo in vaše pozitivne ter negativne plati.</p><br>
         </div>
     </div>
 
     <div class="main-content">
         <div class="container">
-            <p>Izberite fotografijo</p>
+            <br>
+            <h2 style="color: white;">Izberite fotografijo</h2>
+            <br>
 
             <div class="entities-container">
-                <div id="entity1" class="entity" data-index="0">
-                    <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
-                    <p><%= entities[0].naziv %></p>
+                <div class="entity-wrapper" data-index="0">
+                    <p class="entity-name"><%= entities[0].naziv %></p>
+                    <div id="entity1" class="entity">
+                        <img src="<%= entities[0].slika %>" alt="<%= entities[0].naziv %>">
+                    </div>
                 </div>
-                <div id="entity2" class="entity" data-index="1">
-                    <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
-                    <p><%= entities[1].naziv %></p>
+                
+                <div class="arrow-wrapper">
+                    <img id="arrow-left" class="arrow" src="/Animation/ArrowLeft.svg" alt="Arrow Left">
+                    <img id="arrow-right" class="arrow" src="/Animation/ArrowRight.svg" alt="Arrow Right">
+                </div>
+
+                <div class="entity-wrapper" data-index="1">
+                    <p class="entity-name"><%= entities[1].naziv %></p>
+                    <div id="entity2" class="entity">
+                        <img src="<%= entities[1].slika %>" alt="<%= entities[1].naziv %>">
+                    </div>
                 </div>
             </div>
 
@@ -42,28 +70,20 @@
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar"></div>
                 </div>
-                <p id="progress-text">0/<%= entities.length %></p>
+                <p id="progress-text">0/<%= entities.length %>
+                </p>
             </div>
 
             <br>
-            
-            <div class="text-center mt-4" onclick="navigateTo('/samoocenitev');" onkeypress="navigateTo('/samoocenitev');" tabindex="0" role="button" aria-label="Prekini samoocenitev" style="cursor: pointer;">
-                <iframe src="https://lottie.host/embed/4f833643-1739-4d14-b578-02804acceb82/W6pqNq2owd.json" frameborder="0" width="100" height="100" style="pointer-events: none;"></iframe>
+
+            <div class="text-center mt-4" onclick="navigateTo('/samoocenitev');"
+                onkeypress="navigateTo('/samoocenitev');" tabindex="0" role="button" aria-label="Prekini samoocenitev"
+                style="cursor: pointer;">
+                <iframe src="https://lottie.host/embed/4f833643-1739-4d14-b578-02804acceb82/W6pqNq2owd.json"
+                    frameborder="0" width="100" height="100" style="pointer-events: none;"></iframe>
             </div>
         </div>
     </div>
-
-    <!--
-    <div class="cow-animation">
-        <iframe src="https://lottie.host/embed/cef62d05-efdc-456f-95e1-88fc1a3a7a2b/O639VXexET.json" frameborder="0" width="150" height="150" style="pointer-events: none;"></iframe>
-    </div>
--->
-    <footer>
-        <div class="row">
-            <div class="col footer-col-1" onclick="navigateTo('/samoocenitev');">Samoocenitev</div>
-            <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
-        </div>
-    </footer>
 
     <script>
         const entities =  <%- JSON.stringify(entities) %>;

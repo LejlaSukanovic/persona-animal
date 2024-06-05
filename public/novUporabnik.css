@@ -16,6 +16,23 @@ body {
   overflow-x: hidden;
 }
 
+.slide-in {
+  position: relative;
+  animation: slideIn 1s forwards;
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .info-box {
   background-color: #aadbad;
   border-radius: 10px;
