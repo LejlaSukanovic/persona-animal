@@ -19,7 +19,7 @@ const entities = [
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
     slika: './images/konj.jpeg',
-    kategorija: 'Zivali',
+    kategorija: 'Živali',
   },
   {
     idEntiteta: 2,
@@ -28,7 +28,7 @@ const entities = [
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
     negLastnosti: 'Ljubosumnost, Vodljivost',
     slika: './images/pes.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 3,
@@ -37,7 +37,7 @@ const entities = [
     pozLastnosti: 'Dar za opazovanj, Resnost, Modrost, Previdnost, Čuječnost',
     negLastnosti: 'Zaspanost, Lenobnost',
     slika: './images/sova.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 4,
@@ -46,7 +46,7 @@ const entities = [
     pozLastnosti: 'Moč, Zaščitništvo, Razigranost, Dobrodušnost',
     negLastnosti: 'Grobost, Godrnjavost, Okrutnost',
     slika: './images/medved.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 5,
@@ -55,7 +55,7 @@ const entities = [
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
     slika: './images/lev.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 6,
@@ -64,7 +64,7 @@ const entities = [
     pozLastnosti: 'Zvitost, Bistrost, Prilagodljivost',
     negLastnosti: 'Preračunljivost, Kradljivost, Zahrbtnost',
     slika: './images/lisica.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 7,
@@ -73,7 +73,7 @@ const entities = [
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
     negLastnosti: 'Kradljivost, Prepirljivost, Požrešnost',
     slika: './images/opica.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 8,
@@ -82,7 +82,7 @@ const entities = [
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
     negLastnosti: 'Plašnost, Strahopetnost, Prestrašenost',
     slika: './images/zajec.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 9,
@@ -91,7 +91,7 @@ const entities = [
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
     negLastnosti: 'Zahrbtnost, Popadljivost, Kradljivost',
     slika: './images/macka.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 10,
@@ -100,7 +100,7 @@ const entities = [
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
     negLastnosti: 'Kradljivost, Požrešnost, Prepirljivost',
     slika: './images/galeb.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 11,
@@ -109,7 +109,7 @@ const entities = [
     pozLastnosti: 'Pridnost, Organiziranost, Altruizem',
     negLastnosti: 'Bojevitost, Trmoglavost, Napadalnost',
     slika: './images/mravlja.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 12,
@@ -118,7 +118,7 @@ const entities = [
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
     negLastnosti: 'Neusmiljenost, Krvoločnost, Plenjenje, Krutost',
     slika: './images/orel.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 13,
@@ -127,7 +127,7 @@ const entities = [
     pozLastnosti: 'Moč, Delavnost, Bistrost',
     negLastnosti: 'Nerodnost, Svojeglavost, Požrešnost, Razdiralnost',
     slika: './images/slon.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 14,
@@ -136,7 +136,7 @@ const entities = [
     pozLastnosti: 'Nedolžnost, Prisrčnost, Spretnost, Ljubkost',
     negLastnosti: 'Plahost, Nezaupljivost, Občutljivost',
     slika: './images/srna.jpg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 15,
@@ -145,7 +145,7 @@ const entities = [
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
     negLastnosti: 'Napadalnost, Nadležnost',
     slika: './images/cebela.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 16,
@@ -154,7 +154,7 @@ const entities = [
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/bik.jpeg',
-    kategorija: 'Zivali'
+    kategorija: 'Živali'
   },
   {
     idEntiteta: 20,
@@ -177,22 +177,22 @@ const entities = [
 ];
 
 let ujemanjaTable = {
-  Konj: { Pes: 3, Sova: 5, Medved: 4, Lev: 3, Lisica: 4, Opica: 2, Zajec: 3, Mačka: 3, Galeb: 3, Mravlja: 2, Orel: 4, Slon: 1, Srna: 3, Čebela: 2, Bik: 4 },
-  Pes: { Konj: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 5, Opica: 1, Zajec: 4, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 2, Srna: 4, Čebela: 2, Bik: 5 },
-  Sova: { Konj: 5, Pes: 5, Medved: 2, Lev: 3, Lisica: 2, Opica: 5, Zajec: 4, Mačka: 2, Galeb: 4, Mravlja: 5, Orel: 2, Slon: 5, Srna: 4, Čebela: 5, Bik: 3 },
-  Medved: { Konj: 4, Pes: 5, Sova: 2, Lev: 1, Lisica: 1, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 1 },
-  Lev: { Konj: 3, Pes: 4, Sova: 3, Medved: 1, Lisica: 2, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 3 },
-  Lisica: { Konj: 4, Pes: 5, Sova: 2, Medved: 1, Lev: 2, Opica: 4, Zajec: 2, Mačka: 3, Galeb: 3, Mravlja: 5, Orel: 1, Slon: 4, Srna: 3, Čebela: 5, Bik: 1 },
-  Opica: { Konj: 2, Pes: 1, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 4, Slon: 1, Srna: 3, Čebela: 3, Bik: 5 },
-  Zajec: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 2, Opica: 4, Mačka: 2, Galeb: 1, Mravlja: 5, Orel: 3, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
-  Mačka: { Konj: 3, Pes: 4, Sova: 2, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 2, Galeb: 2, Mravlja: 5, Orel: 4, Slon: 2, Srna: 2, Čebela: 5, Bik: 3 },
-  Galeb: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 4, Zajec: 1, Mačka: 2, Mravlja: 5, Orel: 4, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
-  Mravlja: { Konj: 2, Pes: 3, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Orel: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
-  Orel: { Konj: 4, Pes: 5, Sova: 2, Medved: 2, Lev: 2, Lisica: 1, Opica: 4, Zajec: 3, Mačka: 4, Galeb: 4, Mravlja: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
-  Slon: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 3, Mravlja: 3, Orel: 4, Srna: 2, Čebela: 3, Bik: 4 },
-  Srna: { Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 1, Mravlja: 4, Orel: 4, Slon: 2, Čebela: 2, Bik: 2 },
-  Čebela: { Konj: 2, Pes: 2, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 1, Orel: 5, Slon: 3, Srna: 4, Bik: 5 },
-  Bik: { Konj: 4, Pes: 5, Sova: 3, Medved: 1, Lev: 3, Lisica: 1, Opica: 5, Zajec: 2, Mačka: 3, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 4, Srna: 2, Čebela: 5 }
+  Konj: { Konj: 1, Pes: 3, Sova: 5, Medved: 4, Lev: 3, Lisica: 4, Opica: 2, Zajec: 3, Mačka: 3, Galeb: 3, Mravlja: 2, Orel: 4, Slon: 1, Srna: 3, Čebela: 2, Bik: 4 },
+  Pes: { Pes: 1, Konj: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 5, Opica: 1, Zajec: 4, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 2, Srna: 4, Čebela: 2, Bik: 5 },
+  Sova: { Sova: 1, Konj: 5, Pes: 5, Medved: 2, Lev: 3, Lisica: 2, Opica: 5, Zajec: 4, Mačka: 2, Galeb: 4, Mravlja: 5, Orel: 2, Slon: 5, Srna: 4, Čebela: 5, Bik: 3 },
+  Medved: { Medved: 1, Konj: 4, Pes: 5, Sova: 2, Lev: 1, Lisica: 1, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 1 },
+  Lev: { Lev: 1, Konj: 3, Pes: 4, Sova: 3, Medved: 1, Lisica: 2, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 3 },
+  Lisica: { Lisica: 1, Konj: 4, Pes: 5, Sova: 2, Medved: 1, Lev: 2, Opica: 4, Zajec: 2, Mačka: 3, Galeb: 3, Mravlja: 5, Orel: 1, Slon: 4, Srna: 3, Čebela: 5, Bik: 1 },
+  Opica: { Opica: 1, Konj: 2, Pes: 1, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 4, Slon: 1, Srna: 3, Čebela: 3, Bik: 5 },
+  Zajec: { Zajec: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 2, Opica: 4, Mačka: 2, Galeb: 1, Mravlja: 5, Orel: 3, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
+  Mačka: { Mačka: 1, Konj: 3, Pes: 4, Sova: 2, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 2, Galeb: 2, Mravlja: 5, Orel: 4, Slon: 2, Srna: 2, Čebela: 5, Bik: 3 },
+  Galeb: { Galeb: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 4, Zajec: 1, Mačka: 2, Mravlja: 5, Orel: 4, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
+  Mravlja: { Mravlja: 1, Konj: 2, Pes: 3, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Orel: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
+  Orel: { Orel: 1, Konj: 4, Pes: 5, Sova: 2, Medved: 2, Lev: 2, Lisica: 1, Opica: 4, Zajec: 3, Mačka: 4, Galeb: 4, Mravlja: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
+  Slon: { Slon: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 3, Mravlja: 3, Orel: 4, Srna: 2, Čebela: 3, Bik: 4 },
+  Srna: { Srna: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 1, Mravlja: 4, Orel: 4, Slon: 2, Čebela: 2, Bik: 2 },
+  Čebela: { Čebela: 1, Konj: 2, Pes: 2, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 1, Orel: 5, Slon: 3, Srna: 4, Bik: 5 },
+  Bik: { Bik: 1, Konj: 4, Pes: 5, Sova: 3, Medved: 1, Lev: 3, Lisica: 1, Opica: 5, Zajec: 2, Mačka: 3, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 4, Srna: 2, Čebela: 5 }
 };
 
 // Ensure all mutual matches are correctly filled

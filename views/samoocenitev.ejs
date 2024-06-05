@@ -17,7 +17,13 @@
             <div class="close-btn" onclick="closeOverlay()">
                 <i class="material-icons">close</i>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <h3>Persona </h3><br>
+            <h5>Različica 2.0</h5><br>
+            <p>S pomočjo asociacij se ocenite in preverite vašo združljivost z bližnjimi.
+                
+                Samoocenjevanje poteka zelo preprosto: med ponujenimi pari entitet v vsakem koraku izberite tisto, s katero se najbolj poistovetite. Izbiro izvedete s preprostim pritiskom na sliko. Na koncu vas bo aplikacija na podlagi podanih asociacij ocenila in vam naštevala vaše pozitivne in negativne plati.
+                
+                Ocenitev druge osebe poteka podobno kot samoocenitev, le da tokrat izbirate entitete, ki najbolj opisujejo drugo osebo. Na koncu vam bo aplikacija predstavila analizo in združljivost med vami in osebo, ki ste jo ocenjevali.</p>
         </div>
     </div>
 
@@ -26,9 +32,10 @@
             <img class="logo" src="/Database/images/persona-logo.png" alt="PersonaAnimal Logo">
         </div>
     </header>
-
+    <div class="mobile-space"></div>
     <div class="container mt-4">
         <div class="row justify-content-center">
+            <h5  class="col-12 mb-3" style="color: white; text-align: center;">Izberite kategorijo za katero želite narediti samoocenitev:</h5>
             <% categories.forEach(function(category) { %>
                 <div class="col-12 mb-3">
                     <button class="btn btn-primary w-100" onclick="clearStorageAndNavigate('<%= category %>')">
