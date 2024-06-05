@@ -217,6 +217,11 @@ footer .col:hover {
     color: #007bff;
     padding: 0;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Make the button take full width */
+    padding: 10px 0; /* Provide some padding around the button */
   }
   
   @media (max-width: 767px) {
@@ -224,4 +229,30 @@ footer .col:hover {
       padding: 15px;
     }
   }
+  
+  .hidden-text {
+    display: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .visible-text + .hidden-text {
+    padding-left: 5px; /* Optional spacing between visible and hidden text */
+  }
+
+
+.btn-icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline-flex; /* Align the icon nicely in the center */
+    justify-content: center;
+    align-items: center;
+    width: 48px; /* Size of the button */
+    height: 48px; /* Size of the button */
+    border-radius: 50%; /* Circle shape */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Subtle shadow for depth */
+    color: #4CAF50;
+  } 
+
+  
   

@@ -31,9 +31,17 @@
       </div>
       <br>
       <div class="opis">
-        <p class="description-short"><%= opis %></p>
-        <button class="btn btn-link toggle-description">Read More</button>
+        <p>
+          <span class="visible-text">Short intro visible text. </span>
+          <span class="hidden-text" style="display: none;">Extended description goes here...</span>
+        </p>
+        <button class="btn btn-icon toggle-description">
+          <i class="material-icons">expand_more</i> <!-- Icon for the button -->
+        </button>
       </div>
+      
+      
+
     
   </div>
   <footer>
@@ -65,12 +73,31 @@
       const degrees = percentage * 3.6;
       $(this).css('background-image', `conic-gradient(#4CAF50 ${degrees}deg, #e0e0e0 ${degrees}deg)`);
     });
-  
-    $('.toggle-description').click(function() {
-      $(this).prev('.description-short').toggle();
-      $(this).text($(this).text() === 'Read More' ? 'Read Less' : 'Read More');
+
+      $('.toggle-description').click(function() {
+      var $button = $(this);
+      var $desc = $button.prev('p').find('.hidden-text');
+
+      // Toggle visibility of hidden-text and use callback to update icon after animation
+      $desc.slideToggle(300, function() {
+        // Update icon based on the new visibility state
+        var icon = $desc.is(':visible') ? 'expand_less' : 'expand_more';
+        $button.find('i').text(icon);
+      });
     });
   });
+
+  $(document).ready(function() {
+  // Assuming `description` is the full text string from the backend
+  let fullText = "<%= opis %>";
+  let splitIndex = fullText.indexOf('.', 200); // Finds the period after 80 characters
+  if (splitIndex == -1) splitIndex = Math.min(100, fullText.length); // Fallback to 100 characters
+  let visibleText = fullText.substring(0, splitIndex + 1);
+  let hiddenText = fullText.substring(splitIndex + 1);
+
+  $('.visible-text').text(visibleText);
+  $('.hidden-text').text(hiddenText).hide();
+});
   </script>
 </body>
 </html>
