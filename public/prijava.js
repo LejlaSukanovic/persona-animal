@@ -189,31 +189,21 @@ window.register = async function () {
                 throw new Error(data.error);
             }
         } catch (error) {
-            console.error('Error logging in user:', error);
-            alert(error.message);
+            if (error.message.includes('auth/invalid-credential')) {
+                showErrorPopup('Napačno geslo. Prosimo, poskusite znova!');
+                await delay(2000);
+                hideErrorPopup();
+            } else if (error.message.includes('auth/invalid-email')){
+                showErrorPopup('Napačno napisan Email. Prosimo, poskusite znova!');
+                await delay(2000);
+                hideErrorPopup();
+            }
         } finally {
             hideLoading();
             hideSuccessPopup();
         }
     }
-
-    // Toggle between login and register forms
-   /* showRegisterLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        loginForm.style.transform = 'translateX(-100%)';
-        registerForm.style.transform = 'translateX(0)';
-        showLoginLink.style.display = 'inline';
-        showRegisterLink.style.display = 'none';
-    });
-
-    showLoginLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        loginForm.style.transform = 'translateX(0)';
-        registerForm.style.transform = 'translateX(100%)';
-        showLoginLink.style.display = 'none';
-        showRegisterLink.style.display = 'inline';
-    });*/
-    // Toggle between login and register forms
+    
     showRegisterLink.addEventListener('click', function(event) {
         event.preventDefault();
         loginForm.style.display = 'none';
