@@ -205,18 +205,31 @@ window.register = async function () {
     }
     
     showRegisterLink.addEventListener('click', function(event) {
-        event.preventDefault();
+    event.preventDefault();
+    // Slide out the login form and slide in the registration form
+    loginForm.classList.add('form-slide-out');
+    setTimeout(() => {
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
-        showLoginLink.style.display = 'inline';
-        showRegisterLink.style.display = 'none';
-    });
+        registerForm.classList.remove('form-slide-out');
+        registerForm.classList.add('form-slide-in');
+    }, 500); // Match the duration of the slide-out animation
+    showLoginLink.style.display = 'inline';
+    showRegisterLink.style.display = 'none';
+});
 
-    showLoginLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        loginForm.style.display = 'block';
+showLoginLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    // Slide out the registration form and slide in the login form
+    registerForm.classList.add('form-slide-out');
+    setTimeout(() => {
         registerForm.style.display = 'none';
-        showLoginLink.style.display = 'none';
-        showRegisterLink.style.display = 'inline';
-    });
+        loginForm.style.display = 'block';
+        loginForm.classList.remove('form-slide-out');
+        loginForm.classList.add('form-slide-in');
+    }, 500); // Match the duration of the slide-out animation
+    showLoginLink.style.display = 'none';
+    showRegisterLink.style.display = 'inline';
+});
+
 });
