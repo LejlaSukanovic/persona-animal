@@ -3,8 +3,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    min-height: 100vh;
+    height: 100%;
     background-color: #f8f9fa;
     color: white;
     font-family: 'Roboto', sans-serif;
@@ -14,6 +13,13 @@ html, body {
     background-repeat: no-repeat;
     width: 100%;
     overflow-x: hidden;
+    overflow-y: auto; /* Ensure the page is scrollable */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -22,6 +28,7 @@ html, body {
     align-items: center;
     padding: 20px;
     text-align: center;
+    flex: 1; /* Allow the container to grow and take up available space */
 }
 
 .title {
@@ -85,7 +92,7 @@ html, body {
 .ujemanje-score {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px; /* Reduced margin to bring it closer to the description */
 }
 
 .rating-circle {
@@ -100,16 +107,18 @@ html, body {
     margin-left: 10px;
 }
 
-.opis, .description {
+.opis {
     background-color: #ffffff;
     border-radius: 10px;
     color: black;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 600px;
+    margin: 10px auto;  /* Adjusted margin to bring it closer to the bar */
+    width: 80%;  /* You can adjust this percentage to make it narrower or wider */
+    max-width: 600px;  /* Ensures that it doesn't get too wide on larger screens */
     text-align: justify;
+    margin-bottom: 25%;
+    margin-top: 0;
 }
 
 footer {
@@ -122,8 +131,9 @@ footer {
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    bottom: 0;
+    position: fixed; /* Fixes the footer at the bottom of the screen */
+    bottom: 0; /* Aligns the footer to the bottom */
+    left: 0; /* Ensures the footer spans the entire width of the screen */
 }
 
 footer .col {
@@ -172,21 +182,19 @@ footer .col:hover {
     transform: translateY(-100%);
     transition: opacity 1s ease-out, transform 1s ease-out;
 }
+
 .container.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-  
-
-  
-  .description-short {
+.description-short {
     display: none;
     text-align: justify;
     margin-top: 10px;
-  }
-  
-  .toggle-description {
+}
+
+.toggle-description {
     border: none;
     background: none;
     color: #007bff;
@@ -196,24 +204,32 @@ footer .col:hover {
     justify-content: center;
     align-items: center;
     width: 100%; /* Make the button take full width */
-    padding: 10px 0; /* Provide some padding around the button */
-  }
-  
-  @media (max-width: 767px) {
+    padding-top: 5px;  /* Adjusted padding for better alignment */
+    padding-bottom: 0;  /* Adjusted padding for better alignment */
+}
+
+@media (max-width: 767px) {
     .combined-score-description {
-      padding: 15px;
+        padding: 15px;
     }
-  }
-  
-  .hidden-text {
+    .opis {
+        width: 95%;  /* Allows more width on smaller screens */
+        padding: 10px;  /* Reduces padding for smaller screens */
+    }
+    .container {
+        padding-left: 10px;  /* Reduces padding for smaller screens */
+        padding-right: 10px;  /* Reduces padding for smaller screens */
+    }
+}
+
+.hidden-text {
     display: none;
     transition: opacity 0.3s ease;
-  }
-  
-  .visible-text + .hidden-text {
-    padding-left: 5px; /* Optional spacing between visible and hidden text */
-  }
+}
 
+.visible-text + .hidden-text {
+    padding-left: 5px; /* Optional spacing between visible and hidden text */
+}
 
 .btn-icon {
     border: none;
@@ -227,22 +243,20 @@ footer .col:hover {
     border-radius: 50%; /* Circle shape */
     box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Subtle shadow for depth */
     color: #4CAF50;
-  } 
+} 
 
-  .grade-scale {
+.grade-scale {
     width: 100%;
     height: 30px;
-    background-color: #ddd; /* Light grey background */
-    border-radius: 15px; /* Rounded corners */
-    overflow: hidden; /* Ensures nothing spills outside the border */
+    background-color: #ddd; /* Light grey for the inactive part of the bar */
+    border-radius: 15px; /* Rounded corners for aesthetic */
+    border: 2px solid white; /* White border for visibility */
+    overflow: hidden; /* Ensures the fill does not spill outside the boundary */
 }
 
 .grade-bar {
     height: 100%;
-    background-color: #4CAF50; /* Green color for visibility */
-    width: 0%; /* Initial width, will be set by JavaScript */
-    transition: width 0.3s ease-in-out; /* Smooth transition for width change */
+    background-color: #4CAF50; /* Active color for the score */
+    width: 0%; /* Start with no fill */
+    transition: width 2s ease-in-out; /* Smooth transition for the fill */
 }
-
-
-
