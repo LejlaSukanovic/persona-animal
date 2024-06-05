@@ -76,6 +76,18 @@ html, body {
     cursor: pointer; /* Change cursor to pointer */
 }
 
+.title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #388E3C; 
+}
+
+.category-name {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #707270; 
+    color: #34403c;
+}
 .entity:hover .hover-text {
     display: block;
 }
