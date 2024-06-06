@@ -20,18 +20,18 @@ html, body {
     position: relative;
     animation: slideIn 1s forwards;
     opacity: 0;
-  }
+}
 
-  @keyframes slideIn {
+@keyframes slideIn {
     from {
-      transform: translateX(100%);
-      opacity: 0;
+        transform: translateX(100%);
+        opacity: 0;
     }
     to {
-      transform: translateX(0);
-      opacity: 1;
+        transform: translateX(0);
+        opacity: 1;
     }
-  }
+}
 
 .container {
     flex: 1;
@@ -55,6 +55,7 @@ html, body {
     transition: transform 0.3s ease, opacity 0.3s ease;
     z-index: 1; /* Set z-index to 1 */
 }
+
 .entity:hover img {
     transform: scale(1.05);
     opacity: 0.6;
@@ -88,6 +89,7 @@ html, body {
     text-shadow: 2px 2px 4px #707270; 
     color: #34403c;
 }
+
 .entity:hover .hover-text {
     display: block;
 }
@@ -213,40 +215,6 @@ footer .col:hover {
     border-top-right-radius: 30px;
 }
 
-@media (max-width: 767.98px) {
-    footer .col {
-        border-right: none;
-        border-bottom: 1px solid rgb(249, 195, 93);
-    }
-
-    footer .col:last-child {
-        border-bottom: none;
-    }
-
-    .modal-dialog {
-        max-width: 400px; /* Adjust the maximum width */
-        margin: 1.75rem auto; /* Center the modal */
-    }
-
-    .entity img {
-        transition: none; /* Disable hover effect on image */
-        width: 100%; /* Set a fixed width for mobile screens */
-        height: 100%; /* Set a fixed height for mobile screens */
-    }
-
-    .entity:hover .hover-text {
-        display: none; /* Disable hover text on mobile */
-    }
-    .row {
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-    .col-md-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
 .close-btn {
     position: absolute;
     right: 10px;
@@ -348,4 +316,100 @@ button.btn:hover {
 
 .rating-circle.green {
     background-color: rgb(17, 145, 17);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.overlay-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+    transform: translateY(100%); 
+    transition: transform 0.5s ease; 
+}
+
+.overlay-content.show {
+    transform: translateY(0); 
+}
+
+.close-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Styles for larger screens */
+.button-container {
+    position: absolute;
+    top: 3%;
+    right: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info-icon, .logout-icon {
+    font-size: 35px;
+    cursor: pointer;
+    color: white;
+    margin-left: 10px;
+}
+
+@media (max-width: 767.98px) {
+    footer .col {
+        border-right: none;
+        border-bottom: 1px solid rgb(249, 195, 93);
+    }
+
+    footer .col:last-child {
+        border-bottom: none;
+    }
+
+    .modal-dialog {
+        max-width: 400px; /* Adjust the maximum width */
+        margin: 1.75rem auto; /* Center the modal */
+    }
+
+    .button-container {
+        position: absolute;
+        top: 10%;
+        right: 45%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .entity img {
+        transition: none; /* Disable hover effect on image */
+        width: 100%; /* Set a fixed width for mobile screens */
+        height: 100%; /* Set a fixed height for mobile screens */
+    }
+
+    .entity:hover .hover-text {
+        display: none; /* Disable hover text on mobile */
+    }
+    
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    
+    .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }

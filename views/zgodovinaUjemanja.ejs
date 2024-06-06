@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
 </head>
 <body>
+  <div id="overlay" class="hidden">
+    <div class="overlay-content">
+        <div class="close-btn" onclick="closeOverlay()">
+            <i class="material-icons">close</i>
+        </div>
+        <h3>Obvestilo</h3><br>
+        <p>Vaša ocena ujemanja lahko znaša od 1 do 5, pri čemer 5 pomeni najslabše ujemanje vas sa vašim prijateljem, medtem ko 1 pomeni najboljše ujemanje.</p>
+    </div>
+</div>
+
   <div class="slide-in">
   <div class="container mt-5 content">
     <h2 class="title text-center mb-5" style="color: white;">ZGODOVINA UJEMANJA</h2>
@@ -90,8 +100,11 @@
         <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
     </div>
   </footer>
-
+  <div class="button-container">
+    <i class="material-icons info-icon" onclick="openOverlay()">info</i>
+  </div>
 </div>
+
 
   <!-- Alert -->
   <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
