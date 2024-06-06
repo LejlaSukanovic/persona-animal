@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Entiteto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body {
+            background-color: #FFA500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dodaj Entiteto</h2>
+        <form action="/admin/add-entity" method="POST">
+            <div class="input-field">
+                <input id="naziv" type="text" name="naziv" required>
+                <label for="naziv">Naziv</label>
+            </div>
+            <div class="input-field">
+                <select id="existingCategory" name="existingCategory">
+                    <option value="" disabled selected>Izberite Kategorijo</option>
+                    <% categories.forEach(function(category) { %>
+                        <option value="<%= category %>"><%= category %></option>
+                    <% }); %>
+                </select>
+                <label for="existingCategory">Obstoječa Kategorija</label>
+            </div>
+            <div class="input-field">
+                <input id="newCategory" type="text" name="newCategory">
+                <label for="newCategory">Nova Kategorija (če ni na seznamu)</label>
+            </div>
+            <div class="input-field">
+                <input id="opis" type="text" name="opis" required>
+                <label for="opis">Opis</label>
+            </div>
+            <div class="input-field">
+                <input id="negLastnosti" type="text" name="negLastnosti" required>
+                <label for="negLastnosti">Negativne Značilnosti</label>
+            </div>
+            <div class="input-field">
+                <input id="pozLastnosti" type="text" name="pozLastnosti" required>
+                <label for="pozLastnosti">Pozitivne Značilnosti</label>
+            </div>
+            <button type="submit" class="btn orange">Dodaj</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+    </script>
+</body>
+</html>

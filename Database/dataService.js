@@ -1,5 +1,5 @@
 const { getFirestoreDB } = require('./firebaseInit');
-const { doc, getDocs, query, where, updateDoc, collection, getDoc, deleteDoc } = require("firebase/firestore");
+const { doc, getDocs, query, where, updateDoc, collection, getDoc, setDoc, deleteDoc, orderBy, limit } = require("firebase/firestore");
 
 const firestoreDB = getFirestoreDB();
 
@@ -150,6 +150,73 @@ const saveResultSamoocenitve = async (idUporabnik, idEntiteta, kategorija) => {
     }
 };
 
+const getAllEntities = async () => {
+    try {
+        const collectionRef = collection(firestoreDB, "entiteta");
+        const querySnapshot = await getDocs(collectionRef);
+        const allEntities = [];
+        
+        querySnapshot.forEach(doc => {
+            allEntities.push({ id: doc.id, ...doc.data() });
+        });
+
+        return allEntities;
+    } catch (error) {
+        console.error('Error retrieving all entities:', error);
+        throw error;
+    }
+};
+
+
+const updateEntity = async (idEntiteta, data) => {
+    const collectionRef = collection(firestoreDB, "entiteta");
+    const q = query(collectionRef, where('idEntiteta', '==', idEntiteta));
+
+    try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+            console.log('No matching documents.');
+            return { success: false, message: 'No entity found with that idEntiteta' };
+        }
+        
+        const updatePromises = [];
+        querySnapshot.forEach((doc) => {
+            const docRef = doc.ref;
+            updatePromises.push(updateDoc(docRef, data)); // Collect all promises
+        });
+
+        await Promise.all(updatePromises); // Wait for all updates to complete
+        return { success: true, message: 'Entity updated successfully' };
+    } catch (error) {
+        console.error('Error updating entity:', error);
+        return { success: false, message: 'Failed to update entity' };
+    }
+};
+
+const addNewEntity = async (data) => {
+    const collectionRef = collection(firestoreDB, "entiteta");
+    let newIdEntiteta = 1; // Default if no entities exist
+
+    try {
+        const snapshot = await getDocs(query(collectionRef, orderBy("idEntiteta", "desc"), limit(1)));
+        if (!snapshot.empty) {
+            const lastEntity = snapshot.docs[0].data();
+            newIdEntiteta = lastEntity.idEntiteta + 1;
+        }
+
+        await setDoc(doc(firestoreDB, "entiteta", data.naziv), {
+            ...data,
+            idEntiteta: newIdEntiteta
+        });
+        return { success: true, message: 'Entity added successfully' };
+    } catch (error) {
+        console.error('Error adding new entity:', error);
+        return { success: false, message: 'Failed to add entity: ' + error.message }; // More detailed error
+    }
+};
+
+
+
 module.exports = {
     getTheData,
     getOcena,
@@ -157,7 +224,10 @@ module.exports = {
     getOcenaByUserIdAndCategory,
     deleteOcena,
     getAllCategories,
-    saveResultSamoocenitve
+    saveResultSamoocenitve,
+    getAllEntities,
+    updateEntity,
+    addNewEntity
 }
 
 

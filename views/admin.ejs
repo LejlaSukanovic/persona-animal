@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrativna Nadzorna Plošča</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        body { background-color: #FFA500; }
+        .container { background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        table.highlight > tbody > tr:hover { background-color: #ffe082; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .add-btn { background-color: #ffa726; } /* Lighter orange for the button */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Administrativna Nadzorna Plošča - Seznam Entitet</h2>
+            <button onclick="location.href='/admin/add-entity'" class="btn add-btn">Dodaj novo</button>
+        </div>
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ime</th>
+                    <th>Kategorija</th>
+                    <th>Opis</th>
+                    <th>Negativne Značilnosti</th>
+                    <th>Pozitivne Značilnosti</th>
+                    <th>Uredi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% entities.forEach(function(entity) { %>
+                    <tr>
+                        <td><%= entity.idEntiteta %></td>
+                        <td><%= entity.naziv %></td>
+                        <td><%= entity.kategorija %></td>
+                        <td><%= entity.opis %></td>
+                        <td><%= entity.negLastnosti %></td>
+                        <td><%= entity.pozLastnosti %></td>
+                        <td><button onclick="location.href='/admin/edit/<%= entity.idEntiteta %>'" class="btn orange">Uredi</button></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
