@@ -11,7 +11,7 @@
 <body>
   <div class="slide-in">
   <div class="container mt-5 content">
-    <h1 class="text-center mb-5" style="color: white;">Zgodovina ujemanja</h1>
+    <h2 class="title text-center mb-5" style="color: white;">ZGODOVINA UJEMANJA</h2>
 
     <% const categories = {}; %>
     <% kategorije.forEach(category => { %>
@@ -29,7 +29,7 @@
 
     <% Object.keys(categories).forEach(category => { %>
       <div class="category-section">
-        <h2 class="text-center"><%= category %></h2>
+        <h3 class="category-name text-center"><%= category %></h3>
         <% const categoryUsers = categories[category]; %>
         <% const hasValidUsers = categoryUsers.some(uporabnik => uporabnik[category] && uporabnik[category] !== '0'); %>
         <% const userHasCategory = userCategories.includes(category); %>

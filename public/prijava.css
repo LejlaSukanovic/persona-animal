@@ -233,4 +233,32 @@ body, html {
     color: #F44336;
 }
 
+/*.form-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px 30px; 
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; 
+    box-sizing: border-box;
+}*/
+
+/* CSS animations */
+@keyframes slideInFromLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutToRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+.form-slide-in {
+    animation: slideInFromLeft 0.5s forwards;
+}
+
+.form-slide-out {
+    animation: slideOutToRight 0.5s forwards;
+}
 

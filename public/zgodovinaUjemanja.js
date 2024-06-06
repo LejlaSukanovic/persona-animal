@@ -84,3 +84,7 @@ function getColorClassForRating(rating) {
         return 'green';
     }
 }
+
+
+
+  

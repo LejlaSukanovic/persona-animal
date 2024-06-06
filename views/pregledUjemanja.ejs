@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pregled Ujemanja</title>
+  <title>Pregled ujemanja</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/pregledUjemanja.css">
 </head>
 <body>
   <div class="container">
-    <h1 class="title">Pregled Ujemanja</h1>
+    <h2 class="title">KAKO SE UJEMATA?</h2>
     <br><br><br>
     <div class="entity-row">
       <% kategorije.forEach(category => { %>
@@ -26,13 +26,28 @@
       <% }) %>
     </div>
     <br>
-    <div class="ujemanje-score">
-      Ujemanje: <div class="rating-circle"><%= ocenaUjemanja %></div>
+
+      <div class="grade-scale">
+        <div class="grade-bar"></div>
     </div>
+
     <br>
-    <div class="opis">
-      <p><%= opis %></p>
-    </div>
+      <div class="opis">
+        <p>
+          <span class="visible-text">Short intro visible text. </span>
+          <span class="hidden-text" style="display: none;">Extended description goes here...</span>
+        </p>
+        <button class="btn btn-icon toggle-description">
+          <i class="material-icons">expand_more</i> <!-- Icon for the button -->
+        </button>
+      </div>
+  </div>
+  
+      
+      
+      
+
+    
   </div>
   <footer>
     <div class="row">
@@ -45,6 +60,32 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="/zgodovinaUjemanja.js"></script>
   <script>
+
+function updateGrade(grade) {
+    let width;
+    switch (grade) {
+        case 1:
+            width = '100%'; // Full score
+            break;
+        case 2:
+            width = '80%'; // Almost full score
+            break;
+        case 3:
+            width = '50%'; // Half score
+            break;
+        case 4:
+            width = '25%'; // Little score
+            break;
+        case 5:
+            width = '10%'; // Very low score
+            break;
+        default:
+            width = '0%'; // No score or invalid input
+            break;
+    }
+    $('.grade-bar').css('width', width);
+}
+
     $(document).ready(function() {
       $('.container').addClass('visible');
     });
@@ -56,6 +97,40 @@
     function redirectToCategory(category) {
       window.location.href = `pregledOcenitveDrugega/${category}`;
     }
+
+    $(document).ready(function() {
+
+      updateGrade(<%- ocenaUjemanja %>); // Adjust this value based on actual data
+    $('.percentage-circle').each(function() {
+      const percentage = parseInt($(this).data('percentage'));
+      const degrees = percentage * 3.6;
+      $(this).css('background-image', `conic-gradient(#4CAF50 ${degrees}deg, #e0e0e0 ${degrees}deg)`);
+    });
+
+      $('.toggle-description').click(function() {
+      var $button = $(this);
+      var $desc = $button.prev('p').find('.hidden-text');
+
+      // Toggle visibility of hidden-text and use callback to update icon after animation
+      $desc.slideToggle(300, function() {
+        // Update icon based on the new visibility state
+        var icon = $desc.is(':visible') ? 'expand_less' : 'expand_more';
+        $button.find('i').text(icon);
+      });
+    });
+  });
+
+  $(document).ready(function() {
+  // Assuming `description` is the full text string from the backend
+  let fullText = "<%= opis %>";
+  let splitIndex = fullText.indexOf('.', 200); // Finds the period after 80 characters
+  if (splitIndex == -1) splitIndex = Math.min(100, fullText.length); // Fallback to 100 characters
+  let visibleText = fullText.substring(0, splitIndex + 1);
+  let hiddenText = fullText.substring(splitIndex + 1);
+
+  $('.visible-text').text(visibleText);
+  $('.hidden-text').text(hiddenText).hide();
+});
   </script>
 </body>
 </html>
