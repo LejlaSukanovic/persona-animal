@@ -9,7 +9,7 @@ body, html {
     padding: 0;
     font-family: 'Roboto', sans-serif;
     height: 100%;
-    background-image: url('/Database/images/background_main.png'); 
+    background-image: url('/Database/images/pozadina.png'); 
     background-size: cover;  
     background-position: center; 
     background-repeat: no-repeat; 
@@ -83,7 +83,7 @@ body, html {
     flex: 1;
     margin: 10px 0; 
     padding: 15px;
-    background: linear-gradient(to right, #4CAF50, #81C784);
+    background: linear-gradient(to right, orange, rgb(249, 195, 93));
     border: none;
     border-radius: 30px;
     color: white;
@@ -95,7 +95,7 @@ body, html {
 }
 
 #button_container button:hover {
-    background: linear-gradient(to right, #388E3C, #66BB6A);
+    background: linear-gradient(to right, orange, rgb(249, 195, 93));
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -194,7 +194,7 @@ body, html {
 #success_message {
     margin-top: 20px;
     font-size: 18px;
-    color: #4CAF50;
+    color: orange;
 }
 
 .validation-message {

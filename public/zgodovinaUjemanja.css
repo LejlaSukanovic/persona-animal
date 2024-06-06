@@ -8,7 +8,7 @@ html, body {
     background-color: #f8f9fa;
     color: black;
     font-family: 'Roboto', sans-serif;
-    background-image: url('/Database/images/background_main.png'); /* Ensure the path is correct */
+    background-image: url('/Database/images/pozadina.png'); /* Ensure the path is correct */
     background-size: cover;  /* Cover the entire page */
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -80,7 +80,7 @@ html, body {
     margin-top: 20px;
     margin-bottom: 20px;
     font-weight: bold;
-    text-shadow: 2px 2px 4px #388E3C; 
+    text-shadow: 2px 2px 4px orange; 
 }
 
 .category-name {
@@ -184,7 +184,7 @@ html, body {
 footer {
     width: 100%;
     box-sizing: border-box;
-    background: linear-gradient(to right, #4CAF50, #81C784); /* Updated gradient */
+    background: linear-gradient(to right,orange, rgb(249, 195, 93)); /* Updated gradient */
     color: white;
     padding: 20px 0; /* Increased padding */
     text-align: center;
@@ -198,7 +198,7 @@ footer {
 footer .col {
     cursor: pointer;
     padding: 15px 0; /* Increased padding */
-    border-right: 1px solid #66BB6A;
+    border-right: 1px solid rgb(249, 195, 93);
     transition: all 0.3s ease; /* Added transition for hover effect */
 }
 
@@ -207,7 +207,7 @@ footer .col:last-child {
 }
 
 footer .col:hover {
-    background: #388E3C; /* Darker green on hover */
+    background: orange; /* Darker green on hover */
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
@@ -216,7 +216,7 @@ footer .col:hover {
 @media (max-width: 767.98px) {
     footer .col {
         border-right: none;
-        border-bottom: 1px solid #66BB6A;
+        border-bottom: 1px solid rgb(249, 195, 93);
     }
 
     footer .col:last-child {
@@ -297,7 +297,7 @@ footer .col:hover {
 
 button.btn {
     padding: 10px 20px;
-    background: linear-gradient(to right, #4CAF50, #81C784);
+    background: linear-gradient(to right, orange, rgb(249, 195, 93));
     border: none;
     border-radius: 30px;
     color: white;
@@ -312,7 +312,7 @@ button.btn {
 }
 
 button.btn:hover {
-    background: linear-gradient(to right, #388E3C, #66BB6A) !important;
+    background: linear-gradient(to right, orange, rgb(249, 195, 93)) !important;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
     transform: translateY(-2px) !important;
 }
@@ -339,7 +339,7 @@ button.btn:hover {
 }
 
 .rating-circle.yellow {
-    background-color: rgb(217, 217, 14);
+    background-color: rgb(243, 229, 30);
 }
 
 .rating-circle.light-green {

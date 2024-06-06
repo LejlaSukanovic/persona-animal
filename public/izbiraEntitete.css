@@ -11,7 +11,7 @@ html, body {
     position: relative; /* Ensure absolute positioning of children is relative to the body */
     font-family: 'Roboto', sans-serif;
     background: rgba(255, 255, 255, 0.8);
-    background-image: url('/Database/images/background_main.png'); /* Set the background image for the whole page */
+    background-image: url('/Database/images/pozadina.png'); /* Set the background image for the whole page */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -224,7 +224,7 @@ p {
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(to right, #4CAF50, #81C784);
+    background: linear-gradient(to right, orange, rgb(249, 195, 93));
     width: 0;
     transition: width 0.5s ease;
     border: 2px solid white;
