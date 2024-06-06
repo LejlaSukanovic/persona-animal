@@ -219,7 +219,7 @@ footer .col:hover {
 
 #bee_container {
     position: fixed;
-    top: 50%;
+    top: 60%;
     left: -10%;
     transform: translateY(-50%);
     z-index: 9999; 
