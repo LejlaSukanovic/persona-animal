@@ -339,7 +339,7 @@ button.btn:hover {
 }
 
 .rating-circle.yellow {
-    background-color: yellow;
+    background-color: rgb(217, 217, 14);
 }
 
 .rating-circle.light-green {
