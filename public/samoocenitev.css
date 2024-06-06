@@ -10,6 +10,7 @@ body, html {
     padding: 0;
     font-family: 'Roboto', sans-serif;
     height: 100%;
+    overflow-y: auto; /* Ensure the page is scrollable */
     background-image: url('/Database/images/pozadina.png'); 
     background-size: cover;  
     background-position: center; 
@@ -110,6 +111,7 @@ button.logout, button.about {
 
 .container {
     flex: 1 0 auto;
+    padding: 15px; /* Add padding to the container */
 }
 
 h1 {
@@ -148,7 +150,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
     bottom: 0;
-    position: absolute;
+    position: relative; /* Change from absolute to relative */
     background: linear-gradient(to right, orange, rgb(249, 195, 93)); 
     color: white;
     padding: 20px 0; 
