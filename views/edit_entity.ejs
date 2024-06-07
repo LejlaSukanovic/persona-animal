@@ -12,6 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
         .container {
             background-color: white;
@@ -19,15 +20,23 @@
             border-radius: 8px;
             width: 80%;
             max-width: 500px;
+            height: 90vh;
+            overflow-y: auto;
         }
         .ujemanje-group {
-            margin-top: 20px;
-            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
             padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 5px;
         }
         .ujemanje-group:not(:last-child) {
             margin-bottom: 10px;
+        }
+        .ujemanje-input {
+            width: 48%;
         }
     </style>
 </head>
@@ -61,14 +70,15 @@
                     <% for (let ujemanje in entity.ujemanja) { %>
                         <div class="ujemanje-group">
                             <input type="hidden" name="existingUjemanjeEntity[]" value="<%= ujemanje %>">
-                            <input type="text" name="ujemanjeEntity[]" value="<%= ujemanje %>" required>
-                            <input type="number" name="ocenaUjemanja[]" value="<%= entity.ujemanja[ujemanje].ocena_ujemanja %>" min="0" max="10" required>
+                            <input type="text" name="ujemanjeEntity[]" value="<%= ujemanje %>" class="ujemanje-input" required>
+                            <input type="number" name="ocenaUjemanja[]" value="<%= entity.ujemanja[ujemanje].ocena_ujemanja %>" class="ujemanje-input" min="0" max="10" required>
                         </div>
                     <% } %>
                 <% } %>
             </div>
             <button type="button" onclick="addUjemanje()" class="btn green">Dodaj ujemanje</button>
             <button type="submit" class="btn orange">Posodobi</button>
+            <button type="button" onclick="location.href='/admin'" class="btn grey">Nazaj</button>
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -78,8 +88,8 @@
             const newGroup = document.createElement('div');
             newGroup.className = 'ujemanje-group';
             newGroup.innerHTML = `
-                <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" required>
-                <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" min="0" max="10" required>
+                <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" class="ujemanje-input" required>
+                <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" class="ujemanje-input" min="0" max="10" required>
             `;
             container.appendChild(newGroup);
         }
