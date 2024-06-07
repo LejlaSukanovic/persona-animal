@@ -1,12 +1,16 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
 const { getAllEntities, updateEntity, getOcena, addNewEntity, getAllCategories, addUjemanje, getUjemanja } = require('../Database/dataService');
 const { initializeFBApp, getFirebaseAuth, getFirestoreDB } = require("../Database/firebaseInit");
+const { uploadImage } = require('../services/fileUploadService');
 
 initializeFBApp();
 
 const router = express.Router();
 const firestoreDB = getFirestoreDB();
 const auth = getFirebaseAuth();
+const upload = multer({ storage: multer.memoryStorage() });
 
 router.get('/', async (req, res) => {
     try {
@@ -76,13 +80,21 @@ router.get('/add-entity', async (req, res) => {
     }
 });
 
-router.post('/add-entity', async (req, res) => {
+router.post('/add-entity', upload.single('slika'), async (req, res) => {
     const { naziv, opis, negLastnosti, pozLastnosti, existingCategory, newCategory, ujemanjeEntity, ocenaUjemanja } = req.body;
     const kategorija = newCategory || existingCategory; // Use new category if provided, otherwise existing
 
     const data = { naziv, kategorija, opis, negLastnosti, pozLastnosti };
 
     try {
+        if (req.file) {
+            const uploadResult = await uploadImage(req.file, naziv);
+            if (!uploadResult.success) {
+                return res.status(500).send('Error uploading image: ' + uploadResult.message);
+            }
+            data.slika = uploadResult.url;
+        }
+
         const addResult = await addNewEntity(data);
         if (addResult.success) {
             if (Array.isArray(ujemanjeEntity) && Array.isArray(ocenaUjemanja)) {
@@ -99,6 +111,7 @@ router.post('/add-entity', async (req, res) => {
             res.status(400).send(addResult.message);
         }
     } catch (error) {
+        console.error("Error during entity addition:", error);
         res.status(500).send('An error occurred while adding the entity or compatibility.');
     }
 });

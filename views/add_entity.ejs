@@ -43,7 +43,7 @@
 <body>
     <div class="container">
         <h2>Dodaj Entiteto</h2>
-        <form action="/admin/add-entity" method="POST">
+        <form action="/admin/add-entity" method="POST" enctype="multipart/form-data">
             <div class="input-field">
                 <input id="naziv" type="text" name="naziv" required>
                 <label for="naziv">Naziv</label>
@@ -73,9 +73,17 @@
                 <input id="pozLastnosti" type="text" name="pozLastnosti" required>
                 <label for="pozLastnosti">Pozitivne Značilnosti</label>
             </div>
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Izberite sliko</span>
+                    <input type="file" name="slika">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
             <h5>Ujemanja</h5>
             <div id="ujemanjeContainer">
-                <!-- Container for dynamic ujemanje inputs -->
                 <div class="ujemanje-group">
                     <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" class="ujemanje-input" required>
                     <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" class="ujemanje-input" min="0" max="10" required>
