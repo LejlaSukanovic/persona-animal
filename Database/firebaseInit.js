@@ -17,30 +17,31 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
   
-  let app = initializeApp(firebaseConfig);
-  let firestoreDB =getFirestore(app);
-  let auth;
-  
-  const initializeFBApp = () => {
-      try {
-          if (!admin.apps.length) {
-              app = initializeApp(firebaseConfig);
-              firestoreDB = getFirestore(app);
-              auth = getAuth(app);
-              admin.initializeApp({
-                  credential: admin.credential.cert(serviceAccount)
-              });
-          }
-          return app;
-      } catch (error) {
-          console.log('Error initializing Firebase app:', error);
-      }
-  };
-  
-  const getFirebaseApp = () => app;
-  const getFirestoreDB = () => firestoreDB;
-  const getFirebaseAuth = () => auth;
+let app = initializeApp(firebaseConfig);
+let firestoreDB = getFirestore(app);
+let auth;
 
+const initializeFBApp = () => {
+    try {
+        if (!admin.apps.length) {
+            app = initializeApp(firebaseConfig);
+            firestoreDB = getFirestore(app);
+            auth = getAuth(app);
+            admin.initializeApp({
+                credential: admin.credential.cert(serviceAccount),
+                storageBucket: "persona-animal.appspot.com"
+            });
+        }
+        return app;
+    } catch (error) {
+        console.log('Error initializing Firebase app:', error);
+    }
+};
+
+const getFirebaseApp = () => app;
+const getFirestoreDB = () => firestoreDB;
+const getFirebaseAuth = () => auth;
+const getStorageBucket = () => admin.storage().bucket();
 
 module.exports = {
     initializeFBApp,
