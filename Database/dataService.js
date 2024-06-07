@@ -194,26 +194,41 @@ const updateEntity = async (idEntiteta, data) => {
 };
 
 const addNewEntity = async (data) => {
-    const collectionRef = collection(firestoreDB, "entiteta");
-    let newIdEntiteta = 1; // Default if no entities exist
-
+    const collectionRef = collection(firestoreDB, 'entiteta');
     try {
-        const snapshot = await getDocs(query(collectionRef, orderBy("idEntiteta", "desc"), limit(1)));
-        if (!snapshot.empty) {
-            const lastEntity = snapshot.docs[0].data();
-            newIdEntiteta = lastEntity.idEntiteta + 1;
-        }
+        const snapshot = await getDocs(query(collectionRef, orderBy('idEntiteta', 'desc'), limit(1)));
+        const lastEntity = snapshot.empty ? null : snapshot.docs[0].data();
+        const newIdEntiteta = lastEntity ? lastEntity.idEntiteta + 1 : 1;
 
-        await setDoc(doc(firestoreDB, "entiteta", data.naziv), {
+        const entityDocRef = doc(firestoreDB, 'entiteta', data.naziv);
+        await setDoc(entityDocRef, {
             ...data,
             idEntiteta: newIdEntiteta
         });
+
         return { success: true, message: 'Entity added successfully' };
     } catch (error) {
         console.error('Error adding new entity:', error);
-        return { success: false, message: 'Failed to add entity: ' + error.message }; // More detailed error
+        return { success: false, message: 'Failed to add entity: ' + error.message };
     }
 };
+
+const addUjemanje = async (naziv, ujemanjeEntity, ujemanjeData) => {
+    try {
+        const collectionRef = collection(firestoreDB, 'entiteta', naziv, 'ujemanja');
+        const docRef = doc(collectionRef, ujemanjeEntity); // Directly reference the document
+
+        // Use setDoc with merge: true to create or update the document
+        await setDoc(docRef, ujemanjeData, { merge: true });
+
+        return { success: true, message: 'Compatibility added successfully' };
+    } catch (error) {
+        console.error('Error adding compatibility:', error);
+        return { success: false, message: 'Failed to add compatibility: ' + error.message };
+    }
+};
+
+
 
 
 
@@ -227,7 +242,8 @@ module.exports = {
     saveResultSamoocenitve,
     getAllEntities,
     updateEntity,
-    addNewEntity
+    addNewEntity,
+    addUjemanje
 }
 
 

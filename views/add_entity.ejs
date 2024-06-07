@@ -20,6 +20,15 @@
             width: 80%;
             max-width: 500px;
         }
+        .ujemanje-group {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .ujemanje-group:not(:last-child) {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +64,14 @@
                 <input id="pozLastnosti" type="text" name="pozLastnosti" required>
                 <label for="pozLastnosti">Pozitivne Značilnosti</label>
             </div>
+            <div id="ujemanjeContainer">
+                <!-- Container for dynamic ujemanje inputs -->
+                <div class="ujemanje-group">
+                    <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" >
+                    <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" min="0" max="10" >
+                </div>
+            </div>
+            <button type="button" onclick="addUjemanje()" class="btn green">Dodaj ujemanje</button>
             <button type="submit" class="btn orange">Dodaj</button>
         </form>
     </div>
@@ -64,6 +81,17 @@
             var elems = document.querySelectorAll('select');
             var instances = M.FormSelect.init(elems);
         });
+
+        function addUjemanje() {
+            const container = document.getElementById('ujemanjeContainer');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'ujemanje-group';
+            newGroup.innerHTML = `
+                <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" required>
+                <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" min="0" max="10" required>
+            `;
+            container.appendChild(newGroup);
+        }
     </script>
 </body>
 </html>
