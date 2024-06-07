@@ -48,10 +48,18 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
+const isAdmin = (req, res, next) => {
+    if (req.session.user && req.session.user.admin) {
+        next();
+    } else {
+        res.redirect('/samoocenitev');
+    }
+};
+
 
 app.use('/samoocenitev',isAuthenticated, samoocenitevRoutes);
 app.use('/ujemanje',isAuthenticated, ujemanjeRoutes);
-app.use('/admin', adminRoutes);
+app.use('/admin',isAdmin,isAuthenticated, adminRoutes);
 app.use('/', prijavaRoutes);
 app.use((req, res, next) => {
     res.status(404).render('404');
