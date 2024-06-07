@@ -233,15 +233,6 @@ body, html {
     color: #F44336;
 }
 
-/*.form-container {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 40px 30px; 
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px; 
-    box-sizing: border-box;
-}*/
 
 /* CSS animations */
 @keyframes slideInFromLeft {
@@ -261,4 +252,20 @@ body, html {
 .form-slide-out {
     animation: slideOutToRight 0.5s forwards;
 }
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: orange; 
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(249, 195, 93); 
+  }
 
