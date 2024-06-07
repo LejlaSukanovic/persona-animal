@@ -36,7 +36,7 @@ Za lokalno poganjanje projekta sledite tem korakom:
 
 1. **Klonirajte repozitorij**:
    ```bash
-   git clone https://github.com/yourusername/persona-animal.git
+   git clone https://gitlab.com/Wifeu/persona-animal-ii
    cd persona-animal
    ```
 
@@ -50,7 +50,7 @@ Za lokalno poganjanje projekta sledite tem korakom:
    npm start
    ```
 
-4. **Odprite brskalnik** in navigirajte na `http://localhost:3000`.
+4. **Odprite brskalnik** in navigirajte na `https://persona-animal-ii.onrender.com`.
 
 ## Uporaba
 
@@ -74,10 +74,22 @@ Glavni vstopni točki aplikacije:
 - Določi seje in statične poti.
 - Definira usmerjanje za različne poti (samoocenitev, ujemanje, prijava).
 
-#### `firebase.js`
+#### `firebaseInit.js`
 Konfiguracija in inicializacija Firebase:
 - Inicializira Firebase aplikacijo in Firestore bazo podatkov.
 - Definira funkcije za delo z bazo podatkov (pridobivanje, shranjevanje, brisanje podatkov).
+
+#### `dataService.js`
+- Operacije nad Firestore podatki.
+
+#### `ujemanjeService.js`
+- Operacije povezane z ujemanjem.
+
+#### `userService.js`
+- Operacije povezane s uporabniki.
+
+#### `addData.js`
+- Skripta za dodajanje testnih podatkov.
 
 #### `prijavaRoutes.js`
 Usmerjevalnik za prijavo in registracijo:
