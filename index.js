@@ -49,13 +49,6 @@ const isAuthenticated = (req, res, next) => {
 };
 
 
-//edit entities routes/////////////////////
-
-
-
-
-
-//////////////////////////////////
 app.use('/samoocenitev',isAuthenticated, samoocenitevRoutes);
 app.use('/ujemanje',isAuthenticated, ujemanjeRoutes);
 app.use('/admin', adminRoutes);
