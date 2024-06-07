@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
         body {
-            background-color: #FFA500; /* Orange background */
+            background-color: #FFA500;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,50 +20,69 @@
             width: 80%;
             max-width: 500px;
         }
-        .input-field label {
-            color: #9e9e9e;
-        }
-        .input-field input[type="text"]:focus + label {
-            color: #ff9800;
-        }
-        .input-field input[type="text"]:focus {
-            border-bottom: 1px solid #ff9800;
-            box-shadow: 0 1px 0 0 #ff9800;
-        }
-        button {
+        .ujemanje-group {
             margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .ujemanje-group:not(:last-child) {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Uredi Entiteto %></h2>
+        <h2>Uredi Entiteto</h2>
         <form action="/admin/update/<%= entity.idEntiteta %>" method="POST">
             <div class="input-field">
-                <label for="naziv">Ime</label>
                 <input id="naziv" type="text" name="naziv" value="<%= entity.naziv %>" required>
+                <label for="naziv" class="active">Naziv</label>
             </div>
             <div class="input-field">
-                <label for="kategorija">Kategorija</label>
                 <input id="kategorija" type="text" name="kategorija" value="<%= entity.kategorija %>" required>
+                <label for="kategorija" class="active">Kategorija</label>
             </div>
             <div class="input-field">
-                <label for="opis">Opis</label>
                 <input id="opis" type="text" name="opis" value="<%= entity.opis %>" required>
+                <label for="opis" class="active">Opis</label>
             </div>
             <div class="input-field">
-                <label for="negLastnosti">Negativne Značilnosti</label>
                 <input id="negLastnosti" type="text" name="negLastnosti" value="<%= entity.negLastnosti %>" required>
+                <label for="negLastnosti" class="active">Negativne Značilnosti</label>
             </div>
             <div class="input-field">
-                <label for="pozLastnosti">Pozitivne Značilnosti</label>
                 <input id="pozLastnosti" type="text" name="pozLastnosti" value="<%= entity.pozLastnosti %>" required>
+                <label for="pozLastnosti" class="active">Pozitivne Značilnosti</label>
             </div>
+            <h5>Ujemanja</h5>
+            <div id="ujemanjeContainer">
+                <% if (entity.ujemanja) { %>
+                    <% for (let ujemanje in entity.ujemanja) { %>
+                        <div class="ujemanje-group">
+                            <input type="hidden" name="existingUjemanjeEntity[]" value="<%= ujemanje %>">
+                            <input type="text" name="ujemanjeEntity[]" value="<%= ujemanje %>" required>
+                            <input type="number" name="ocenaUjemanja[]" value="<%= entity.ujemanja[ujemanje].ocena_ujemanja %>" min="0" max="10" required>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+            <button type="button" onclick="addUjemanje()" class="btn green">Dodaj ujemanje</button>
             <button type="submit" class="btn orange">Posodobi</button>
-            <button type="button" onclick="window.location='/admin';" class="btn grey">Nazaj</button>
         </form>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        function addUjemanje() {
+            const container = document.getElementById('ujemanjeContainer');
+            const newGroup = document.createElement('div');
+            newGroup.className = 'ujemanje-group';
+            newGroup.innerHTML = `
+                <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" required>
+                <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" min="0" max="10" required>
+            `;
+            container.appendChild(newGroup);
+        }
+    </script>
 </body>
 </html>

@@ -228,6 +228,21 @@ const addUjemanje = async (naziv, ujemanjeEntity, ujemanjeData) => {
     }
 };
 
+const getUjemanja = async (naziv) => {
+    try {
+        const collectionRef = collection(firestoreDB, 'entiteta', naziv, 'ujemanja');
+        const querySnapshot = await getDocs(collectionRef);
+        const ujemanja = {};
+        querySnapshot.forEach(doc => {
+            ujemanja[doc.id] = doc.data();
+        });
+        return ujemanja;
+    } catch (error) {
+        console.error('Error getting compatibility:', error);
+        return null;
+    }
+};
+
 
 
 
@@ -243,7 +258,8 @@ module.exports = {
     getAllEntities,
     updateEntity,
     addNewEntity,
-    addUjemanje
+    addUjemanje,
+    getUjemanja
 }
 
 

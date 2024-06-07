@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllEntities, updateEntity, getOcena, addNewEntity, getAllCategories, addUjemanje } = require('../Database/dataService');
+const { getAllEntities, updateEntity, getOcena, addNewEntity, getAllCategories, addUjemanje, getUjemanja } = require('../Database/dataService');
 const { initializeFBApp, getFirebaseAuth, getFirestoreDB } = require("../Database/firebaseInit");
 
 initializeFBApp();
@@ -24,6 +24,11 @@ router.get('/edit/:id', async (req, res) => {
     if (!data) {
         return res.status(404).send('Entity not found');
     }
+
+    // Fetch ujemanja
+    const ujemanja = await getUjemanja(data.naziv);
+    data.ujemanja = ujemanja;
+
     res.render('edit_entity', { entity: data });
 });
 
@@ -40,6 +45,18 @@ router.post('/update/:id', async (req, res) => {
     try {
         const result = await updateEntity(id, data);
         if (result.success) {
+            if (Array.isArray(req.body.ujemanjeEntity) && Array.isArray(req.body.ocenaUjemanja)) {
+                for (let i = 0; i < req.body.ujemanjeEntity.length; i++) {
+                    const ujemanjeEntity = req.body.ujemanjeEntity[i];
+                    const ocenaUjemanja = parseInt(req.body.ocenaUjemanja[i], 10);
+                    const ujemanjeData = { ocena_ujemanja: ocenaUjemanja };
+
+                    const ujemanjeResult = await addUjemanje(data.naziv, ujemanjeEntity, ujemanjeData);
+                    if (!ujemanjeResult.success) {
+                        console.error('Failed to update compatibility:', ujemanjeResult.message);
+                    }
+                }
+            }
             res.redirect('/admin');
         } else {
             res.status(500).send(result.message);
