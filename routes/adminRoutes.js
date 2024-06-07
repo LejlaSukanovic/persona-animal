@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const { getAllEntities, updateEntity, getOcena, addNewEntity, getAllCategories, addUjemanje, getUjemanja } = require('../Database/dataService');
+const { getAllEntities, updateEntity, getOcena, addNewEntity, getAllCategories, addUjemanje, getUjemanja, deleteEntity } = require('../Database/dataService');
 const { initializeFBApp, getFirebaseAuth, getFirestoreDB } = require("../Database/firebaseInit");
 const { uploadImage } = require('../services/fileUploadService');
 
@@ -12,6 +12,8 @@ const firestoreDB = getFirestoreDB();
 const auth = getFirebaseAuth();
 const upload = multer({ storage: multer.memoryStorage() });
 
+
+//get the admin page
 router.get('/', async (req, res) => {
     try {
         const entities = await getAllEntities();  
@@ -22,6 +24,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+//get the update entity page
 router.get('/edit/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const data = await getOcena(id);
@@ -36,6 +40,8 @@ router.get('/edit/:id', async (req, res) => {
     res.render('edit_entity', { entity: data });
 });
 
+
+//update existing entity
 router.post('/update/:id', async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const data = {
@@ -70,6 +76,8 @@ router.post('/update/:id', async (req, res) => {
     }
 });
 
+
+//get the add entity page
 router.get('/add-entity', async (req, res) => {
     try {
         const categories = await getAllCategories();
@@ -80,6 +88,8 @@ router.get('/add-entity', async (req, res) => {
     }
 });
 
+
+//add new entity with image
 router.post('/add-entity', upload.single('slika'), async (req, res) => {
     const { naziv, opis, negLastnosti, pozLastnosti, existingCategory, newCategory, ujemanjeEntity, ocenaUjemanja } = req.body;
     const kategorija = newCategory || existingCategory; // Use new category if provided, otherwise existing
@@ -113,6 +123,22 @@ router.post('/add-entity', upload.single('slika'), async (req, res) => {
     } catch (error) {
         console.error("Error during entity addition:", error);
         res.status(500).send('An error occurred while adding the entity or compatibility.');
+    }
+});
+
+//delete entity
+router.post('/delete/:id', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    try {
+        const deleteResult = await deleteEntity(id);
+        if (deleteResult.success) {
+            res.redirect('/admin');
+        } else {
+            res.status(500).send(deleteResult.message);
+        }
+    } catch (error) {
+        console.error("Error during deletion:", error);
+        res.status(500).send("An error occurred while deleting the entity.");
     }
 });
 

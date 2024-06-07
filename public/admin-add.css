@@ -1,0 +1,33 @@
+body {
+    background-color: #FFA500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    height: 90vh;
+    overflow-y: auto;
+}
+.ujemanje-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.ujemanje-group:not(:last-child) {
+    margin-bottom: 10px;
+}
+.ujemanje-input {
+    width: 48%;
+}

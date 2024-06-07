@@ -4,19 +4,13 @@
     <meta charset="UTF-8">
     <title>Administrativna Nadzorna Plošča</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style>
-        body { background-color: #FFA500; }
-        .container { background-color: white; padding: 20px; border-radius: 8px; margin-top: 20px; }
-        table.highlight > tbody > tr:hover { background-color: #ffe082; }
-        .header { display: flex; justify-content: space-between; align-items: center; }
-        .add-btn { background-color: #ffa726; } /* Lighter orange for the button */
-    </style>
+    <link rel="stylesheet" href="/admin.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
             <h2>Administrativna Nadzorna Plošča - Seznam Entitet</h2>
-            <button onclick="location.href='/admin/add-entity'" class="btn add-btn">Dodaj novo</button>
+            <button onclick="location.href='/admin/add-entity'" class="btn orange">Dodaj Novo</button>
         </div>
         <table class="highlight">
             <thead>
@@ -28,6 +22,7 @@
                     <th>Negativne Značilnosti</th>
                     <th>Pozitivne Značilnosti</th>
                     <th>Uredi</th>
+                    <th>Izbriši</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,12 +34,33 @@
                         <td><%= entity.opis %></td>
                         <td><%= entity.negLastnosti %></td>
                         <td><%= entity.pozLastnosti %></td>
-                        <td><button onclick="location.href='/admin/edit/<%= entity.idEntiteta %>'" class="btn orange">Uredi</button></td>
+                        <td>
+                            <button onclick="location.href='/admin/edit/<%= entity.idEntiteta %>'" class="btn orange">Uredi</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn red" onclick="showModal('<%= entity.idEntiteta %>')">Izbriši</button>
+                        </td>
                     </tr>
                 <% }); %>
             </tbody>
         </table>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h4>Potrditev Izbrisa</h4>
+            <p>Ali ste prepričani, da želite izbrisati to entiteto?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancelButton" class="btn grey">Prekliči</button>
+            <form id="deleteForm" method="POST" style="display:inline;">
+                <button type="submit" class="btn red">Izbriši</button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/admin.js"></script>
 </body>
 </html>

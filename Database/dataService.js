@@ -243,6 +243,33 @@ const getUjemanja = async (naziv) => {
     }
 };
 
+const deleteEntity = async (idEntiteta) => {
+    const collectionRef = collection(firestoreDB, "entiteta");
+    const q = query(collectionRef, where('idEntiteta', '==', idEntiteta));
+
+    try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+            console.log('No matching documents.');
+            return { success: false, message: 'No entity found with that idEntiteta' };
+        }
+        
+        const deletePromises = [];
+        querySnapshot.forEach((doc) => {
+            const docRef = doc.ref;
+            console.log(`Deleting document with ID: ${docRef.id}`);
+            deletePromises.push(deleteDoc(docRef)); // Collect all promises
+        });
+
+        await Promise.all(deletePromises); // Wait for all deletions to complete
+        console.log('Entity deleted successfully');
+        return { success: true, message: 'Entity deleted successfully' };
+    } catch (error) {
+        console.error('Error deleting entity:', error);
+        return { success: false, message: 'Failed to delete entity' };
+    }
+};
+
 
 
 
@@ -259,7 +286,8 @@ module.exports = {
     updateEntity,
     addNewEntity,
     addUjemanje,
-    getUjemanja
+    getUjemanja,
+    deleteEntity
 }
 
 

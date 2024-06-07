@@ -4,41 +4,7 @@
     <meta charset="UTF-8">
     <title>Uredi Entiteto</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style>
-        body {
-            background-color: #FFA500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 500px;
-            height: 90vh;
-            overflow-y: auto;
-        }
-        .ujemanje-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .ujemanje-group:not(:last-child) {
-            margin-bottom: 10px;
-        }
-        .ujemanje-input {
-            width: 48%;
-        }
-    </style>
+    <link rel="stylesheet" href="/admin-update.css">
 </head>
 <body>
     <div class="container">
@@ -82,17 +48,8 @@
         </form>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-        function addUjemanje() {
-            const container = document.getElementById('ujemanjeContainer');
-            const newGroup = document.createElement('div');
-            newGroup.className = 'ujemanje-group';
-            newGroup.innerHTML = `
-                <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" class="ujemanje-input" required>
-                <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" class="ujemanje-input" min="0" max="10" required>
-            `;
-            container.appendChild(newGroup);
-        }
+    <script src="/admin.js">
+        
     </script>
 </body>
 </html>
