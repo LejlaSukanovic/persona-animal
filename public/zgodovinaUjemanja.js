@@ -46,7 +46,7 @@ function saveToSessionStorage(entiteta1, entiteta2, ujemanje) {
     sessionStorage.setItem('ujemanje', ujemanje);
 }
 
-function saveAndSendData(entiteta1, entiteta2, ujemanje) {
+function saveAndSendData(entiteta1, entiteta2, ujemanje, uporabnikIme) {
     saveToSessionStorage(entiteta1, entiteta2, ujemanje);
 
     // Send data to the server
@@ -55,7 +55,7 @@ function saveAndSendData(entiteta1, entiteta2, ujemanje) {
         entiteta2: entiteta2,
         ujemanje: ujemanje
     }).done(function() {
-        window.location.href = 'ujemanje/pregledUjemanja';
+        window.location.href = `ujemanje/pregledUjemanja?ime=${encodeURIComponent(uporabnikIme)}`;
     }).fail(function() {
         console.error('Error saving session data');
     });

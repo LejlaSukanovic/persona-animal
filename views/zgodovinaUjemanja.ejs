@@ -58,8 +58,8 @@
                     %>
                     <div>
                       <% if (entiteta) { %>
-                        <div class="entity-clickable" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
-                          <div class="hover-text" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">Klik za pregled ujemanja s vašim prijateljem</div>
+                        <div class="entity-clickable" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>', '<%= uporabnik.ime %>')">
+                          <div class="hover-text" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>', '<%= uporabnik.ime %>')">Klik za pregled ujemanja s vašim prijateljem</div>
                           <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>">
                         </div>
                       <% } else { %>

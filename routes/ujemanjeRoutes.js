@@ -117,24 +117,34 @@ router.post('/setSessionData', (req, res) => {
   });
   
   // Existing route to render 'pregledUjemanja'
-  router.get('/pregledUjemanja', async (req, res) => {
+router.get('/pregledUjemanja', async (req, res) => {
     try {
-      const entiteta1ID = req.session.entiteta1; // Get entity 1 ID from session storage
-      const entiteta1 = await getOcena(entiteta1ID);
-      const entiteta2ID = req.session.entiteta2; // Get entity 2 object from session storage
-      const entiteta2 = await getOcena(entiteta2ID);
-      
-      const ujemanje = req.session.ujemanje;
-      req.session.categoryId = entiteta1ID;
-      const kategorije = req.session.kategorije;
-      
-      const opis = await getOpisUjemanja(ujemanje); // Retrieve description
-      
-      res.render('pregledUjemanja', { ocenaUjemanja: ujemanje, entiteta1: entiteta1, entiteta2: entiteta2, opis: opis, kategorije:kategorije });
+        const entiteta1ID = req.session.entiteta1; // Get entity 1 ID from session storage
+        const entiteta1 = await getOcena(entiteta1ID);
+        const entiteta2ID = req.session.entiteta2; // Get entity 2 object from session storage
+        const entiteta2 = await getOcena(entiteta2ID);
+
+        const ujemanje = req.session.ujemanje;
+        req.session.categoryId = entiteta1ID;
+        const kategorije = req.session.kategorije;
+
+        const opis = await getOpisUjemanja(ujemanje); // Retrieve description
+
+        const uporabnikIme = req.query.ime; // Get user name from query parameters
+
+        res.render('pregledUjemanja', {
+            ocenaUjemanja: ujemanje,
+            entiteta1: entiteta1,
+            entiteta2: entiteta2,
+            opis: opis,
+            kategorije: kategorije,
+            uporabnikIme: uporabnikIme // Pass user name to the template
+        });
     } catch (error) {
-      res.status(500).send('Error retrieving data');
+        res.status(500).send('Error retrieving data');
     }
-  });
+});
+
 
   router.get('/pregledOcenitveDrugega/:kategorija', async (req, res) => {
     const ocena = req.session.categoryId;
