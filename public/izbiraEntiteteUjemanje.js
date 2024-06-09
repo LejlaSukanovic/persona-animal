@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 await fetch(`/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`, {
                     method: 'GET',
                 });
-                window.location.href = `/ujemanje/rezultat/${entityId}/${userId}/${kategorija}`;
+                window.location.href = `/ujemanje/rezultat/${entityId}/${userId}/${kategorija}?ime=${encodeURIComponent(imeUporabnika)}`;
             } catch (error) {
                 console.error('Error updating Firestore: ', error);
             }
