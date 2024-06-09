@@ -82,10 +82,10 @@
         <% } else { %>
           <div class="no-matches">
             <% if (userHasCategory) { %>
-              <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
+              <p>Nimate ujemanja za tisto kategorijo, klik na gumb če želite dodati novo ujemanje:</p>
               <button class="btn" onclick="clearStorageAndNavigate('<%= category %>')">Izvedi ujemanje</button>
             <% } else { %>
-              <p>Nimate samoocenitev za tisto kategorijo, ce zelite narediti ujemanje, najprej naredite samoocenitev.</p>
+              <p>Nimate samoocenitev za tisto kategorijo, če želite narediti ujemanje, najprej naredite samoocenitev.</p>
               <button class="btn" onclick="navigateTo('/samoocenitev')">Izvedi samoocenitev</button>
             <% } %>
           </div>

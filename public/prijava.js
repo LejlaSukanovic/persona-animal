@@ -190,11 +190,11 @@ window.register = async function () {
             }
         } catch (error) {
             if (error.message.includes('auth/invalid-credential')) {
-                showErrorPopup('Napačno geslo. Prosimo, poskusite znova!');
+                showErrorPopup('Napačen email ali geslo. Prosimo, poskusite znova!');
                 await delay(2000);
                 hideErrorPopup();
             } else if (error.message.includes('auth/invalid-email')){
-                showErrorPopup('Napačno napisan Email. Prosimo, poskusite znova!');
+                showErrorPopup('Napačen email ali geslo. Prosimo, poskusite znova!');
                 await delay(2000);
                 hideErrorPopup();
             }

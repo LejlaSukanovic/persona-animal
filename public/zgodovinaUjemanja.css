@@ -355,7 +355,7 @@ button.btn:hover {
 /* Styles for larger screens */
 .button-container {
     position: absolute;
-    top: 3%;
+    top: 5%;
     right: 5%;
     display: flex;
     flex-direction: row;
@@ -391,6 +391,7 @@ button.btn:hover {
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-top: 10%;
     }
 
     .entity img {
