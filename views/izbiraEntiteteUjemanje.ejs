@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/izbiraEntitete.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/Database/images/persona-logo1.png" />
 </head>
 
 <body>
@@ -61,7 +62,7 @@
     </div>
 
     <script>
-        const entities = <%- JSON.stringify(entities) %>;
+        const entities = JSON.parse(`<%- JSON.stringify(entities) %>`);
 
         function navigateTo(path) {
             window.location.href = path;

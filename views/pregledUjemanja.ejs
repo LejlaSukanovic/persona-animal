@@ -7,6 +7,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/pregledUjemanja.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/Database/images/persona-logo1.png" />
 </head>
 <body>
   <div class="container">
@@ -100,7 +101,8 @@ function updateGrade(grade) {
 
     $(document).ready(function() {
 
-      updateGrade(<%- ocenaUjemanja %>); // Adjust this value based on actual data
+      updateGrade(JSON.parse(`<%= JSON.stringify(ocenaUjemanja) %>`));
+ // Adjust this value based on actual data
     $('.percentage-circle').each(function() {
       const percentage = parseInt($(this).data('percentage'));
       const degrees = percentage * 3.6;
