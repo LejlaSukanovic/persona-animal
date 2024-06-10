@@ -118,12 +118,12 @@ router.post('/setSessionData', (req, res) => {
     res.sendStatus(200);
   });
   
-  // Existing route to render 'pregledUjemanja'
+  // Route to render 'pregledUjemanja'
 router.get('/pregledUjemanja', async (req, res) => {
     try {
         const entiteta1ID = req.session.entiteta1; // Get entity 1 ID from session storage
         const entiteta1 = await getOcena(entiteta1ID);
-        const entiteta2ID = req.session.entiteta2; // Get entity 2 object from session storage
+        const entiteta2ID = req.session.entiteta2; // Get entity 2 ID from session storage
         const entiteta2 = await getOcena(entiteta2ID);
 
         const ujemanje = req.session.ujemanje;
@@ -131,7 +131,7 @@ router.get('/pregledUjemanja', async (req, res) => {
         const kategorije = req.session.kategorije;
 
         const opis = await getOpisUjemanja(ujemanje); // Retrieve description
-
+        
         const uporabnikIme = req.query.ime || req.session.imeUporabnika; // Get user name from query parameters
 
         res.render('pregledUjemanja', {
