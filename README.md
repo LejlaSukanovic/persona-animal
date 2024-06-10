@@ -25,12 +25,10 @@ Po opravljeni samooceni si uporabniki lahko ogledajo podrobne analize, ki poudar
 Funkcije za preverjanje pristnosti, vključno z registracijo in prijavo, zagotavljajo varen dostop in prilagojene izkušnje. Persona Animal je zgrajena z robustnim zaledjem, ki uporablja Firebase, kar zagotavlja zanesljivo shranjevanje podatkov in nemoteno interakcijo. Ne glede na to, ali gre za zabavo ali osebno rast, Persona Animal ponuja nov pristop k samoodkrivanju in povezovanju.
 
 Domača stran: https://persona-animal-ii.onrender.com
-...
+
 Koda: https://gitlab.com/Wifeu/persona-animal-ii
 
 Kategorizacija: mobilna aplikacija, spletna aplikacija
-
-Oznake: ZaprtiPodatki, EJS, HTML, Firebase, NodeJS, GitLab, Express, REST, Trello...
 
 
 Persona omogoča uporabnikom:
@@ -120,6 +118,8 @@ Ta zbirka vsebuje podatke o različnih odnosih med uporabniki, glede na oceno uj
 
 ## Namestitev
 
+Pred namestitvijo se prepričajte, da imate nameščeno različico Node.js v20.12.2. 
+
 Za lokalno poganjanje projekta sledite tem korakom:
 
 1. **Klonirajte repozitorij**:
@@ -134,14 +134,17 @@ Za lokalno poganjanje projekta sledite tem korakom:
    ```bash
    npm install
    ```
+3. **Dodajte Firestore API ključ v .env datoteko**
 
-3. **Zaženite strežnik**:
+Za pridobitev Firestore API ključa, ki ga morate dodati v datoteko `.env`, se obrnite na razvojno ekipo.
+
+4. **Zaženite strežnik**:
 
    ```bash
    node index.js
    ```
 
-4. **Odprite brskalnik** in navigirajte na `https://persona-animal-ii.onrender.com`.
+5. **Odprite brskalnik** in navigirajte na `https://persona-animal-ii.onrender.com`.
 
 ## Posnetki Zaslona
 
@@ -155,9 +158,9 @@ Za lokalno poganjanje projekta sledite tem korakom:
 
 ## Razvojna Ekipa
 
-Kosta Jovanovic
-Lejla Sukanovic
-Katarina Srdanov
+- Kosta Jovanovic
+- Lejla Sukanovic
+- Katarina Srdanov
 
 
 Leto izdelave: 2024
