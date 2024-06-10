@@ -25,7 +25,7 @@ const entities = [
     naziv: 'Pes',
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
     negLastnosti: 'Ljubosumnost, Vodljivost',
-    slika: './images/pes.jpg',
+    slika: './images/pes4.jpg',
     kategorija: 'Živali'
   },
   {
@@ -49,7 +49,7 @@ const entities = [
     naziv: 'Lev',
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
-    slika: './images/lev.jpeg',
+    slika: './images/lev3.jpg',
     kategorija: 'Živali'
   },
   {
@@ -81,7 +81,7 @@ const entities = [
     naziv: 'Mačka',
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
     negLastnosti: 'Zahrbtnost, Popadljivost, Kradljivost',
-    slika: './images/macka.jpg',
+    slika: './images/macka2.jpg',
     kategorija: 'Živali'
   },
   {
