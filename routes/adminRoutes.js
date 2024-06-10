@@ -47,7 +47,6 @@ router.post('/update/:id', async (req, res) => {
     const data = {
         naziv: req.body.naziv,
         kategorija: req.body.kategorija,
-        opis: req.body.opis,
         negLastnosti: req.body.negLastnosti,
         pozLastnosti: req.body.pozLastnosti
     };
@@ -91,10 +90,10 @@ router.get('/add-entity', async (req, res) => {
 
 //add new entity with image
 router.post('/add-entity', upload.single('slika'), async (req, res) => {
-    const { naziv, opis, negLastnosti, pozLastnosti, existingCategory, newCategory, ujemanjeEntity, ocenaUjemanja } = req.body;
+    const { naziv, negLastnosti, pozLastnosti, existingCategory, newCategory, ujemanjeEntity, ocenaUjemanja } = req.body;
     const kategorija = newCategory || existingCategory; // Use new category if provided, otherwise existing
 
-    const data = { naziv, kategorija, opis, negLastnosti, pozLastnosti };
+    const data = { naziv, kategorija, negLastnosti, pozLastnosti };
 
     try {
         if (req.file) {
