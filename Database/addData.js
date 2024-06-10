@@ -17,7 +17,7 @@ const entities = [
     naziv: 'Konj',
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
-    slika: './images/konj.jpeg',
+    slika: './images/konj.jpg',
     kategorija: 'Živali',
   },
   {
@@ -49,7 +49,7 @@ const entities = [
     naziv: 'Lev',
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
-    slika: './images/lev.jpeg',
+    slika: './images/lev.jpg',
     kategorija: 'Živali'
   },
   {
@@ -65,7 +65,7 @@ const entities = [
     naziv: 'Opica',
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
     negLastnosti: 'Kradljivost, Prepirljivost, Požrešnost',
-    slika: './images/opica.jpeg',
+    slika: './images/opica.jpg',
     kategorija: 'Živali'
   },
   {
@@ -73,7 +73,7 @@ const entities = [
     naziv: 'Zajec',
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
     negLastnosti: 'Plašnost, Strahopetnost, Prestrašenost',
-    slika: './images/zajec.jpeg',
+    slika: './images/zajec.jpg',
     kategorija: 'Živali'
   },
   {
@@ -89,7 +89,7 @@ const entities = [
     naziv: 'Galeb',
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
     negLastnosti: 'Kradljivost, Požrešnost, Prepirljivost',
-    slika: './images/galeb.jpeg',
+    slika: './images/galeb.jpg',
     kategorija: 'Živali'
   },
   {
@@ -105,7 +105,7 @@ const entities = [
     naziv: 'Orel',
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
     negLastnosti: 'Neusmiljenost, Krvoločnost, Plenjenje, Krutost',
-    slika: './images/orel.jpeg',
+    slika: './images/orel.jpg',
     kategorija: 'Živali'
   },
   {
@@ -129,7 +129,7 @@ const entities = [
     naziv: 'Čebela',
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
     negLastnosti: 'Napadalnost, Nadležnost',
-    slika: './images/cebela.jpeg',
+    slika: './images/cebela.jpg',
     kategorija: 'Živali'
   },
   {
@@ -137,7 +137,7 @@ const entities = [
     naziv: 'Bik',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
-    slika: './images/bik.jpeg',
+    slika: './images/bik.jpg',
     kategorija: 'Živali'
   },
   {
