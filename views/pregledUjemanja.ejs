@@ -7,25 +7,39 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/pregledUjemanja.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/Database/images/persona-logo1.png" />
 </head>
 <body>
+
+  <div id="overlay" class="hidden">
+    <div class="overlay-content">
+        <div class="close-btn" onclick="closeOverlay()">
+            <i class="material-icons">close</i>
+        </div>
+        <h3>Obvestilo</h3><br>
+        <p>Če želite pregledati rezultat ocenitve vašega prijatelja, lahko kliknete na sliko njegove živali.</p>
+    </div>
+</div>
   <div class="container">
     <h2 class="title">KAKO SE UJEMATA?</h2>
+    <div class="button-container">
+      <i class="material-icons info-icon" onclick="openOverlay()">info</i>
+    </div>
     <br><br><br>
     <div class="entity-row">
       <% kategorije.forEach(category => { %>
         <div class="entity entity-clickable" onclick="redirectToCategory('<%= category %>')">
           <div class="hover-text">Klik za pregled ocenitve vašega prijatelja</div>
           <img src="<%= entiteta1.slika %>" alt="<%= entiteta1.naziv %>">
-          <h3><%= entiteta1.naziv %></h3>
+          <h3><%= uporabnikIme %></h3>
         </div>
         <div class="entity">
           <img src="<%= entiteta2.slika %>" alt="<%= entiteta2.naziv %>">
-          <h3><%= entiteta2.naziv %></h3>
+          <h3>vi</h3>
         </div>
       <% }) %>
     </div>
-    <br>
+    <br><br>
 
       <div class="grade-scale">
         <div class="grade-bar"></div>
@@ -42,12 +56,6 @@
         </button>
       </div>
   </div>
-  
-      
-      
-      
-
-    
   </div>
   <footer>
     <div class="row">
@@ -55,6 +63,8 @@
         <div class="col footer-col-2" onclick="navigateTo('/ujemanje');">Ujemanje</div>
     </div>
   </footer>
+
+  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -100,7 +110,8 @@ function updateGrade(grade) {
 
     $(document).ready(function() {
 
-      updateGrade(<%- ocenaUjemanja %>); // Adjust this value based on actual data
+      updateGrade(JSON.parse(`<%= JSON.stringify(ocenaUjemanja) %>`));
+ // Adjust this value based on actual data
     $('.percentage-circle').each(function() {
       const percentage = parseInt($(this).data('percentage'));
       const degrees = percentage * 3.6;

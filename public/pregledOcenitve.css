@@ -38,7 +38,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
-  margin-bottom: 20px;
 }
 
 .card-title,
@@ -153,8 +152,9 @@ body {
   /* Rounded top-right corner */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
-  padding-top: 40px;
+  padding-top: 80px;
   /* Provide space for the entity name */
+  padding-bottom: 50px;
 }
 
 
@@ -188,14 +188,12 @@ body {
   justify-content: space-between;
   align-items: stretch;
   /* Aligns children’s heights */
-  margin-top: 20px;
 }
 
 .trait {
   flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 10px;
 }
 
 .positive-traits,
@@ -411,6 +409,7 @@ button.btn:hover {
 .body-slide-in {
   animation: slideInFromRight 0.8s forwards; /* Animation timing can be adjusted */
 }
+
 ::-webkit-scrollbar {
   width: 10px;
 }

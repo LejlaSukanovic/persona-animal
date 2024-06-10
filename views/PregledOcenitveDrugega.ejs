@@ -8,10 +8,11 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Material Icons -->
   <link rel="stylesheet" href="/pregledOcenitve.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/Database/images/persona-logo1.png" />
 </head>
 
 <body class="body-slide-in">
-
+<br><br>
   <div class="container text-center">
     <!-- Responsive Wrapper for all content -->
     <div class="row">
@@ -25,16 +26,11 @@
               <%= entity.naziv %>
             </div>
             <div class="card-body">
-              <div class="attributes">
-                <p>
-                  <%= entity.opis %>
-                </p>
-              </div>
               <div class="traits-container">
                 <div class="trait positive">
                   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 
-                  <dotlottie-player src="https://lottie.host/39e03a1d-546e-4768-97b9-4ae3f040e9da/InECLwmIxs.json" background="transparent" speed="1" style="width: 70px; height: 70px; margin-left: 25%" loop autoplay></dotlottie-player>
+                  <dotlottie-player src="https://lottie.host/39e03a1d-546e-4768-97b9-4ae3f040e9da/InECLwmIxs.json" background="transparent" speed="1" style="width: 90px; height: 90px; margin-left: 20%; margin-bottom:10%" loop autoplay></dotlottie-player>
                   <div class="positive-traits">
                     <ul>
                       <% entity.pozLastnosti.split(',').forEach(function(trait) { %>
@@ -48,7 +44,7 @@
                 <div class="trait negative">
                   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
 
-    <dotlottie-player src="https://lottie.host/945b88be-f5d4-4401-ade9-3dbebd3a7761/4jJ46Vj5Ve.json" background="transparent" speed="1" style="width: 70px; height: 70px; margin-left: 25%;" loop autoplay></dotlottie-player>
+    <dotlottie-player src="https://lottie.host/945b88be-f5d4-4401-ade9-3dbebd3a7761/4jJ46Vj5Ve.json" background="transparent" speed="1" style="width: 90px; height: 90px; margin-left: 20%; margin-bottom:10%" loop autoplay></dotlottie-player>
                   <div class="negative-traits">
                     <ul>
                       <% entity.negLastnosti.split(',').forEach(function(trait) { %>

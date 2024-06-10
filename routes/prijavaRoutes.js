@@ -45,17 +45,18 @@ router.post('/login', async (req, res) => {
             return res.status(404).json({ error: 'User not found in database.' });
         }
 
-        // Save idUporabnik to session storage
+        
         req.session.user = {
             id: uporabnik.idUporabnik,
-            email: user.email
+            email: user.email,
+            admin: uporabnik.admin
         };
 
 
         return res.status(200).json({ 
             message: 'User logged in successfully!', 
             user: user.uid,
-            idUporabnik: uporabnik.idUporabnik  // Send idUporabnik back to the client
+            idUporabnik: uporabnik.idUporabnik  
         });
     } catch (error) {
         console.error('Error during login:', error);

@@ -7,6 +7,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/zgodovinaUjemanja.css">
+  <link rel="shortcut icon" type="image/x-icon" href="/Database/images/persona-logo1.png" />
 </head>
 <body>
   <div id="overlay" class="hidden">
@@ -57,8 +58,8 @@
                     %>
                     <div>
                       <% if (entiteta) { %>
-                        <div class="entity-clickable" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">
-                          <div class="hover-text" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>')">Klik za pregled ujemanja s vašim prijateljem</div>
+                        <div class="entity-clickable" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>', '<%= uporabnik.ime %>')">
+                          <div class="hover-text" onclick="saveAndSendData('<%= uporabnik[category] %>', '<%= prijavljeniUporabnik[category] %>', '<%= uporabnik.ocena_ujemanja %>', '<%= uporabnik.ime %>')">Klik za pregled ujemanja s vašim prijateljem</div>
                           <img src="<%= entiteta.slika %>" alt="<%= entiteta.naziv %>">
                         </div>
                       <% } else { %>
@@ -81,10 +82,10 @@
         <% } else { %>
           <div class="no-matches">
             <% if (userHasCategory) { %>
-              <p>Nimate ujemanja za tisto kategorijo, klik na gumb ce zelite dodati novo ujemanje:</p>
+              <p>Nimate ujemanja za tisto kategorijo, klik na gumb če želite dodati novo ujemanje:</p>
               <button class="btn" onclick="clearStorageAndNavigate('<%= category %>')">Izvedi ujemanje</button>
             <% } else { %>
-              <p>Nimate samoocenitev za tisto kategorijo, ce zelite narediti ujemanje, najprej naredite samoocenitev.</p>
+              <p>Nimate samoocenitev za tisto kategorijo, če želite narediti ujemanje, najprej naredite samoocenitev.</p>
               <button class="btn" onclick="navigateTo('/samoocenitev')">Izvedi samoocenitev</button>
             <% } %>
           </div>

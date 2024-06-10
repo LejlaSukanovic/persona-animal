@@ -15,7 +15,6 @@ const entities = [
   {
     idEntiteta: 1,
     naziv: 'Konj',
-    opis: 'dodati opis',
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
     slika: './images/konj.jpeg',
@@ -24,7 +23,6 @@ const entities = [
   {
     idEntiteta: 2,
     naziv: 'Pes',
-    opis: 'dodati opis',
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
     negLastnosti: 'Ljubosumnost, Vodljivost',
     slika: './images/pes.jpg',
@@ -33,7 +31,6 @@ const entities = [
   {
     idEntiteta: 3,
     naziv: 'Sova',
-    opis: 'dodati opis',
     pozLastnosti: 'Dar za opazovanj, Resnost, Modrost, Previdnost, Čuječnost',
     negLastnosti: 'Zaspanost, Lenobnost',
     slika: './images/sova.jpg',
@@ -42,7 +39,6 @@ const entities = [
   {
     idEntiteta: 4,
     naziv: 'Medved',
-    opis: 'dodati opis',
     pozLastnosti: 'Moč, Zaščitništvo, Razigranost, Dobrodušnost',
     negLastnosti: 'Grobost, Godrnjavost, Okrutnost',
     slika: './images/medved.jpg',
@@ -51,7 +47,6 @@ const entities = [
   {
     idEntiteta: 5,
     naziv: 'Lev',
-    opis: 'dodati opis',
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
     slika: './images/lev.jpeg',
@@ -60,7 +55,6 @@ const entities = [
   {
     idEntiteta: 6,
     naziv: 'Lisica',
-    opis: 'dodati opis',
     pozLastnosti: 'Zvitost, Bistrost, Prilagodljivost',
     negLastnosti: 'Preračunljivost, Kradljivost, Zahrbtnost',
     slika: './images/lisica.jpg',
@@ -69,7 +63,6 @@ const entities = [
   {
     idEntiteta: 7,
     naziv: 'Opica',
-    opis: 'dodati opis',
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
     negLastnosti: 'Kradljivost, Prepirljivost, Požrešnost',
     slika: './images/opica.jpeg',
@@ -78,7 +71,6 @@ const entities = [
   {
     idEntiteta: 8,
     naziv: 'Zajec',
-    opis: 'dodati opis',
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
     negLastnosti: 'Plašnost, Strahopetnost, Prestrašenost',
     slika: './images/zajec.jpeg',
@@ -87,7 +79,6 @@ const entities = [
   {
     idEntiteta: 9,
     naziv: 'Mačka',
-    opis: 'dodati opis',
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
     negLastnosti: 'Zahrbtnost, Popadljivost, Kradljivost',
     slika: './images/macka.jpg',
@@ -96,7 +87,6 @@ const entities = [
   {
     idEntiteta: 10,
     naziv: 'Galeb',
-    opis: 'dodati opis',
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
     negLastnosti: 'Kradljivost, Požrešnost, Prepirljivost',
     slika: './images/galeb.jpeg',
@@ -105,7 +95,6 @@ const entities = [
   {
     idEntiteta: 11,
     naziv: 'Mravlja',
-    opis: 'dodati opis',
     pozLastnosti: 'Pridnost, Organiziranost, Altruizem',
     negLastnosti: 'Bojevitost, Trmoglavost, Napadalnost',
     slika: './images/mravlja.jpg',
@@ -114,7 +103,6 @@ const entities = [
   {
     idEntiteta: 12,
     naziv: 'Orel',
-    opis: 'dodati opis',
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
     negLastnosti: 'Neusmiljenost, Krvoločnost, Plenjenje, Krutost',
     slika: './images/orel.jpeg',
@@ -123,7 +111,6 @@ const entities = [
   {
     idEntiteta: 13,
     naziv: 'Slon',
-    opis: 'dodati opis',
     pozLastnosti: 'Moč, Delavnost, Bistrost',
     negLastnosti: 'Nerodnost, Svojeglavost, Požrešnost, Razdiralnost',
     slika: './images/slon.jpg',
@@ -132,7 +119,6 @@ const entities = [
   {
     idEntiteta: 14,
     naziv: 'Srna',
-    opis: 'dodati opis',
     pozLastnosti: 'Nedolžnost, Prisrčnost, Spretnost, Ljubkost',
     negLastnosti: 'Plahost, Nezaupljivost, Občutljivost',
     slika: './images/srna.jpg',
@@ -141,7 +127,6 @@ const entities = [
   {
     idEntiteta: 15,
     naziv: 'Čebela',
-    opis: 'dodati opis',
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
     negLastnosti: 'Napadalnost, Nadležnost',
     slika: './images/cebela.jpeg',
@@ -150,7 +135,6 @@ const entities = [
   {
     idEntiteta: 16,
     naziv: 'Bik',
-    opis: 'dodati opis',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/bik.jpeg',
@@ -159,7 +143,6 @@ const entities = [
   {
     idEntiteta: 20,
     naziv: 'Rdeca',
-    opis: 'dodati opis',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/rdeca.jpg',
@@ -168,7 +151,6 @@ const entities = [
   {
     idEntiteta: 21,
     naziv: 'Modra',
-    opis: 'dodati opis',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
     slika: './images/modra.jpg',
