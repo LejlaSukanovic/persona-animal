@@ -11,6 +11,7 @@ Persona uporabnikom omogoča, da z enostavnim izborom slik intuitivno ocenijo sv
 - [Pregled Projekta](#pregled-projekta)
 - [Pregled Tehnologij](#tehnologije)
 - [Funkcionalnosti](#funkcionalnosti)
+- [Podatkovna Baza](#podatkovna-baza)
 - [Namestitev](#namestitev)
 - [Vizija](#vizija)
 
@@ -41,6 +42,56 @@ Persona omogoča uporabnikom:
 - **Dodajanje novih entitet**: Admin lahko dodaje nove entitet v obstoječe ali nove kategorije
 - **Urejanje entitet**: Admin lahko ureja obstoječe entitet
 - **Brisanje entitet**: Admin lahko briše obstoječe entitete
+
+## Podatkovna Baza
+
+Projekt Persona uporablja Firebase Firestore za shranjevanje podatkov v različnih zbirkah. Spodaj so primeri JSON struktur iz treh glavnih zbirk:
+
+**Zbirka Uporabnik**
+Ta zbirka vsebuje podatke o uporabnikih. Uporabniki tipa 1 so registrirani uporabniki, medtem ko so tipa 2 uporabniki, ki jih dodajo registrirani uporabniki med izračunavanjem ujemanj.
+{
+  "idUporabnik": 1,
+  "email": "mail@mail.com",
+  "username": "uporabniskoIme",
+  "tip": 1,
+  "uid": "uid",
+  "Živali": 2 //ocena v kategoriji Živali
+}
+
+{
+  "idUporabnik": 2,
+  "ime": "imeUporabnika",
+  "ocena_ujemanja": 2,
+  "tip": 2,
+  "ujemanjeZ": 1,
+  "Živali": 1 //ocena v kategoriji Živali
+}
+
+**Zbirka Eniteta**
+Ta zbirka vsebuje podatke o entitetah. 
+{
+  "idEniteta": 1,
+  "kategorija": "Živali",
+  "naziv": "Bik",
+  "negLastnosti": "negativne lastnosti",
+  "pozLastnosi": "pozitivne lastnosti",
+  slika: "pot do fotografije"
+  ujemanja : [
+    {// id dokumenta je naziv entitete za katero gre ujemanje
+      ocena_ujemanja: 5
+    },...
+  ]
+}
+
+**Zborka Odnosi**
+
+Ta zbirka vsebuje podatke o različnih odnosih med uporabniki, glede na oceno ujemanja
+
+{
+  idOdnos:1,
+  opis: "Opis odnosa za oceno ujemanja 1"
+}
+
 
 ## Namestitev
 
