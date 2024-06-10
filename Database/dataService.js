@@ -228,6 +228,7 @@ const addUjemanje = async (naziv, ujemanjeEntity, ujemanjeData) => {
     }
 };
 
+
 const getUjemanja = async (naziv) => {
     try {
         const collectionRef = collection(firestoreDB, 'entiteta', naziv, 'ujemanja');
@@ -242,6 +243,7 @@ const getUjemanja = async (naziv) => {
         return null;
     }
 };
+
 
 const deleteEntity = async (idEntiteta) => {
     const collectionRef = collection(firestoreDB, "entiteta");
@@ -258,10 +260,10 @@ const deleteEntity = async (idEntiteta) => {
         querySnapshot.forEach((doc) => {
             const docRef = doc.ref;
             console.log(`Deleting document with ID: ${docRef.id}`);
-            deletePromises.push(deleteDoc(docRef)); // Collect all promises
+            deletePromises.push(deleteDoc(docRef));
         });
 
-        await Promise.all(deletePromises); // Wait for all deletions to complete
+        await Promise.all(deletePromises);
         console.log('Entity deleted successfully');
         return { success: true, message: 'Entity deleted successfully' };
     } catch (error) {
