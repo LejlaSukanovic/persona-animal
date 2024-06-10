@@ -1,0 +1,21 @@
+Persona
+
+Persona uporabnikom omogoča interakcijo z različnimi entitetami (kot so živali) s funkcijami samoocenjevanja in ujemanja, ki zagotavljajo vpoglede in analize na podlagi uporabniških izbir in interakcij.
+
+Leto izdelave: 2024
+
+Kosta Jovanovic
+Lejla Sukanovic
+Katarina Srdanov
+
+Domača stran: https://persona-animal-ii.onrender.com
+...
+Koda: https://gitlab.com/Wifeu/persona-animal-ii
+
+Kategorizacija: mobilna aplikacija, spletna aplikacija
+
+Oznake: ZaprtiPodatki, EJS, HTML, Firebase, NodeJS, GitLab, Express, REST, Trello...
+
+Persona Animal je spletna aplikacija, zasnovana tako, da uporabnikom ponuja edinstven in privlačen način za samoocenjevanje in ujemanje entitet. Uporabniki komunicirajo z različnimi entitetami, kot so živali, tako da izberejo tiste, s katerimi se najbolj identificirajo. Aplikacija ima strukturiran proces samoocenjevanja, ki temelji na različnih kategorijah, kar uporabnikom omogoča vpogled v njihove želje in osebnostne lastnosti.
+
+Po opravljeni samooceni si uporabniki lahko ogledajo podrobne analize, ki poudarjajo njihove prednosti in področja za izboljšave. Poleg tega funkcija ujemanja omogoča uporabnikom, da svoje rezultate primerjajo z drugimi, kar omogoča globlje razumevanje njihove podobnosti z drugimi ljudmi.
