@@ -1,7 +1,10 @@
-const admin = require('firebase-admin');
+const { config } = require('dotenv');
 const path = require('path');
+config({ path: path.resolve(__dirname, '../.env') });
+const admin = require('firebase-admin');
 
-const serviceAccount = require('./persona-animal-firebase-adminsdk-ge6gm-2a1d387556.json'); 
+
+const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY); 
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
