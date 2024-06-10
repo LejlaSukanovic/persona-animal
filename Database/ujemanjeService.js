@@ -47,6 +47,7 @@ const calculateUjemanje = async (entiteta1, entiteta2, uporabnikID) => {
       if (odnosDoc.exists()) {
         // Retrieve the 'opis' field from the document
         const opisUjemanja = odnosDoc.data().opis;
+        console.log(opisUjemanja +" opis iz baze");
         return opisUjemanja;
       } else {
         console.log(`No matching document found for idOdnos: ${idOdnos}`);

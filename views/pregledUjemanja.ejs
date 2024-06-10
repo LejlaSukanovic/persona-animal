@@ -110,15 +110,13 @@ function updateGrade(grade) {
 
     $(document).ready(function() {
 
-      updateGrade(JSON.parse(`<%= JSON.stringify(ocenaUjemanja) %>`));
+      updateGrade( <%=ocenaUjemanja %>);
+      
  // Adjust this value based on actual data
-    $('.percentage-circle').each(function() {
-      const percentage = parseInt($(this).data('percentage'));
-      const degrees = percentage * 3.6;
-      $(this).css('background-image', `conic-gradient(#4CAF50 ${degrees}deg, #e0e0e0 ${degrees}deg)`);
-    });
+    
 
       $('.toggle-description').click(function() {
+        console.log('toggle description');
       var $button = $(this);
       var $desc = $button.prev('p').find('.hidden-text');
 
@@ -128,6 +126,12 @@ function updateGrade(grade) {
         var icon = $desc.is(':visible') ? 'expand_less' : 'expand_more';
         $button.find('i').text(icon);
       });
+    });
+
+    $('.percentage-circle').each(function() {
+      const percentage = parseInt($(this).data('percentage'));
+      const degrees = percentage * 3.6;
+      $(this).css('background-image', `conic-gradient(#4CAF50 ${degrees}deg, #e0e0e0 ${degrees}deg)`);
     });
   });
 
