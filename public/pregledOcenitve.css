@@ -410,6 +410,10 @@ button.btn:hover {
   animation: slideInFromRight 0.8s forwards; /* Animation timing can be adjusted */
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 5px;
