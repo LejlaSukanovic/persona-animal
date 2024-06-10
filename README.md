@@ -4,12 +4,12 @@
 
 # Persona
 
-Persona je spletna aplikacija, ki uporabnikom omogoča interakcijo z različnimi entitetami (npr. živali) preko samoocenjevanja in funkcij ujemanja. Projekt uporablja EJS za templating in vključuje animacije ter interaktivne elemente z Lottie datotekami.
+Persona uporabnikom omogoča, da z enostavnim izborom slik intuitivno ocenijo svoje karakteristike ter preverijo združljivost z bližnjimi. Med samoocenjevanjem izberejo sliko, ki najbolje odraža njihovo osebnost, kar zagotavlja globlji vpogled v njihove lastnosti. Isto metodo uporabljamo za ocenjevanje drugih oseb. Ob koncu procesa aplikacija ponudi temeljito analizo in izriše profil združljivosti med ocenjevalcem in ocenjeno osebo, s čimer krepi medosebne odnose.
 
 ## Kazalo
 
 - [Pregled Projekta](#pregled-projekta)
-- [Pregled Projekta](#tehnologije)
+- [Pregled Tehnologij](#tehnologije)
 - [Funkcionalnosti](#funkcionalnosti)
 - [Namestitev](#namestitev)
 - [Vizija](#vizija)
@@ -31,10 +31,16 @@ Persona omogoča uporabnikom:
 
 ## Funkcionalnosti
 
-- **Izbira Entitete**: Uporabniki lahko izberejo med seznamom entitet.
 - **Samoocenitev**: Uporabniki lahko izvajajo samoocenjevanje na podlagi različnih kategorij.
-- **Pregled Ujemanj**: Uporabniki lahko pregledajo zgodovino svojih ujemanj in podrobnosti vsakega ujemanja.
+- **Pregled samoocenitve**: Uporabniki lahko pregledajo rezultat samoocenjevanja za različne kategorije
+- **Brisanje samoocenitev**: Uporabniki lahko izbrišejo svojo samoocenitev in jo naredijo znova
+- **Ocenitev druge osebe**: Uporabniki lahko naredijo ocenitev za druge osebe na podlagi različnih kategorij
+- **Pregled zgodovine ujemanja**: Uporabniki lahko pregledajo zgodovino ujemanja
+- **Pregled Ujemanj**: Uporabniki lahko pregledajo podrobnosti vsakega ujemanja.
 - **Avtentikacija**: Registracija in prijava uporabnikov.
+- **Dodajanje novih entitet**: Admin lahko dodaje nove entitet v obstoječe ali nove kategorije
+- **Urejanje entitet**: Admin lahko ureja obstoječe entitet
+- **Brisanje entitet**: Admin lahko briše obstoječe entitete
 
 ## Namestitev
 
