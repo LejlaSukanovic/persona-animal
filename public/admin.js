@@ -27,8 +27,8 @@ function addUjemanje() {
     const newGroup = document.createElement('div');
     newGroup.className = 'ujemanje-group';
     newGroup.innerHTML = `
-        <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" class="ujemanje-input" required>
-        <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" class="ujemanje-input" min="0" max="10" required>
+        <input type="text" name="ujemanjeEntity[]" placeholder="Ime Entitete" class="ujemanje-input" >
+        <input type="number" name="ocenaUjemanja[]" placeholder="Ocena Ujemanja" class="ujemanje-input" min="0" max="10" >
     `;
     container.appendChild(newGroup);
 }
