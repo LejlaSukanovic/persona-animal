@@ -150,8 +150,9 @@ Za pridobitev Firestore API ključa, ki ga morate dodati v datoteko `.env`, se o
 
 <table>
   <tr>
-    <td><img src="./Database/images/Screen1.png" alt="Screen1" /></td>
-    <td><img src="./Database/images/Screen2.png" alt="Screen2" /></td>
+    <td><img src="./Database/images/izbiraEntitet.jpg" alt="Screen1" /></td>
+    <td><img src="./Database/images/pregledOcenitve.jpg" alt="Screen2" /></td>
+    <td><img src="./Database/images/pregledUjemanja.jpg" alt="Screen2" /></td>
   </tr>
 </table>
 
