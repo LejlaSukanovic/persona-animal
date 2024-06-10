@@ -17,7 +17,7 @@ const entities = [
     naziv: 'Konj',
     pozLastnosti: 'Lepota, Koristnost',
     negLastnosti: 'Razdražljivost, Divjost, Občutljivost',
-    slika: './images/konj.jpeg',
+    slika: './images/konj.jpg',
     kategorija: 'Živali',
   },
   {
@@ -25,7 +25,7 @@ const entities = [
     naziv: 'Pes',
     pozLastnosti: 'Zvestoba, Zaščitništvo, Učljivost, Pripadnost',
     negLastnosti: 'Ljubosumnost, Vodljivost',
-    slika: './images/pes4.jpg',
+    slika: './images/pes.jpg',
     kategorija: 'Živali'
   },
   {
@@ -49,7 +49,7 @@ const entities = [
     naziv: 'Lev',
     pozLastnosti: 'Ponos, Vsemogočnost, Samozavest, Veličastvenost',
     negLastnosti: 'Krvoločnost, Vzvišenost, Požrešnost',
-    slika: './images/lev3.jpg',
+    slika: './images/lev.jpg',
     kategorija: 'Živali'
   },
   {
@@ -65,7 +65,7 @@ const entities = [
     naziv: 'Opica',
     pozLastnosti: 'Nagajivost, Veselje, Inteligentnost',
     negLastnosti: 'Kradljivost, Prepirljivost, Požrešnost',
-    slika: './images/opica.jpeg',
+    slika: './images/opica.jpg',
     kategorija: 'Živali'
   },
   {
@@ -73,7 +73,7 @@ const entities = [
     naziv: 'Zajec',
     pozLastnosti: 'Hitrost, Ljubkost, Previdnost, Dobrosrčnost',
     negLastnosti: 'Plašnost, Strahopetnost, Prestrašenost',
-    slika: './images/zajec.jpeg',
+    slika: './images/zajec.jpg',
     kategorija: 'Živali'
   },
   {
@@ -81,7 +81,7 @@ const entities = [
     naziv: 'Mačka',
     pozLastnosti: 'Igrivost, Svobodnost, Okretnost',
     negLastnosti: 'Zahrbtnost, Popadljivost, Kradljivost',
-    slika: './images/macka2.jpg',
+    slika: './images/macka.jpg',
     kategorija: 'Živali'
   },
   {
@@ -89,7 +89,7 @@ const entities = [
     naziv: 'Galeb',
     pozLastnosti: 'Elegantnost, Gibčnost, Lepota',
     negLastnosti: 'Kradljivost, Požrešnost, Prepirljivost',
-    slika: './images/galeb.jpeg',
+    slika: './images/galeb.jpg',
     kategorija: 'Živali'
   },
   {
@@ -105,7 +105,7 @@ const entities = [
     naziv: 'Orel',
     pozLastnosti: 'Plemenitost, Vzvišenost, Ponos, Pogum',
     negLastnosti: 'Neusmiljenost, Krvoločnost, Plenjenje, Krutost',
-    slika: './images/orel.jpeg',
+    slika: './images/orel.jpg',
     kategorija: 'Živali'
   },
   {
@@ -129,7 +129,7 @@ const entities = [
     naziv: 'Čebela',
     pozLastnosti: 'Delavnost, Koristnost, Aktivnost',
     negLastnosti: 'Napadalnost, Nadležnost',
-    slika: './images/cebela.jpeg',
+    slika: './images/cebela.jpg',
     kategorija: 'Živali'
   },
   {
@@ -137,7 +137,7 @@ const entities = [
     naziv: 'Bik',
     pozLastnosti: 'Moč, Borbenost, Vztrajnost, Energičnost',
     negLastnosti: 'Divjost, Razdražljivost, Trmavost, Zaletavost, Impulzivnost',
-    slika: './images/bik.jpeg',
+    slika: './images/bik.jpg',
     kategorija: 'Živali'
   },
   {
@@ -158,24 +158,6 @@ const entities = [
   }
 ];
 
-let ujemanjaTable = {
-  Konj: { Konj: 1, Pes: 3, Sova: 5, Medved: 4, Lev: 3, Lisica: 4, Opica: 2, Zajec: 3, Mačka: 3, Galeb: 3, Mravlja: 2, Orel: 4, Slon: 1, Srna: 3, Čebela: 2, Bik: 4 },
-  Pes: { Pes: 1, Konj: 3, Sova: 5, Medved: 5, Lev: 4, Lisica: 5, Opica: 1, Zajec: 4, Mačka: 4, Galeb: 4, Mravlja: 3, Orel: 5, Slon: 2, Srna: 4, Čebela: 2, Bik: 5 },
-  Sova: { Sova: 1, Konj: 5, Pes: 5, Medved: 2, Lev: 3, Lisica: 2, Opica: 5, Zajec: 4, Mačka: 2, Galeb: 4, Mravlja: 5, Orel: 2, Slon: 5, Srna: 4, Čebela: 5, Bik: 3 },
-  Medved: { Medved: 1, Konj: 4, Pes: 5, Sova: 2, Lev: 1, Lisica: 1, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 1 },
-  Lev: { Lev: 1, Konj: 3, Pes: 4, Sova: 3, Medved: 1, Lisica: 2, Opica: 4, Zajec: 2, Mačka: 2, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 3, Srna: 2, Čebela: 5, Bik: 3 },
-  Lisica: { Lisica: 1, Konj: 4, Pes: 5, Sova: 2, Medved: 1, Lev: 2, Opica: 4, Zajec: 2, Mačka: 3, Galeb: 3, Mravlja: 5, Orel: 1, Slon: 4, Srna: 3, Čebela: 5, Bik: 1 },
-  Opica: { Opica: 1, Konj: 2, Pes: 1, Sova: 5, Medved: 4, Lev: 4, Lisica: 4, Zajec: 4, Mačka: 3, Galeb: 4, Mravlja: 3, Orel: 4, Slon: 1, Srna: 3, Čebela: 3, Bik: 5 },
-  Zajec: { Zajec: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 2, Opica: 4, Mačka: 2, Galeb: 1, Mravlja: 5, Orel: 3, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
-  Mačka: { Mačka: 1, Konj: 3, Pes: 4, Sova: 2, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 2, Galeb: 2, Mravlja: 5, Orel: 4, Slon: 2, Srna: 2, Čebela: 5, Bik: 3 },
-  Galeb: { Galeb: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 4, Zajec: 1, Mačka: 2, Mravlja: 5, Orel: 4, Slon: 3, Srna: 1, Čebela: 5, Bik: 2 },
-  Mravlja: { Mravlja: 1, Konj: 2, Pes: 3, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Orel: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
-  Orel: { Orel: 1, Konj: 4, Pes: 5, Sova: 2, Medved: 2, Lev: 2, Lisica: 1, Opica: 4, Zajec: 3, Mačka: 4, Galeb: 4, Mravlja: 5, Slon: 3, Srna: 4, Čebela: 1, Bik: 5 },
-  Slon: { Slon: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 3, Mravlja: 3, Orel: 4, Srna: 2, Čebela: 3, Bik: 4 },
-  Srna: { Srna: 1, Konj: 3, Pes: 4, Sova: 4, Medved: 2, Lev: 2, Lisica: 3, Opica: 3, Zajec: 1, Mačka: 2, Galeb: 1, Mravlja: 4, Orel: 4, Slon: 2, Čebela: 2, Bik: 2 },
-  Čebela: { Čebela: 1, Konj: 2, Pes: 2, Sova: 5, Medved: 5, Lev: 5, Lisica: 5, Opica: 3, Zajec: 5, Mačka: 5, Galeb: 5, Mravlja: 1, Orel: 5, Slon: 3, Srna: 4, Bik: 5 },
-  Bik: { Bik: 1, Konj: 4, Pes: 5, Sova: 3, Medved: 1, Lev: 3, Lisica: 1, Opica: 5, Zajec: 2, Mačka: 3, Galeb: 2, Mravlja: 5, Orel: 2, Slon: 4, Srna: 2, Čebela: 5 }
-};
 
 // Ensure all mutual matches are correctly filled
 const fillMissingUjemanja = (table) => {
