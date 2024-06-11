@@ -146,6 +146,8 @@ Za pridobitev Firestore API ključa, ki ga morate dodati v datoteko `.env`, se o
 
 5. **Odprite brskalnik** in navigirajte na `https://persona-animal-ii.onrender.com`.
 
+7. Za dostop do administrativne nadzorne plošče, po prijavi z adminskim poverilnicami navigirajte na pot /admin.
+
 ## Posnetki Zaslona
 
 <table>
