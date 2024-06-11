@@ -22,21 +22,13 @@ Persona je spletna aplikacija, zasnovana tako, da uporabnikom ponuja edinstven i
 
 Po opravljeni samooceni si uporabniki lahko ogledajo podrobne analize, ki poudarjajo njihove prednosti in področja za izboljšave. Poleg tega funkcija ujemanja omogoča uporabnikom, da svoje rezultate primerjajo z drugimi, kar omogoča globlje razumevanje njihove združljivosti z različnimi entitetami.
 
-Funkcije za preverjanje pristnosti, vključno z registracijo in prijavo, zagotavljajo varen dostop in prilagojene izkušnje. Persona Animal je zgrajena z robustnim zaledjem, ki uporablja Firebase, kar zagotavlja zanesljivo shranjevanje podatkov in nemoteno interakcijo. Ne glede na to, ali gre za zabavo ali osebno rast, Persona Animal ponuja nov pristop k samoodkrivanju in povezovanju.
+Funkcije za preverjanje pristnosti, vključno z registracijo in prijavo, zagotavljajo varen dostop in prilagojene izkušnje. Persona je zgrajena z robustnim zaledjem, ki uporablja Firebase, kar zagotavlja zanesljivo shranjevanje podatkov in nemoteno interakcijo. Ne glede na to, ali gre za zabavo ali osebno rast, Persona ponuja nov pristop k samoodkrivanju in povezovanju.
 
 Domača stran: https://persona-animal-ii.onrender.com
 
 Koda: https://gitlab.com/Wifeu/persona-animal-ii
 
 Kategorizacija: mobilna aplikacija, spletna aplikacija
-
-
-Persona omogoča uporabnikom:
-
-- Izbiro entitet (npr. živali) in ogled njihovih podrobnosti.
-- Izvajanje samoocenjevanja na podlagi različnih kategorij.
-- Ogled in upravljanje zgodovine ujemanj.
-- Registracijo in prijavo za upravljanje svojih profilov.
 
 ## Tehnologije
 
